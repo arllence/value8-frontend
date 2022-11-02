@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'home',
     component: HomePageComponent,
     data: {
-      title: 'Application',
+      title: 'Dashboard',
       extraParameter: 'home',
       permissions: {
       // only: [''],

@@ -31,6 +31,7 @@ export class HomePageComponent implements OnInit {
   reorder_records = [];
   quantity = 0
   to_dispatch = null
+  is_status = 'REORDERED';
 
   constructor(public administrationService: AdministrationService,
     public loadingService:LoadingService,
@@ -44,11 +45,14 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.fetch_products();
-    this.fetch_reorder() 
+    this.fetch_reorder(); 
   }
 
   search_by(status){
     console.log(status)
+    this.records = [];
+    this.reorder_records = [];
+    this.is_status = status
   }
 
   set_to_dispatch(ins){
@@ -57,6 +61,7 @@ export class HomePageComponent implements OnInit {
 
 
   fetch_products() {
+    const status = this.searchForm.get('status').value
       const search_payload = {
         "status": this.searchForm.get('status').value
       };
@@ -65,6 +70,9 @@ export class HomePageComponent implements OnInit {
         if (res) {
           console.log(res);
           this.records = res;
+          if (status == 'REORDERED' || status == 'DISPATCHED'){
+            this.reorder_records = res;
+          }
           this.loadingService.hideloading();
         }
       });
@@ -72,19 +80,19 @@ export class HomePageComponent implements OnInit {
     } 
 
   fetch_reorder() {
-      const search_payload = {
-        "status": 'REORDERED'
-      };
-      this.loadingService.showloading();
-      this.administrationService.getrecords(list_products_url, search_payload).subscribe((res) => {
-        if (res) {
-          console.log(res);
-          this.reorder_records = res;
-          this.loadingService.hideloading();
-        }
-      });
+    const search_payload = {
+      "status": 'REORDERED'
+    };
+    this.loadingService.showloading();
+    this.administrationService.getrecords(list_products_url, search_payload).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.reorder_records = res;
+        this.loadingService.hideloading();
+      }
+    });
 
-    } 
+  } 
   
   buy(product_id){
     const payload = {

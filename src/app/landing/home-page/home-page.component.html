@@ -46,7 +46,16 @@
                 <table class="wikitable hover" width="100%">
                    <tr>
                       <td class="pl-3"><b>TOTAL RECORDS</b></td>
-                      <td class="pl-3"><b>{{records?.length}}</b></td>
+                      <td class="pl-3">
+                        <b>
+                           <span *ngxPermissionsOnly="['STORE']">
+                              {{records?.length}}
+                           </span>
+                           <span *ngxPermissionsOnly="['WAREHOUSE']">
+                              {{reorder_records?.length}}
+                           </span>                        
+                        </b>
+                     </td>
                    </tr>
                 </table>
              </div>              
@@ -126,7 +135,7 @@
                </div>
 
                <div *ngxPermissionsOnly="['WAREHOUSE']" class="hide">
-                  <table class="wikitable" [mfData]="reorder_records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%" *ngIf="role !== 'JURY'">
+                  <table class="wikitable" [mfData]="reorder_records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%" *ngIf="is_status == 'REORDERED'">
                      <thead>
                      <tr>        
                         
@@ -186,7 +195,71 @@
                         <td colspan="9" class="no-data-available">No data available</td>
                      </tr>
                      <tbody>
-                     </table>
+                  </table>
+
+                  <div  class="hide">
+                     <table class="wikitable" [mfData]="records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%" *ngIf="is_status !== 'REORDERED'">
+                        <thead>
+                        <tr>        
+                           
+                              <th></th>
+                              <th>
+                                 <mfDefaultSorter by="name">Product Name</mfDefaultSorter>
+                              </th>
+                              <th class="text-center">
+                                 <mfDefaultSorter by="code">Product Code</mfDefaultSorter>
+                              </th>
+                              <th class="text-center">
+                                 <mfDefaultSorter by="quantity">Quantity</mfDefaultSorter>
+                              </th>
+                              <th class="text-center">
+                                 <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['STORE']" class="hide">
+                                 Action
+                              </th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="records?.length != 0">
+                        <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                           <td>{{i + 1}}</td>
+                           <td>{{ recordinstance.name }}</td>
+                           <td class="text-center">
+                             <span class="badge badge-info text-white" >
+                                {{recordinstance.code}}
+                             </span>
+                           </td>
+                           <td class="text-center">{{ recordinstance.quantity }}</td>
+                           <td class="text-center">
+                             <span class="badge badge-success" *ngIf="recordinstance.status == 'INSTOCK'">
+                                {{recordinstance.status}}
+                             </span>
+                             <span class="badge badge-warning" *ngIf="recordinstance.status == 'REORDERED'">
+                                {{recordinstance.status}}
+                             </span>
+                             <span class="badge badge-info" *ngIf="recordinstance.status == 'DISPATCHED'">
+                                {{recordinstance.status}}
+                             </span>
+                           </td>
+                           <td *ngxPermissionsOnly="['STORE']" class="hide">
+                              <button class="btn btn-info btn-small" (click)="buy(recordinstance.id )">Buy</button>
+                           </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="hide">
+                           <td colspan="12">
+                              Select Records in a page : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100,1000,5000]"></mfBootstrapPaginator>
+                           </td>
+                        </tr>
+                        </tfoot>
+                        <tbody *ngIf="records?.length == 0">
+                        <tr>
+                           <td colspan="9" class="no-data-available">No data available</td>
+                        </tr>
+                        <tbody>
+                        </table>
+                  </div>
                </div>
                 
           </div>        
