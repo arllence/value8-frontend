@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../authentication/services/authenticat
 import { ToastService } from '../../common-module/shared-service/toast.service';
 import { LoadingService } from '../../common-module/shared-service/loading.service';
 import { AdministrationService } from '../../administration/services/administration.service';
-import { verify_email_url,resend_otp_url,reset_password_page_url,send_password_reset_link_url,user_reset_password_url, fetch_meeting_url, fetch_general_meeting_url } from '../../app.constants';
+import { verify_email_url,resend_otp_url,reset_password_page_url,send_password_reset_link_url,user_reset_password_url,} from '../../app.constants';
 import { SweetalertService } from '../../common-module/shared-service/sweetalerts.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -83,46 +83,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchMeetings();
+
   }
   ngAfterViewInit(){
-    this.check_language()
+
   }
 
-  handle_lang(lang){
-    console.log(lang);
-    localStorage.setItem("LOCALE", lang);
-    this.selected_lang = lang;
-    this.langModal.hide()
-    // localStorage.removeItem(TOKEN_KEY);
-    // window.location.reload();
-  }
-  check_language(){
-    const lang =  localStorage.getItem('LOCALE');
-    if(lang){
-      this.selected_lang = lang;
-    } else {
-      this.langModal.show()
-    }
-  }
+  h
 
-  listener_switcher(variable,value){
-    if(variable == 'hear_about_us'){
-      if (value == 'Other'){
-        this.hear_about_us = true;
-      } else {
-        this.hear_about_us = false;
-      }
-    }
-  }
-
-  fetchMeetings() {
-    const payload = {
-    };
-    this.administrationService.getrecords(fetch_general_meeting_url, payload).subscribe((res) => {
-      this.links = res;
-    });
-  }
 
   is_login_fn() {
     this.is_login = !this.is_login

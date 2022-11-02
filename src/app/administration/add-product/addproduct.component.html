@@ -1,0 +1,49 @@
+<div class="animated fadeIn">
+  <div class="card">
+  
+    <div class="card-header">
+        Create Product
+    </div>
+    <div class="card-body">
+
+      
+      <form [formGroup]="productForm">
+        <div class="form-group mb-4">
+          <label for="other_group" class="control-label">
+            Product name  
+          </label>
+          <div class="">
+             <input id="other_group"  type="text" class="form-control"  formControlName="name" />                                 
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <label for="other_group" class="control-label">
+            Quantity 
+          </label>
+          <div class="">
+             <input id="other_group"  type="number" class="form-control"  formControlName="quantity" />                                 
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <label for="other_group" class="control-label">
+            Re-order Minimum 
+          </label>
+          <div class="">
+             <input id="other_group"  type="number" class="form-control"  formControlName="reorder_min" />                                 
+          </div>
+        </div>
+     
+        <div class="form-group mb-4">
+          <div class="">
+             <button class="btn btn-success pl-6 pr-6" (click)="addProduct()">Add</button>                                
+          </div>
+        </div>
+       
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- 
+        <app-common-loader></app-common-loader> -->

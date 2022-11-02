@@ -8,12 +8,7 @@ import { StaffDetailsComponent } from '../../staff-details/staff-details.compone
 import { ChangePasswordGuard } from '../../../authentication/guards/change-password.guard';
 import { AuthenticationGuard } from '../../../authentication/guards/authguard.guard';
 import { NgxPermissionsGuard } from 'ngx-permissions';
-import { MeetingLinkComponent } from '../../meeting-link/meeting-link.component';
-import { CommunicationComponent } from '../../communication/communication.component';
-import { RetrieveMailsComponent } from '../../retrieve-emails/retrieve-emails.component';
-import { RetrieveApplicationsComponent } from '../../retrieve-applications/retrieve-applications.component';
-import { ReassignComponent } from '../../re-assign/reassign.component';
-import { JuryGroupsComponent } from '../../jury-groups/jury-groups.component';
+import { AddProductComponent } from '../../add-product/addproduct.component';
 const routes: Routes = [
   
   {
@@ -53,77 +48,18 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
   },
   {
-    path: 're-assign',
-    component: ReassignComponent,
+    path: 'add-product',
+    component: AddProductComponent,
     data: {
-      title: 'Re-Assign',
+      title: 'Add Product',
       permissions: {
-        only: ['USER_MANAGER', 'TEAM_LEADER'],
+        only: ['USER_MANAGER', 'TEAM_LEADER', 'STORE','WAREHOUSE'],
         redirectTo: '/500'
       }
     },
     canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
   },
-  {
-    path: 'meeting-links',
-    component: MeetingLinkComponent,
-    data: {
-      title: 'Meeting Links',
-      permissions: {
-        only: ['USER_MANAGER', 'TEAM_LEADER'],
-        redirectTo: '/500'
-      }
-    },
-    canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
-  },
-  {
-    path: 'send-email',
-    component: CommunicationComponent,
-    data: {
-      title: 'Send Mails',
-      permissions: {
-        only: ['USER_MANAGER', 'MANAGER'],
-        redirectTo: '/500'
-      }
-    },
-    canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
-  },
-  {
-    path: 'retrieve-mails',
-    component: RetrieveMailsComponent,
-    data: {
-      title: 'Retrieve Mails',
-      permissions: {
-        only: ['USER_MANAGER', 'MANAGER'],
-        redirectTo: '/500'
-      }
-    },
-    canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
-  },
-  {
-    path: 'retrieve-applications',
-    component: RetrieveApplicationsComponent,
-    data: {
-      title: 'Retrieve Applications',
-      permissions: {
-        only: ['USER_MANAGER', 'MANAGER'],
-        redirectTo: '/500'
-      }
-    },
-    canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
-  },
-  {
-    path: 'jury-groups',
-    component: JuryGroupsComponent,
-    data: {
-      title: 'Create Jury Group',
-      permissions: {
-        only: ['USER_MANAGER', 'MANAGER'],
-        redirectTo: '/500'
-      }
-    },
-    canActivate: [AuthenticationGuard, ChangePasswordGuard, NgxPermissionsGuard],
-  },
+  
   
 
 

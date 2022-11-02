@@ -131,27 +131,7 @@ export class StaffregistrationComponent {
             }
           ]
         },
-        {
-          field_type: 'select',
-          label: 'Language',
-          name: 'language',
-          width: 6,
-          options: this.language,
-          validations: [
-            {
-              name: 'required',
-              validator: Validators.required,
-              message: ' Language is Required'
-            }
-          ]
-        },
-        {
-          field_type: 'input',
-          label: 'No. of Assigned Applications',
-          input_type: 'number',
-          name: 'assigned',
-          width: 6,
-        },
+
         {
           field_type: 'button',
           width: 6,

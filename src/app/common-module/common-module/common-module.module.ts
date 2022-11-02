@@ -30,7 +30,6 @@ import { CommonErrorComponent } from '../../containers/common-error/common-error
 import { CommonHeaderComponent } from '../../containers/common-header/common-header.component';
 import { CommonLoaderComponent } from '../../containers/common-loader/common-loader.component';
 import { CommonFooterComponent } from '../../containers/common-footer/common-footer.component';
-import { CommonProfileComponent } from '../../containers/common-profile/common-profile.component';
 import {DataTableModule} from 'angular2-datatable';
 
 // import { ToastrModule } from 'ngx-toastr';
@@ -52,7 +51,6 @@ import { FilterPipe } from '../shared-pipes/filter.pipe';
 
 import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { CommonEmailComponent } from '../../containers/common-email/common-email.component';
-import { CommonProfileViewComponent } from '../../containers/common-profile-view/common-profile-view.component';
 import { NgxTagsInputModule } from 'ngx-tags-input';
 import { TagInputModule } from 'ngx-chips';
 
@@ -60,23 +58,10 @@ import { QuillModule } from 'ngx-quill'
 import { ChartsModule } from 'ng2-charts';
 import { NgxPrintModule } from 'ngx-print';
 
-// import { ReportsComponent } from '../../containers/reports/reports.component';
-// import { DueDeligenceComponent } from '../../containers/due-deligence/due-deligence.component';
-// import { DueDeligenceAgentsComponent } from '../../containers/due-deligence-agents/due-deligence-agents.component';
-// import { QualityAssuranceComponent } from '../../containers/quality-assuarance/quality-assuarance.component';
-// import { TechnicalEvaluationComponent } from '../../containers/technical-evaluation/technical-evaluation.component';
-// import { ManagerComponent } from '../../containers/manager/manager.component';
-// import { ResultsComponent } from '../../containers/results/results.component';
-// import { DueDiligenceReportComponent } from '../../containers/due-diligence-report/due-diligence-report.component';
-// import { IncubationComponent } from '../../containers/incubation/incubation.component';
-// import { GapAnalysisComponent } from '../../containers/gap-analysis/gap-analysis.component';
-// import { GapAnalysisEnterprenuerComponent } from '../../containers/gap-analysis-enterprenuer/gap-analysis-enterprenuer.component';
-// import { GapAnalysisReportComponent } from '../../containers/gap-analysis-report/gap-analysis-report.component';
-// import { ApplicationComponent } from '../../containers/application/application.component';
+
 @NgModule({
   declarations: [CommonErrorComponent, CommonLoaderComponent,
-    CommonFooterComponent, CommonHeaderComponent,CommonProfileViewComponent,
-    CommonProfileComponent,
+    CommonFooterComponent, CommonHeaderComponent,
     CommonEmailComponent,  SafePipe, FilterPipe, 
   ],
   imports: [
@@ -136,9 +121,7 @@ import { NgxPrintModule } from 'ngx-print';
     CommonErrorComponent,
     CommonLoaderComponent,
     CommonFooterComponent, CommonHeaderComponent,
-    CommonProfileComponent,
 
-    CommonProfileViewComponent,
     CommonEmailComponent,
 SafePipe,
 FilterPipe,

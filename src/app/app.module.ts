@@ -51,7 +51,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ToastrModule } from 'ngx-toastr';
 
-import { DocumentDetailsComponent } from './administration/document-details/document-details.component';
 
 
 
@@ -103,9 +102,6 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form/dynamic-form.modu
     P404Component,
     P403Component,
     CommonSidebarComponent,
-    DocumentDetailsComponent
-    // TrustComponent,
-    // routingComponents,,
  
 
 

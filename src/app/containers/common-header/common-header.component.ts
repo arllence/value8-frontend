@@ -24,28 +24,12 @@ export class CommonHeaderComponent {
   }
   ngAfterViewInit(){
     this.remove();
-    this.check_language()
   }
   remove(){
     let button2 = document.getElementsByClassName('navbar-toggler');
     button2[2].remove();
   }
-  handle_lang(lang){
-    // console.log(lang);
-    localStorage.setItem("LOCALE", lang);
-    this.selected_lang = lang;
-    this.langModal.hide()
-    // localStorage.removeItem(TOKEN_KEY);
-    window.location.reload();
-  }
-  check_language(){
-    const lang =  localStorage.getItem('LOCALE');
-    if(lang){
-      this.selected_lang = lang;
-    } else {
-      this.langModal.show()
-    }
-  }
+ 
 
   fetchuserDetails() {
     this.authService.getuserprofileInfo().then((res) => {

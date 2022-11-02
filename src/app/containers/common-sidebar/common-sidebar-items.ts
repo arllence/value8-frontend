@@ -60,127 +60,33 @@ export const navItems: INavData[] = [
     name: 'Home',
     url: '/landing/home',
     icon: 'fa fa-home',
-    permission: ['INNOVATOR','EVALUATOR','JURY','SCREENER','MANAGER'],
+    permission: ['STORE','WAREHOUSE'],
   }, 
   {
-    //Reports List
-    name: 'Reports',
-    url: '#',
-    icon: 'fa fa-file',
-    permission: ['MANAGER','SCREENER'],
-    children: [
-      {
-        name: 'General',
-        url: '/reports/applications',
-        icon: 'fa fa-angle-double-right',
-        permission: ['MANAGER','SCREENER']
-      },
-      {
-        name: 'Reviewers',
-        url: '/reports/reviewers',
-        icon: 'fa fa-angle-double-right',
-        permission: ['MANAGER']
-      },
-      {
-        name: 'Evaluation',
-        url: '/reports/evaluation',
-        icon: 'fa fa-angle-double-right',
-        permission: ['MANAGER']
-      },
-    ]
-  }, 
-  
-  {
-    name: 'Download',
-    url: '#',
-    icon: 'fa fa-download',
-    permission: ['MANAGER', ],
-    children: [
-      {
-        name: 'Applications',
-        url: '/administration/retrieve-applications',
-        icon: 'fa fa-files-o',
-        permission: ['MANAGER']
-      },
-    ]
-  },
-  {
-    name: 'Communication',
-    url: '/administration/send-email',
-    icon: 'fa fa-comments ',
-    permission: ['SUPER_ADMIN','MANAGER' ],
-    children: [
-      {
-        name: 'Send Emails',
-        url: '/administration/send-email',
-        icon: 'fa fa-at',
-        permission: ['MANAGER']
-      },
-      {
-        name: 'Retrieve Emails',
-        url: '/administration/retrieve-mails',
-        icon: 'fa fa-envelope',
-        permission: ['MANAGER']
-      },
-    ]
-  },
-  {
-    //Analytics List
-    name: 'Analytics',
-    url: '#',
-    icon: 'fa fa-area-chart',
-    permission: ['MANAGER','SUPER_ADMIN'],
-    children: [
-      {
-        name: 'Evaluated',
-        url: '/analytics/evaluated',
-        icon: 'fa fa-angle-double-right',
-        permission: ['MANAGER','SUPER_ADMIN']
-      },
-      {
-        name: 'Dropped',
-        url: '/analytics/dropped',
-        icon: 'fa fa-angle-double-right',
-        permission: ['MANAGER','SUPER_ADMIN']
-      },
-    ]
-  }, 
-  {
-    name: 'User Management',
+    name: 'Management',
     url: '/administration/staff-registration',
-    icon: 'fa fa-users',
-    permission: ['USER_MANAGER', 'TEAM_LEADER', ],
+    icon: 'fa fa-cog',
+    permission: ['STORE','WAREHOUSE'],
     children: [
       {
         name: 'Staff Listing',
         url: '/administration/staff-listing',
         icon: 'fa fa-angle-double-right',
-        permission: ['USER_MANAGER', 'TEAM_LEADER', 'ICT_SUPPORT']
+        permission: ['STORE','WAREHOUSE']
       },
       {
         name: 'New Staff',
         url: '/administration/staff-registration',
         icon: 'fa fa-angle-double-right',
-        permission: ['USER_MANAGER']
+        permission: ['STORE','WAREHOUSE']
       },
       {
-        name: 'New Group',
-        url: '/administration/jury-groups',
+        name: 'Add Product',
+        url: '/administration/add-product',
         icon: 'fa fa-angle-double-right',
-        permission: ['USER_MANAGER']
+        permission: ['STORE','WAREHOUSE','USER_MANAGER']
       },
-      {
-        name: 'Re-Assign',
-        url: '/administration/re-assign',
-        icon: 'fa fa-angle-double-right',
-        permission: ['USER_MANAGER']
-      },
-      // {
-      //   name: 'Meeting Links',
-      //   url: '/administration/meeting-links',
-      //   icon: 'fa fa-link',
-      //   permission: ['USER_MANAGER']
-      // }
+
     ]
   },
   

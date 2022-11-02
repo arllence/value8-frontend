@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
    }
    disable_console() {
-    console.log = function() {};
+    // console.log = function() {};
    }
   checkifAuthenticated() {
     let current_url = String(window.location.pathname +  window.location.search)
