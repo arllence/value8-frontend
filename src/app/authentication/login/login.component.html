@@ -1,0 +1,1088 @@
+
+    <div class="app-body">
+        <main class="main d-flex align-items-center" *ngIf="selected_lang == 'en'">
+            <div class="container">
+                <div class="row" *ngIf="verify_email == false">
+                    <div class="col-md-12 mx-auto">
+                        <div class="card-group">
+                        <div class="card text-black  py-2 d-md-down-none" style="width:44%">
+                                <div class="card-body text-center">
+                                    <div>
+                                        
+                                        <img src='assets/cop27_logos_v2.jpg' height="100%" width="90%" />
+                                        
+                                        <br>
+                                        <br>
+                                        <p class="text-muted" i18n>The Youth Adaptation Solutions Challenge (YouthADAPT Challenge) is a competition and awards program for youth-led enterprises addressing climate change adaptation in Africa. The challenge is supported by the Global Center on Adaptation (GCA), the African Development Bank (AfDB) and the Climate Investment Funds.</p>
+                                <p class="text-muted"> Winners of the challenge will be awarded a business grant of up to $100,000 each as well as the opportunity to further develop their ventures through a 12-month business support, mentorship and acceleration program.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card p-2">
+                                <div class="card-body">
+                                    <div *ngIf="is_login">
+                                        <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+                                            <h2>Sign In</h2>
+                                            <br>
+                                        
+                                            <!--<p class="text-muted">Sign In to your account</p>-->
+                                            <div class="row">
+                                                <div class="input-group mb-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Email" autocomplete="email" 
+                                                    formControlName="email" required 
+                                                    [ngClass]="{ 'is-invalid': loginformstatus &amp;&amp; LoginForm.controls.email.errors }">
+                                                
+                                                </div>
+                                                <error-message [control]="LoginForm.controls.email" *ngIf="loginformstatus">email</error-message>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Password" formControlName="password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': loginformstatus &amp;&amp; LoginForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="LoginForm.controls.password" *ngIf="loginformstatus">password</error-message>
+                                            </div>
+
+                                            <div class="row mt-4">
+                                                <div class="col-6">
+                                                    <button type="button" class="btn btn-block btn-primary px-4"  type="submit" >Login</button>
+                                                </div>
+                                                <!-- <div class="col-6 text-right">
+                                                    <button type="button" class="btn btn-link px-0" (click)="resetpassword()">Forgot password?</button>
+                                                </div> -->
+                                            </div>
+
+                                        </form>
+                                        <br>
+                                        <span>
+                                            <p>
+                                                Forgot Password? 
+                                                    <span class="btn-link" (click)="is_reset_password_fn()">
+                                                        Reset Here
+                                                    </span>
+                                                <br>
+                                            Don't have an account? 
+                                                    <span class="btn-link" (click)="is_login_fn()">
+                                                        Register Here
+                                                    </span>
+                                            </p>
+                                        </span>
+                                    </div>
+                                    <!-- Sign up -->
+                                    <div *ngIf="!is_login" class="col-12">
+                                        <form [formGroup]="SignupForm" >
+                                            <h1>Sign Up</h1>
+                                            <p class="text-muted">Create your account</p>
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="First Name" autocomplete="" 
+                                                        formControlName="first_name" required 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.first_name.errors }">
+                                                    
+                                                    </div>
+                                                    <error-message [control]="SignupForm.controls.first_name" *ngIf="signupformstatus"></error-message>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-2 ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-user"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Last Name" autocomplete="" 
+                                                    formControlName="last_name" required 
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.last_name.errors }">
+                                                
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.last_name" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                    <input type="email" class="form-control" placeholder="Email" autocomplete="email" 
+                                                    formControlName="email" required 
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.email.errors }">
+                                                
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.email" *ngIf="signupformstatus"></error-message>
+                                            </div>
+    
+                                            
+                                            <div class="row mt-2">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-wpexplorer"></i></span>
+                                                    </div>
+                                                    <select class="form-control" formControlName="register_as" required >
+                                                        <option value="" disabled>Join as?</option>
+                                                        <option *ngFor="let role of roles" value="{{role}}">
+                                                            {{role}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.register_as" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Password" formControlName="password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.password" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Confirm Password" formControlName="confirm_password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.password" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-fire"></i></span>
+                                                    </div>
+                                                    <select class="form-control" formControlName="hear_about_us" required  (change)="listener_switcher('hear_about_us',$event.target.value)">
+                                                        <option value="" disabled>How did you hear about us?</option>
+                                                        <option *ngFor="let reason of reasons" value="{{reason}}">
+                                                            {{reason}}
+                                                        </option>
+                                                    </select>
+                                                
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.hear_about_us" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row" *ngIf="hear_about_us">
+                                                <div class="input-group mt-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-fire"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Which other way did you hear about us?" autocomplete="" 
+                                                    formControlName="hear_about_us_other"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.hear_about_us_other.errors }">
+                                                
+                                                </div>
+                                                <small *ngIf="other_field" class="text-danger">This field is required.</small>
+                                                <error-message [control]="SignupForm.controls.hear_about_us_other" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            
+                                            <div class="input-group mt-2">
+                                                <input type="checkbox" class="form-check-input" 
+                                                        formControlName="accepted_terms" required 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.accepted_terms.errors }" value="True" id="accepted_terms"> 
+                                                        <label class="form-check-label" for="accepted_terms">
+                                                            I accept the Terms and Conditions.
+                                                        </label>
+                                            </div>
+                                            <div class="input-group ">
+                                                <input type="checkbox" class="form-check-input" 
+                                                        formControlName="newsletter" 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.newsletter.errors }" value="True" id="newsletter">
+                                                        <label class="form-check-label" for="newsletter">
+                                                            I agree to receive notifications about application status.
+                                                        </label>    
+                                            </div>
+
+                                            <br>
+                                                                            
+                                        
+                                        
+                                        
+
+                                            <div class="">
+                                                <div class="">
+                                                    <button class="btn btn-block btn-primary px-4"  type="submit" (click)="onSignup()">Sign Up</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <br>
+                                        <span>
+                                            <p>
+                                                Already have an account? 
+                                                <span class="btn-link" (click)="is_login_fn()">
+                                                    Sign In
+                                                </span>
+                                            </p>
+                                        </span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            
+                        
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mx-auto">
+                    <div class="card card-group">
+                        <!-- verify email -->
+                        <div class="col-12 col-lg-6 py-5 " *ngIf="verify_email == true">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Verify Email</strong>
+                                </div>
+                                <div class="card-body">
+                                
+                                    <form [formGroup]="VerifyEmailForm" (ngSubmit)="verifyemail()">
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label>OTP code</label>
+                                                <div class="input-group ">
+                    
+                                                    <input type="text" class="form-control" formControlName="otp" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="icon-lock"></i>
+                                                        </span>
+                                                    </div>        
+                                                </div>
+                                            </div>        
+                                        </div>                          
+                                        <div class="form-group col-12">
+                                            <button type="submit" class="btn btn-success col-sm-12" >
+                                                <i class="fa fa-check"></i> 
+                                                &nbsp;Verify
+                                            </button>
+                                        </div>                          
+                                    </form>                            
+                                        <div class="form-group col-12">
+                                            <button type="submit" class="btn btn-info col-sm-12" (click)="resend_otp()" >
+                                                <i class="fa fa-circle-o-notch"></i> 
+                                                &nbsp;Resend OTP
+                                            </button>
+                                        </div>       
+                                </div>
+                            </div>
+                        </div>
+                        <!-- reset password -->
+                        <div class="col-12 col-lg-12 py-5 " *ngIf="reset_password">
+                        <div class="text-center d-md-down-none">
+                            <!-- <img src='assets/YouthADAPT.png' height="90" width="" />  -->
+                            <img src='assets/YouthADAPTChallengeV2.png' height="90" />
+                        <br>
+                        <br>
+                        </div>
+                        
+                            <div class="card ">
+                                <div class="card-header">
+                                    <strong>Reset Password</strong>
+                                </div>
+                                <div class="card-body">                       
+                                    <form [formGroup]="resetPasswordForm" (ngSubmit)="sendPasswordLink()">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label>Email</label>
+                                                <div class="input-group ">        
+                                                    <input type="text" class="form-control" formControlName="email" placeholder="Enter your email..."/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                    </div>        
+                                                </div>
+                                            </div>        
+                                        </div>                                 
+                                            <div class="form-group col-sm-12">
+                                                <button type="submit" class="btn btn-success col-sm-12" >
+                                                    Reset
+                                                </button>
+                                            </div>                             
+                                    </form>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="text-black  py-5 d-md-down-none" style="width:0%" *ngIf="reset_password || verify_email">                        
+                        
+                        </div>                    
+                    </div>
+                </div>
+
+                <div class="bg-white text-center p-4  d-flex align-items-center" id="div" *ngIf="links?.length != 0">
+                    <table class="wikitable m-3" >
+                        <tr>
+                        <th>Meeting Link</th>
+                        <th>Password</th>
+                        </tr>
+                        <tr *ngFor="let link of links; let i = index" id="table">
+                        <td><a href={{link?.link}} target="_blank">{{link?.link}}</a></td>
+                        <td>{{link?.password}}</td>
+                        </tr>
+                    </table>
+                </div>    
+
+            </div>
+        </main>
+        <main class="main d-flex align-items-center" *ngIf="selected_lang == 'fr'">
+            <div class="container">
+                <div class="row" *ngIf="verify_email == false">
+                    <div class="col-md-12 mx-auto">
+                        <div class="card-group">
+                        <div class="card text-black  py-2 d-md-down-none" style="width:44%">
+                                  <div class="card-body text-center">
+                                      <div>
+                                          
+                                          <img src='assets/cop27_logos_v2.jpg' height="100%" width="90%" />
+                                          
+                                          <br>
+                                          <br>
+                                           <p class="text-muted" i18n>Le Centre Mondial sur l'Adaptation et la Banque Africaine de Développement (BAD) se sont associés dans une mission commune pour accélérer les actions d'adaptation au climat dans le cadre du Programme d'Accélération de l'Adaptation Africaine (AAAP).</p>
+                                <p class="text-muted"> Les lauréats du défi recevront une subvention d'entreprise pouvant aller jusqu'à 100 000 dollars chacun, ainsi que la possibilité de développer leur entreprise grâce à un programme de soutien, de mentorat et d'accélération de 12 mois.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                            <div class="card p-2">
+                                <div class="card-body">
+                                    <div *ngIf="is_login">
+                                        <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+                                            <h2>S'identifier</h2>
+                                            <br>
+                                         
+                                            <!--<p class="text-muted">Sign In to your account</p>-->
+                                            <div class="row">
+                                                <div class="input-group mb-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Email" autocomplete="email" 
+                                                    formControlName="email" required 
+                                                    [ngClass]="{ 'is-invalid': loginformstatus &amp;&amp; LoginForm.controls.email.errors }">
+                                                  
+                                                </div>
+                                                <error-message [control]="LoginForm.controls.email" *ngIf="loginformstatus">email</error-message>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Mot de passe" formControlName="password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': loginformstatus &amp;&amp; LoginForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="LoginForm.controls.password" *ngIf="loginformstatus">Mot de passe</error-message>
+                                            </div>
+    
+                                            <div class="row mt-4">
+                                                <div class="col-6">
+                                                    <button type="button" class="btn btn-block btn-primary px-4"  type="submit" >Login</button>
+                                                </div>
+                                                <!-- <div class="col-6 text-right">
+                                                    <button type="button" class="btn btn-link px-0" (click)="resetpassword()">Forgot password?</button>
+                                                </div> -->
+                                            </div>
+    
+                                        </form>
+                                        <br>
+                                        <span>
+                                            <p>
+                                                Vous avez oublié votre mot de passe ?  
+                                                    <span class="btn-link" (click)="is_reset_password_fn()">
+                                                        Réinitialisez-le ici
+                                                    </span>
+                                                <br>
+                                                Vous n'avez pas de compte ?  
+                                                    <span class="btn-link" (click)="is_login_fn()">
+                                                        Inscrivez-vous ici
+                                                    </span>
+                                            </p>
+                                        </span>
+                                    </div>
+                                    <!-- Sign up -->
+                                    <div *ngIf="!is_login" class="col-12">
+                                        <form [formGroup]="SignupForm" >
+                                            <h1>S'inscrire</h1>
+                                            <p class="text-muted">Créez votre compte</p>
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Prénom" autocomplete="" 
+                                                        formControlName="first_name" required 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.first_name.errors }">
+                                                    
+                                                    </div>
+                                                    <error-message [control]="SignupForm.controls.first_name" *ngIf="signupformstatus"></error-message>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-2 ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-user"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nom de famille" autocomplete="" 
+                                                    formControlName="last_name" required 
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.last_name.errors }">
+                                                  
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.last_name" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                    <input type="email" class="form-control" placeholder="E-mail" autocomplete="email" 
+                                                    formControlName="email" required 
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.email.errors }">
+                                                  
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.email" *ngIf="signupformstatus"></error-message>
+                                            </div>
+     
+                                            
+                                            <div class="row mt-2">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-wpexplorer"></i></span>
+                                                    </div>
+                                                    <select class="form-control" formControlName="register_as" required >
+                                                        <option value="" disabled>Joindre en tant que?</option>
+                                                        <option *ngFor="let role of roles" value="{{role}}">
+                                                            {{role}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.register_as" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Mot de passe" formControlName="password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.password" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Confirmez le mot de passe" formControlName="confirm_password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.password" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-fire"></i></span>
+                                                    </div>
+                                                    <select class="form-control" formControlName="hear_about_us" required  (change)="listener_switcher('hear_about_us',$event.target.value)">
+                                                        <option value="" disabled>Comment avez-vous entendu parler de nous?</option>
+                                                        <option *ngFor="let reason of reasons" value="{{reason}}">
+                                                            {{reason}}
+                                                        </option>
+                                                    </select>
+                                                  
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.hear_about_us" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row" *ngIf="hear_about_us">
+                                                <div class="input-group mt-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-fire"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Which other way did you hear about us?" autocomplete="" 
+                                                    formControlName="hear_about_us_other"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.hear_about_us_other.errors }">
+                                                  
+                                                </div>
+                                                <small *ngIf="other_field" class="text-danger">Ce champ est requis.</small>
+                                                <error-message [control]="SignupForm.controls.hear_about_us_other" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            
+                                            <div class="input-group mt-2">
+                                                <input type="checkbox" class="form-check-input" 
+                                                        formControlName="accepted_terms" required 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.accepted_terms.errors }" value="True" id="accepted_terms"> 
+                                                        <label class="form-check-label" for="accepted_terms">
+                                                            J'accepte les termes et conditions.
+                                                        </label>
+                                            </div>
+                                            <div class="input-group ">
+                                                <input type="checkbox" class="form-check-input" 
+                                                        formControlName="newsletter" 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.newsletter.errors }" value="True" id="newsletter">
+                                                        <label class="form-check-label" for="newsletter">
+                                                            J'accepte de recevoir des notifications sur l'état de la candidature.
+                                                        </label>    
+                                            </div>
+    
+                                            <br>
+                                                                               
+                                         
+                                           
+                                           
+    
+                                            <div class="">
+                                                <div class="">
+                                                    <button class="btn btn-block btn-primary px-4"  type="submit" (click)="onSignup()">S'inscrire</button>
+                                                </div>
+                                            </div>
+    
+                                        </form>
+                                        <br>
+                                        <span>
+                                            <p>
+                                                Vous avez déjà un compte? 
+                                                <span class="btn-link" (click)="is_login_fn()">
+                                                    S'identifier
+                                                </span>
+                                            </p>
+                                        </span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            
+                           
+                              
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-12 mx-auto">
+                    <div class="card card-group">
+                        <!-- verify email -->
+                        <div class="col-12 col-lg-6 py-5 " *ngIf="verify_email == true">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Vérifier les courriels</strong>
+                                </div>
+                                <div class="card-body">
+                                
+                                    <form [formGroup]="VerifyEmailForm" (ngSubmit)="verifyemail()">
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label>OTP code</label>
+                                                <div class="input-group ">
+                    
+                                                    <input type="text" class="form-control" formControlName="otp" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="icon-lock"></i>
+                                                        </span>
+                                                    </div>        
+                                                </div>
+                                            </div>        
+                                        </div>                          
+                                        <div class="form-group col-12">
+                                            <button type="submit" class="btn btn-success col-sm-12" >
+                                                <i class="fa fa-check"></i> 
+                                                &nbsp;Vérifier
+                                            </button>
+                                        </div>                          
+                                    </form>                            
+                                        <div class="form-group col-12">
+                                            <button type="submit" class="btn btn-info col-sm-12" (click)="resend_otp()" >
+                                                <i class="fa fa-circle-o-notch"></i> 
+                                                &nbsp;Renvoyer OTP
+                                            </button>
+                                        </div>       
+                                </div>
+                            </div>
+                        </div>
+                        <!-- reset password -->
+                        <div class="col-12 col-lg-12 py-5 " *ngIf="reset_password">
+                        <div class="text-center d-md-down-none">
+                            <!-- <img src='assets/YouthADAPT.png' height="90" width="" />  -->
+                            <img src='assets/YouthADAPTChallengeV2.png' height="90" />
+                        <br>
+                        <br>
+                        </div>
+                        
+                            <div class="card ">
+                                <div class="card-header">
+                                    <strong>réinitialiser le mot de passe</strong>
+                                </div>
+                                <div class="card-body">                       
+                                    <form [formGroup]="resetPasswordForm" (ngSubmit)="sendPasswordLink()">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label>E-mail</label>
+                                                <div class="input-group ">        
+                                                    <input type="text" class="form-control" formControlName="email" placeholder="Enter your email..."/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                    </div>        
+                                                </div>
+                                            </div>        
+                                        </div>                                 
+                                            <div class="form-group col-sm-12">
+                                                <button type="submit" class="btn btn-success col-sm-12" >
+                                                    Réinitialiser
+                                                </button>
+                                            </div>                             
+                                    </form>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="text-black  py-5 d-md-down-none" style="width:0%" *ngIf="reset_password || verify_email">                        
+                           
+                        </div>                    
+                    </div>
+                </div>
+    
+                <div class="bg-white text-center p-4  d-flex align-items-center" id="div" *ngIf="links?.length != 0">
+                    <table class="wikitable m-3" >
+                        <tr>
+                          <th>Meeting Link</th>
+                          <th>Password</th>
+                        </tr>
+                        <tr *ngFor="let link of links; let i = index" id="table">
+                          <td><a href={{link?.link}} target="_blank">{{link?.link}}</a></td>
+                          <td>{{link?.password}}</td>
+                        </tr>
+                    </table>
+                </div>    
+    
+            </div>
+        </main>
+        <main class="main d-flex align-items-center" *ngIf="selected_lang == 'pt'">
+            <div class="container">
+                <div class="row" *ngIf="verify_email == false">
+                    <div class="col-md-12 mx-auto">
+                        <div class="card-group">
+                        <div class="card text-black  py-2 d-md-down-none" style="width:44%">
+                                <div class="card-body text-center">
+                                    <div>
+                                        
+                                        <img src='assets/cop27_logos_v2.jpg' height="100%" width="90%" />
+                                        
+                                        <br>
+                                        <br>
+                                        <p class="text-muted" i18n>O Youth Adaptation Solutions Challenge (YouthADAPT Challenge) é um programa de competição e premiação para empresas lideradas por jovens que abordam a adaptação às mudanças climáticas na África. O desafio é apoiado pelo Centro Global de Adaptação (GCA), Banco Africano de Desenvolvimento (BAD) e Fundos de Investimento Climático.</p>
+                                <p class="text-muted"> Os vencedores do desafio receberão um subsídio comercial de até US$ 100.000 cada, bem como a oportunidade de desenvolver ainda mais seus empreendimentos por meio de um programa de apoio, orientação e aceleração de negócios de 12 meses.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card p-2">
+                                <div class="card-body">
+                                    <div *ngIf="is_login">
+                                        <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+                                            <h2>Página de login</h2>
+                                            <br>
+                                        
+                                            <!--<p class="text-muted">Sign In to your account</p>-->
+                                            <div class="row">
+                                                <div class="input-group mb-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Email" autocomplete="email" 
+                                                    formControlName="email" required 
+                                                    [ngClass]="{ 'is-invalid': loginformstatus &amp;&amp; LoginForm.controls.email.errors }">
+                                                
+                                                </div>
+                                                <error-message [control]="LoginForm.controls.email" *ngIf="loginformstatus">email</error-message>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Senha" formControlName="password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': loginformstatus &amp;&amp; LoginForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="LoginForm.controls.password" *ngIf="loginformstatus">password</error-message>
+                                            </div>
+
+                                            <div class="row mt-4">
+                                                <div class="col-6">
+                                                    <button type="button" class="btn btn-block btn-primary px-4"  type="submit" >Login</button>
+                                                </div>
+                                                <!-- <div class="col-6 text-right">
+                                                    <button type="button" class="btn btn-link px-0" (click)="resetpassword()">Forgot password?</button>
+                                                </div> -->
+                                            </div>
+
+                                        </form>
+                                        <br>
+                                        <span>
+                                            <p>
+                                                Esqueceu a senha? 
+                                                    <span class="btn-link" (click)="is_reset_password_fn()">
+                                                        Reset aqui
+                                                    </span>
+                                                <br>
+                                                Não tem conta? 
+                                                    <span class="btn-link" (click)="is_login_fn()">
+                                                        Registe-se aqui
+                                                    </span>
+                                            </p>
+                                        </span>
+                                    </div>
+                                    <!-- Sign up -->
+                                    <div *ngIf="!is_login" class="col-12">
+                                        <form [formGroup]="SignupForm" >
+                                            <h1>Registar-me</h1>
+                                            <p class="text-muted">Crie a sua conta</p>
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Primeiro Nome" autocomplete="" 
+                                                        formControlName="first_name" required 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.first_name.errors }">
+                                                    
+                                                    </div>
+                                                    <error-message [control]="SignupForm.controls.first_name" *ngIf="signupformstatus"></error-message>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-2 ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-user"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Último Nome" autocomplete="" 
+                                                    formControlName="last_name" required 
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.last_name.errors }">
+                                                
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.last_name" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-group mt-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                    <input type="email" class="form-control" placeholder="Email" autocomplete="email" 
+                                                    formControlName="email" required 
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.email.errors }">
+                                                
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.email" *ngIf="signupformstatus"></error-message>
+                                            </div>
+    
+                                            
+                                            <div class="row mt-2">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-wpexplorer"></i></span>
+                                                    </div>
+                                                    <select class="form-control" formControlName="register_as" required >
+                                                        <option value="" disabled>Juntar-se como?</option>
+                                                        <option *ngFor="let role of roles" value="{{role}}">
+                                                            {{role}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.register_as" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Senha" formControlName="password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.password" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                                    </div>
+                                                    <input [type]="passwordFieldType ? 'text' : 'password'" class="form-control" placeholder="Confirmar senha" formControlName="confirm_password" autocomplete="current-password"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.password.errors }" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa" [ngClass]="{'fa-eye-slash': !passwordFieldType,
+                                                            'fa-eye': passwordFieldType}" (click)="showPassword()"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.password" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-fire"></i></span>
+                                                    </div>
+                                                    <select class="form-control" formControlName="hear_about_us" required  (change)="listener_switcher('hear_about_us',$event.target.value)">
+                                                        <option value="" disabled>Como soube de nós?</option>
+                                                        <option *ngFor="let reason of reasons" value="{{reason}}">
+                                                            {{reason}}
+                                                        </option>
+                                                    </select>
+                                                
+                                                </div>
+                                                <error-message [control]="SignupForm.controls.hear_about_us" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            <div class="row" *ngIf="hear_about_us">
+                                                <div class="input-group mt-2">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-fire"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Which other way did you hear about us?" autocomplete="" 
+                                                    formControlName="hear_about_us_other"
+                                                    [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.hear_about_us_other.errors }">
+                                                
+                                                </div>
+                                                <small *ngIf="other_field" class="text-danger">
+                                                    Este campo é obrigatório.
+                                                </small>
+                                                <error-message [control]="SignupForm.controls.hear_about_us_other" *ngIf="signupformstatus"></error-message>
+                                            </div>
+                                            
+                                            <div class="input-group mt-2">
+                                                <input type="checkbox" class="form-check-input" 
+                                                        formControlName="accepted_terms" required 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.accepted_terms.errors }" value="True" id="accepted_terms"> 
+                                                        <label class="form-check-label" for="accepted_terms">
+                                                            Aceito os Termos e Condições.
+                                                        </label>
+                                            </div>
+                                            <div class="input-group ">
+                                                <input type="checkbox" class="form-check-input" 
+                                                        formControlName="newsletter" 
+                                                        [ngClass]="{ 'is-invalid': signupformstatus &amp;&amp; SignupForm.controls.newsletter.errors }" value="True" id="newsletter">
+                                                        <label class="form-check-label" for="newsletter">
+                                                            Concordo em receber notificações sobre.
+                                                        </label>    
+                                            </div>
+
+                                            <br>
+                                                                            
+                                        
+                                        
+                                        
+
+                                            <div class="">
+                                                <div class="">
+                                                    <button class="btn btn-block btn-primary px-4"  type="submit" (click)="onSignup()">
+                                                        Registar-me
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <br>
+                                        <span>
+                                            <p>
+                                                Já tem uma conta? 
+                                                <span class="btn-link" (click)="is_login_fn()">
+                                                    Iniciar sessão
+                                                </span>
+                                            </p>
+                                        </span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            
+                        
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mx-auto">
+                    <div class="card card-group">
+                        <!-- verify email -->
+                        <div class="col-12 col-lg-6 py-5 " *ngIf="verify_email == true">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Verificar e-mail</strong>
+                                </div>
+                                <div class="card-body">
+                                
+                                    <form [formGroup]="VerifyEmailForm" (ngSubmit)="verifyemail()">
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label>OTP code</label>
+                                                <div class="input-group ">
+                    
+                                                    <input type="text" class="form-control" formControlName="otp" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="icon-lock"></i>
+                                                        </span>
+                                                    </div>        
+                                                </div>
+                                            </div>        
+                                        </div>                          
+                                        <div class="form-group col-12">
+                                            <button type="submit" class="btn btn-success col-sm-12" >
+                                                <i class="fa fa-check"></i> 
+                                                &nbsp;Verificar
+                                            </button>
+                                        </div>                          
+                                    </form>                            
+                                        <div class="form-group col-12">
+                                            <button type="submit" class="btn btn-info col-sm-12" (click)="resend_otp()" >
+                                                <i class="fa fa-circle-o-notch"></i> 
+                                                &nbsp;Reenviar OTP
+                                            </button>
+                                        </div>       
+                                </div>
+                            </div>
+                        </div>
+                        <!-- reset password -->
+                        <div class="col-12 col-lg-12 py-5 " *ngIf="reset_password">
+                        <div class="text-center d-md-down-none">
+                            <!-- <img src='assets/YouthADAPT.png' height="90" width="" />  -->
+                            <img src='assets/YouthADAPTChallengeV2.png' height="90" />
+                        <br>
+                        <br>
+                        </div>
+                        
+                            <div class="card ">
+                                <div class="card-header">
+                                    <strong>Redefinir senha</strong>
+                                </div>
+                                <div class="card-body">                       
+                                    <form [formGroup]="resetPasswordForm" (ngSubmit)="sendPasswordLink()">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label>Email</label>
+                                                <div class="input-group ">        
+                                                    <input type="text" class="form-control" formControlName="email" placeholder="Enter your email..."/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >
+                                                            <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                    </div>        
+                                                </div>
+                                            </div>        
+                                        </div>                                 
+                                            <div class="form-group col-sm-12">
+                                                <button type="submit" class="btn btn-success col-sm-12" >
+                                                    Redefinir
+                                                </button>
+                                            </div>                             
+                                    </form>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="text-black  py-5 d-md-down-none" style="width:0%" *ngIf="reset_password || verify_email">                        
+                        
+                        </div>                    
+                    </div>
+                </div>
+
+                <div class="bg-white text-center p-4  d-flex align-items-center" id="div" *ngIf="links?.length != 0">
+                    <table class="wikitable m-3" >
+                        <tr>
+                        <th>Meeting Link</th>
+                        <th>Password</th>
+                        </tr>
+                        <tr *ngFor="let link of links; let i = index" id="table">
+                        <td><a href={{link?.link}} target="_blank">{{link?.link}}</a></td>
+                        <td>{{link?.password}}</td>
+                        </tr>
+                    </table>
+                </div>    
+
+            </div>
+        </main>
+    </div>
+
+
+
+<style>
+    #div {
+        display: flex;
+        justify-content: center;
+    }
+
+    #table {
+        align-self: center;
+    }
+</style>
+
+<br>
+<br>
+
+<p style="text-align:center;"><span class="btn-link">African Adaptation Acceleration Program (AAAP)</span> &copy; 2022 All Rights Reserved<br><small>Powered by SmartBeaver</small>
+<br>
+For support contact us at <a href="mailto:youthadaptchallenge@afrilabs.com">youthadaptchallenge@afrilabs.com</a> / <a href="mailto:solutionschallenge@gca.org">solutionschallenge@gca.org</a>
+</p>
+<app-common-loader></app-common-loader>

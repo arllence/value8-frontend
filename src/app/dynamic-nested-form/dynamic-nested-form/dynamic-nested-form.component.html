@@ -1,0 +1,124 @@
+<div class="overflow-auto">
+<form [formGroup]="filterForm" class="filter-form"  >
+   
+   <div class="card">
+       <div class="card-header">
+        Document Type Name : {{main_form_name}}
+
+       </div>
+       <div class="card-body">
+        <div *ngFor="let form_items of form_fields_passed; let i = index">
+            <div class="card">
+                <div class="card-header">
+                    <a (click)="isCollapsed[i] = !isCollapsed[i]" >
+                       <div *ngIf="isCollapsed[i]">
+                           
+                        {{form_items.formname | titlecase }}  -   <span class="badge badge-primary">
+                            (click to expand)
+                        </span>
+                        </div>
+                        <div *ngIf="!isCollapsed[i]">
+                            {{form_items.formname | titlecase }}  -    <span class="badge badge-success"> (click to collapse)</span>
+                        </div>
+                       
+                      </a> 
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="form_items.formtype == 'single'">
+                            <div [collapse]="isCollapsed[i]">
+                               
+                        
+                        
+                                       <div  [formGroupName]="form_items.formname" *ngFor="let form_item_fields of form_items.fields; let j = index">
+                                        <label>{{form_item_fields.field_label}}</label>
+                                            <div *ngIf="form_item_fields.input_format == 'select'">
+                                             
+                                                  
+                                                <select class="form-control" [formControlName]="form_item_fields.field_name"  >
+                                                    <option [disabled]="form_item_fields?.field_readonly"  *ngFor="let select_item of form_item_fields.field_options" [value]="select_item.id">
+                                                        {{select_item.name}}
+                                                    </option>
+
+                                                </select>
+                                         
+
+                                            </div>
+                                            <div *ngIf="form_item_fields.field_type == 'text'">
+                                                
+                                                <input [type]="form_item_fields.input_format" class="form-control"  [readonly]="form_item_fields?.field_readonly" [formControlName]="form_item_fields.field_name"/> 
+                                            </div>
+                                           
+                                           
+                                           
+                                      
+                                </div>
+                            </div>
+                               </div>
+                               <div *ngIf="form_items.formtype == 'array'">
+                                <div [collapse]="isCollapsed[i]">
+                                    <button (click)="add_control(form_items.formname)" class="btn btn-success btn-sm col-md-2 offset-md-10">Add <i class="fa fa-plus"></i></button>
+                                    <div [formArrayName] = "form_items.formname">
+                                        <div  [formGroupName]="p"  *ngFor="let item of productArray(form_items.formname).controls; let p = index">
+                                          <div class="card">
+                                              <div  class="card-body">
+                                                  
+                                                <div *ngFor="let form_item_fields of form_items.fields; let j = index">
+                                                    <label>{{form_item_fields.field_label}}</label>
+                                                    <div *ngIf="form_item_fields.input_format == 'select'">
+                                                        
+                                                       
+                                                        <select class="form-control" [formControlName]="form_item_fields.field_name" >
+                                                            <option [disabled]="form_item_fields?.field_readonly" *ngFor="let select_item of form_item_fields.field_options" [value]="select_item.id">
+                                                                {{select_item.name}}
+                                                            </option>
+        
+                                                        </select>
+                                                       
+        
+                                                    </div>
+                                                    <div *ngIf="form_item_fields.field_type == 'text'">
+                                                     
+                                                        <input [type]="form_item_fields.input_format" class="form-control" [readonly]="form_item_fields?.field_readonly"  [formControlName]="form_item_fields.field_name"/> 
+                                                    </div>
+                                               
+                                                   </div>
+
+                                                   
+                                                   
+                                                
+                                              </div>
+                                              <div  class="card-footer">
+                                                <button class="btn btn-danger btn-sm col-md-2 offset-md-10" (click)="remove_control(p,form_items.formname)"><i class="fa fa-trash"></i> </button>
+                                              </div>
+                        
+                                          </div>
+                                       
+                                          
+                                          
+                                        </div>
+                                    </div>
+                                    </div>
+                               
+                                   </div>
+        
+        
+                        
+                        </div>
+                    
+        
+            </div>
+                 
+                 
+           </div>
+       </div>
+       <!-- <div class="card-footer">
+        
+       </div> -->
+
+   </div>
+  
+   </form>
+
+
+
+   </div>

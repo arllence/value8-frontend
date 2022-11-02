@@ -1,0 +1,23 @@
+FROM node:10.13-alpine
+ENV NODE_ENV production
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
+COPY . .
+EXPOSE 4200
+CMD npm start
+
+building the application 
+{% comment %} 
+docker build -t <tagname>.
+listing all docker images
+docker image ls
+remove docker image
+docker image rm <container id>
+running the built docker image
+docker run -it -p <port>:<exposed port> --name <dockername> <tag used in build>
+manouvering inside the docker container
+docker exec -i -t <container name> sh
+cd file
+docker run -it -p 4200:80 --name edms chariot
+ {% endcomment %}

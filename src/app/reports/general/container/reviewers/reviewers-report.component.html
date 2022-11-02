@@ -1,0 +1,190 @@
+<style>
+  .btn-success {
+    color: #fff !important;
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+}
+</style>
+
+
+
+
+
+<div class="animated fadeIn" id="print">
+    <div class="card">
+      <div class="card-header">
+        <strong>
+           <span *ngIf="pending_report">
+               Pending Reports
+           </span>
+           <span *ngIf="!pending_report">
+            Reviewers List with Allocated Applications
+           </span>
+           
+         </strong>
+      </div>
+      <div class="card-body" >
+        <form [formGroup]="searchForm" (ngSubmit)="filterAssigned()" *ngIf="!hide_filter_form" class="hide">
+          <div class="row ">           
+            <div class="form-group col-sm-6">
+              <label for="searchby"><strong>Select Role</strong></label>
+              <select class="form-control" id="searchby" formControlName="role" required (change)="search_by($event.target.value)">
+                <option value="EVALUATOR">Evaluator</option>
+                <option value="JURY">Jury</option>
+              </select>
+            </div>
+            
+            <div class="form-group col-sm-6">
+              <label for="countr">&nbsp;&nbsp;</label>
+              <button type="submit" class="btn form-control  btn-success btn-md "> <i
+                  class="fa fa-search"></i> &nbsp;Search </button>
+            </div>
+         
+          </div>
+        </form>
+
+         <div class="table-responsive ">
+            <div *ngIf="records?.length !== 0" class="m-5 hide">
+               <table class="wikitable hover" width="100%">
+                  <tr>
+                     <td class="pl-3"><b>TOTAL RECORDS</b></td>
+                     <td class="pl-3"><b>{{records?.length}}</b></td>
+                  </tr>
+               </table>
+            </div>              
+
+            <div class="mb-2">
+               <div class="col-sm-4 col-md-4 col-lg-4 float-right mb-2 hide">
+                  <div class="input-group">
+                     <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
+                     <input class="form-control " placeholder="Search Here" type="text" [(ngModel)]="searchString">
+                  </div>
+               </div>
+
+               <button class="btn  btn-warning float-right mb-2 hide" styleSheetFile="assets/css/custom_table.css" printSectionId="print" ngxPrint *ngIf="records?.length != 0">Export/Print</button>
+
+               <table class="wikitable" [mfData]="records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+               <thead>
+               <tr>        
+                  
+                     <th>#</th>
+                     <th>
+                     <mfDefaultSorter by="first_name">Evaluator Name</mfDefaultSorter>
+                     </th>
+                     <th>
+                     <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                     </th>
+                     <th class="text-center">
+                        <mfDefaultSorter by="user_groups">Role</mfDefaultSorter>
+                     </th>
+                     <th class="text-center" *ngIf="role == 'JURY'">
+                        <mfDefaultSorter by="group">Group</mfDefaultSorter>
+                     </th>
+                     <th class="text-center">
+                        <mfDefaultSorter by="contact_no">Total Assigned</mfDefaultSorter>
+                     </th>
+                     <th class="text-center">
+                     <mfDefaultSorter by="stats.complete">Complete</mfDefaultSorter>
+                     </th>
+                     <th class="text-center">
+                     <mfDefaultSorter by="stats.pending">Pending</mfDefaultSorter>
+                     </th>
+                     <th class="text-center"  *ngIf="role != 'JURY'">
+                        <mfDefaultSorter by="stats.lang">Language</mfDefaultSorter>
+                     </th>
+                     <th *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER']" class="hide">
+                        Action
+                     </th>
+               </tr>
+               </thead>
+               <tbody *ngIf="records?.length != 0">
+               <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                  <td>{{i + 1}}</td>
+                  <td>{{ recordinstance.first_name }} {{ recordinstance.last_name }}</td>
+                  <td>{{ recordinstance.email }}</td>
+                  <td class="text-center">
+                     <span class="badge badge-info" >
+                        {{recordinstance.user_groups[0].name}}
+                     </span>
+                  </td>
+                  <td class="text-center" *ngIf="role == 'JURY'">
+                     <span class="badge badge-warning" >
+                        {{ recordinstance.jury_group}}
+                     </span>
+                  </td>
+                  <td class="text-center">{{ recordinstance.assigned.length }}</td>
+                  <td class="text-center">{{ recordinstance.stats.complete }}</td>
+                  <td class="text-center">{{ recordinstance.stats.pending }}</td>
+                  <td class="text-center"  *ngIf="role != 'JURY'">{{ recordinstance.stats.lang | titlecase }}</td>
+                  <td *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','SCREENER']" class="hide">
+                     <button class="btn btn-success btn-small" (click)="innovation_data(recordinstance.assigned);createModal.show()">View Assigned</button>
+                  </td>
+               </tr>
+               </tbody>
+               <tfoot>
+               <tr class="hide">
+                  <td colspan="12">
+                     Select Records in a page : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,100,1000,5000]"></mfBootstrapPaginator>
+                  </td>
+               </tr>
+               </tfoot>
+               <tbody *ngIf="records?.length == 0">
+               <tr>
+                  <td colspan="9" class="no-data-available">No data available</td>
+               </tr>
+               <tbody>
+               </table>
+         </div>        
+      </div>
+    </div>
+</div>
+  
+
+<div bsModal #createModal="bs-modal" class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" >
+  <div class="modal-dialog modal-success" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Assigned Innovations</h4>
+        <button type="button" class="close" (click)="createModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body table-responsive">
+         <table class="wikitable" width="100%">
+            <tr>
+               <th></th>
+               <th>Innovation Name</th>
+               <th>Entreprenuer</th>
+               <th>Country</th>
+               <th  class="text-center" *ngIf="role != 'JURY'">Score</th>
+               <th>Action</th>
+            </tr>
+            <tr *ngFor="let data of assigned; let i = index">
+               <td>{{i+1}}</td>
+               <td>{{data?.innovation?.organization_name}}</td>
+               <td>{{data?.innovation?.creator?.first_name}} {{data?.creator?.last_name}}</td>
+               <td>{{data?.innovation?.country}}</td>
+               <td class="text-center" *ngIf="role != 'JURY'">
+                  <span *ngIf="role == 'EVALUATOR'">
+                     {{data?.innovation?.total_score}}
+                  </span>
+                  <span *ngIf="role == 'JURYx'">
+                     {{data?.innovation?.jury_total_score}}
+                  </span>
+               </td>
+               <td>
+                  <button class="btn btn-warning btn-small" (click)="application_review(data?.innovation?.creator?.id)">View</button>
+               </td>
+
+            </tr>
+         </table>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button   class="btn btn-secondary col-sm-12" (click)="createModal.hide()">Cose</button>      
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

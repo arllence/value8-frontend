@@ -1,0 +1,2553 @@
+<section *ngIf="selected_lang == 'en'" id="print-en">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Submission Review</strong>
+        <button class="btn btn-small btn-warning float-right mb-2 hide" styleSheetFile="assets/css/custom_table.css" printSectionId="print-en" ngxPrint *ngIf="records?.length != 0">Export/Print</button>
+      </div>
+      <div class="card-body">
+        <table class="wikitable"  width="100%">
+          <thead>
+             <tr>
+                <th *ngxPermissionsExcept="['EVALUATOR','JURY']">Entrepreneur Name</th>
+                <th>Enterprise / Organization Name</th>
+                <th *ngxPermissionsExcept="['EVALUATOR','JURY']">Country</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR']">Gender</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR']">DOB</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR']">Age</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR']">Status</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR']">Stage</th>
+             </tr>
+          </thead>
+          <tbody *ngIf="records?.length != 0">
+             <tr>
+                <td *ngxPermissionsExcept="['EVALUATOR','JURY']">{{records?.innovator?.innovator_name}}</td>
+                <td >
+                   {{records?.innovator?.organization_name}}
+                </td>
+                <td *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                   {{records?.innovator?.country}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR']">
+                  {{records?.innovator?.user_details?.gender}}
+                </td >
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR']">
+                  {{records?.innovator?.user_details?.dob}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR']">
+                  {{records?.innovator?.user_details?.age}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">                                       
+                   <span class="badge badge-success" *ngIf="records?.innovator?.status == 'SUBMITTED'">
+                      {{records?.innovator?.status}}
+                   </span>
+                   <span class="badge badge-primary" *ngIf="records?.innovator?.status !== 'SUBMITTED'">
+                      {{records?.innovator?.status}}
+                   </span>
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                   {{records?.innovator?.stage}}
+                </td>
+             </tr>                          
+          </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Eligibility</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="80%">Question</th>
+            <th width="20%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>What language will you complete this form in?</td>
+            <td>{{records?.eligibility?.language}}</td>
+          </tr>
+          <tr>
+            <td>
+              Is your innovation at a new/early-stage? (by this we mean that your innovation is still in the development phase and has not been released on the market for customers)
+            </td>
+            <td>{{records?.eligibility?.innovation_early_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Is your innovation at a scale-up stage? (by this we mean that your innovation has been developed and released on the market for customers)
+            </td>
+            <td>{{records?.eligibility?.innovation_scaleup_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Is your enterprise/venture focused in Africa?
+            </td>
+            <td>{{records?.eligibility?.location}}</td>
+          </tr>
+          <tr>
+            <td>
+              Are you operating in Africa as either a registered business or individuals based in Africa?
+            </td>
+            <td>{{records?.eligibility?.operation_type}}</td>
+          </tr>
+          <tr>
+            <td>
+              For partnership applications, is the nominated lead applicant operating in Africa?
+            </td>
+            <td>{{records?.eligibility?.lead_applicant_location}}</td>
+          </tr>
+          <tr>
+            <td>
+              Do you own or are you licensed to use relevant intellectual property included in your application?
+              If your application is proposing a new innovation/idea, then AAAP YouthADAPT Program would expect that you would own all resulting intellectual property which may be able to be registered on a local basis if you become a successful participant in the Challenge. AAAP YouthADAPT Program would not be able to give you specific legal advice on the protection or exploitation of intellectual property.
+            </td>
+            <td>{{records?.eligibility?.licensed}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Part 1: Applicant Details </strong>
+    </div>
+    <div class="card-body">
+      We will use this information for competition statistics, and to contact you about your entry. Your entry will not be assessed on these answers.
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              What legal entity are you entering the challenge as?
+            </td>
+            <td>{{records?.details?.entity}}</td>
+          </tr>
+          <tr *ngxPermissionsExcept="['EVALUATOR','JURY']">
+            <td>
+              In what country is your solution team primarily based?
+            </td>
+            <td>{{records?.details?.country_based}}</td>
+          </tr>
+          <tr>
+            <td>
+              Organisation name 
+            </td>
+            <td>{{records?.details?.organization_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Is your organisation youth-led or youth owned ( Youth-led/owned is between 18-35 age)?
+            </td>
+            <td>{{records?.details?.youth_led}}</td>
+          </tr>
+          <tr>
+            <td>
+              When was your organisation founded and by whom?
+            </td>
+            <td>{{records?.details?.founded}}</td>
+          </tr>
+          <tr *ngxPermissionsExcept="['EVALUATOR','JURY']">
+            <td>
+              Which country is your organisation registered in? 
+            </td>
+            <td>{{records?.details?.country_registered}}</td>
+          </tr>
+          <tr>
+            <td>
+              If you are a registered organisation, please provide evidence of your registration.
+            </td>
+            <td>
+                <span *ngIf="records?.details?.registration_files?.length != 0">
+                  <ol>
+                    <li *ngFor="let file of records?.details?.registration_files">
+                      <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a>
+                    </li>
+                  </ol>
+                </span>
+                <span *ngIf="records?.details?.registration_files?.length == 0">
+                  <i>No Files Uploaded</i>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Is your business majority (i.e. over 50%) owned by individuals who self-identify as 
+            </td>
+            <td>{{records?.details?.business_majority}}</td>
+          </tr>
+          <tr>
+            <td>
+              What is the size of your Organisation (team/staff)?
+            </td>
+            <td>{{records?.details?.staff_size}}</td>
+          </tr>
+          <tr>
+            <td>
+              Please provide a website/webpage for your organisation/proposal 
+            </td>
+            <td>{{records?.details?.website}}</td>
+          </tr>
+          <tr>
+            <td>
+              Main contact name 
+            </td>
+            <td>{{records?.details?.contact_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Main contact email address            
+            </td>
+            <td>{{records?.details?.contact_email}}</td>
+          </tr>
+          <tr>
+            <td>
+              Main contact phone number            
+            </td>
+            <td>{{records?.details?.contact_phone}}</td>
+          </tr>
+          <tr>
+            <td>
+              Organisation postal address / individual postal address             
+            </td>
+            <td>{{records?.details?.organization_address}}</td>
+          </tr>
+          <tr>
+            <td>
+              Name of an alternative contact             
+            </td>
+            <td>{{records?.details?.alternative_contact_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Alternative contact's job title             
+            </td>
+            <td>{{records?.details?.alternative_contact_title}}</td>
+          </tr>
+          <tr>
+            <td>
+              Email Address of alternative contact             
+            </td>
+            <td>{{records?.details?.alternative_contact_email}}</td>
+          </tr>
+          <tr>
+            <td>
+              Alternative content phone number            
+            </td>
+            <td>{{records?.details?.alternative_contact_phone}}</td>
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Part 2: Your proposal</strong>
+    </div>
+    <div class="card-body">
+      We will use this information to assess your application against the Eligibility and Judging Criteria. 
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Summary</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Please provide the name of your innovation.
+            </td>
+            <td>{{records?.proposal?.innovation_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Explain your innovation in one sentence.            
+            </td>
+            <td>{{records?.proposal?.innovation_explanation}}</td>
+          </tr>
+          <tr>
+            <td>
+              Please provide a more detailed description of your innovation and how it addresses the Challenge statement.
+            </td>
+            <td>{{records?.proposal?.innovation_description}}</td>
+          </tr>
+          <tr>
+            <td>
+              Who are your target user?
+            </td>
+            <td>{{records?.proposal?.target_users}}</td>
+          </tr>
+          <tr>
+            <td>
+              Please identify your target area/city/country/region.             
+            </td>
+            <td>{{records?.proposal?.target_area}}</td>
+          </tr>
+          <tr>
+            <td>
+              What issue or problem is your innovation trying to solve or address, and why is behaviour change required to solve the issue?
+            </td>
+            <td>{{records?.proposal?.problem_solved}}</td>
+          </tr>
+          <tr>
+            <td>
+              Describe the behaviour change you are targeting, and how you plan to generate change?
+            </td>
+            <td>
+              {{records?.proposal?.targeted_behaviour_change}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              How is your approach new or adaptive, and/or how does it differ from what already exists? 
+            </td>
+            <td>{{records?.proposal?.approach}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Innovation: 
+      Does the Solution offer an innovative approach to changing the behaviour of individuals and communities around climate change adaptation in Africa? 
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              What issue or problem is your innovation trying to solve or address, and why is behaviour change required to solve the issue?
+            </td>
+            <td>{{records?.proposal?.problem_solved}}</td>
+          </tr>
+          <tr>
+            <td>
+              Describe the behaviour change you are targeting, and how you plan to generate change?
+            </td>
+            <td>
+              {{records?.proposal?.targeted_behaviour_change}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              How is your approach new or adaptive, and/or how does it differ from what already exists? 
+            </td>
+            <td>{{records?.proposal?.approach}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Effectiveness:
+      Does the innovation demonstrate the potential to generate a significant change in the behaviour of individuals and communities around climate change and adaptation in Africa?  
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              What are the expected impacts of your solution?
+            </td>
+            <td>{{records?.proposal?.impacts}}</td>
+          </tr>
+          <tr>
+            <td>
+              How will you know your innovation has achieved the desired impact? 
+            </td>
+            <td>
+              {{records?.proposal?.impact_indicator}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Does your innovation have the potential to be replicated to other contexts across Africa?
+            </td>
+            <td>{{records?.proposal?.replication_capability}}</td>
+          </tr>
+          <tr>
+            <td>
+              What are the plans to test and iterate the innovation, as well as build evidence around its impact and effectiveness?  
+            </td>
+            <td>{{records?.proposal?.testing_and_iteration}}</td>
+          </tr>
+          <tr>
+            <td>
+              What are the plans to engage target audiences, stakeholders, and potential end-users throughout the testing, development, and scale-up process? 
+            </td>
+            <td>{{records?.proposal?.target_engagement}}</td>
+          </tr>
+          <tr>
+            <td>
+              Has the solution considered any potential negative impacts that it could have, what they could be, and how they could be addressed?
+            </td>
+            <td>{{records?.proposal?.negative_impacts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Capability: 
+      The solution has a team behind it with the relevant track record, skills, experience and resources (including partnerships) to achieve success.</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              What are the relevant skills and experience of the team working on the solution            
+            </td>
+            <td>{{records?.proposal?.team_skills}}</td>
+          </tr>
+          <tr>
+            <td>
+              What skill gaps exist and how will you fill them? Please provide information about your team members.            
+            </td>
+            <td>
+              {{records?.proposal?.skills_gap}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Have you considered any partnerships to help support the growth and scale-up of your innovation? and if so:
+              What kinds of organisations would you like to partner with, how would they contribute to the development of your innovation, and what are your plans to develop these partnerships during the accelerator program?             
+            </td>
+            <td>{{records?.proposal?.partnerships}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Scalability</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              What are the traction achieved so far?             
+            </td>
+            <td>{{records?.proposal?.traction_achieved}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Part 3: Attachments</strong>
+    </div>
+    <div class="card-body">
+      We will use this documents to assess your application against the Eligibility and Judging Criteria. 
+    </div>
+  </div>
+  </div> 
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Evidence of registered Details of Directors in your organisation.
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let file of records?.files">
+                  <li class="m-0 p-0" *ngIf="file?.title == 'Details Of Directors'">
+                    <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                  </li>
+                </ng-container >                          
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Evidence of two Board Meetings Minutes. 
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let file of records?.files">
+                  <li class="m-0 p-0" *ngIf="file?.title == 'Board Meetings Minutes'">
+                    <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                  </li>
+                </ng-container>                          
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Evidence of your audited Financial Statements for the last 2 years.
+            </td>
+            <td>
+              <ng-container *ngFor="let file of records?.files">
+                <li class="m-0 p-0" *ngIf="file?.title == 'Financial Statements'">
+                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                </li>
+              </ng-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Evidence of your Tax Registration Certificate.
+            </td>
+            <td>
+              <ng-container *ngFor="let file of records?.files">
+                <li class="m-0 p-0" *ngIf="file?.title === 'Tax Registration Certificate'">
+                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                </li>
+              </ng-container>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Part 3: Additional Information</strong>
+    </div>
+    <div class="card-body">
+      More about you to better understand your innovation as well as your interest in the challenge. Your entry will not be assessed on these answers.
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Your Interest in the Challenge</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              How did you find out about the Challenge? 
+            </td>
+            <td>{{records?.additional_info?.found_out}}</td>
+          </tr>
+          <tr>
+            <td>
+              What motivated your team to apply to the Challenge?
+            </td>
+            <td>
+                <ol>
+                  <li *ngFor="let motivation of records?.additional_info?.motivation">
+                    {{motivation}}
+                  </li>
+                </ol>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              What do you hope to learn from participating in the Challenge? 
+            </td>
+            <td>{{records?.additional_info?.hope_to_learn}}</td>
+          </tr>
+          <tr>
+            <td>
+              What non-financial capacity development areas/training would you find most helpful?
+            </td>
+            <td>{{records?.additional_info?.none_financial_training}}</td>
+          </tr>
+          <tr>
+            <td>
+              Have you or your team received funding through any of the following financial tools in the last three years to support any innovation efforts you have undertaken? 
+            </td>
+            <td>{{records?.additional_info?.funding_received}}</td>
+          </tr>
+          <tr>
+            <td>
+              To what extent do gender concerns and the empowerment of women and girls influence your everyday work?
+            </td>
+            <td>{{records?.additional_info?.gender_concerns}}</td>
+          </tr>
+          <tr>
+            <td>
+              How relevant is gender to the mandate of your organisation?
+            </td>
+            <td>{{records?.additional_info?.gender_relevance}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>For the following skills and processes, please indicate your level of knowledge and proficiency by selecting the appropriate.</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Submission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Understand how problems, risks and improvements may affect women and men (and marginalised groups?) differently 
+            </td>
+            <td>{{records?.additional_info?.direct_effect}}</td>
+          </tr>
+          <tr>
+            <td>
+              Identify the necessary capacity and resources to address gender issues and integrate a gender perspective in the design and implementation of solutions
+            </td>
+            <td>{{records?.additional_info?.capacity_and_resources}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Facilitate the involvement of women and men (and marginalised groups?) in innovation activities and the implementation of innovative solutions
+            </td>
+            <td>{{records?.additional_info?.involvement_facilitation}}</td>
+          </tr>
+          <tr>
+            <td>
+              Develop specific indicators, targets and baselines to measure progress on gender equality and women’s empowerment and to assess differentiated impact on women and men, and marginalised groups
+            </td>
+            <td>{{records?.additional_info?.indicators}}</td>
+          </tr>
+          <tr>
+            <td>
+              Please select your innovation's current stage of development
+            </td>
+            <td>{{records?.additional_info?.innovation_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              To what extent do gender concerns and the empowerment of women and girls influence your everyday work?
+            </td>
+            <td>{{records?.additional_info?.gender_concerns}}</td>
+          </tr>
+          <tr>
+            <td>
+              When did you and/or your team start working on your solution? 
+            </td>
+            <td>{{records?.additional_info?.solution_start_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  <!-- <div class="animated fadeIn text-center " *ngxPermissionsOnly="['EVALUATOR']">
+    <div class="card-body table-responsive">
+      <button class="btn btn-success col-6 mb-3" (click)="start_evaluating()">Evaluate</button>
+    </div>
+  </div>
+  <div class="animated fadeIn text-center " *ngxPermissionsOnly="['JURY','SUPER_ADMIN']">
+    <div class="card-body table-responsive">
+      <button class="btn btn-success col-6 mb-3" (click)="jury_evaluating()">Evaluate</button>
+    </div>
+  </div> -->
+<!-- <div class="animated fadeIn text-center " *ngxPermissionsOnly="['SCREENER','SUPER_ADMIN']">
+  <div class="card-body table-responsive row">
+    <button class="btn btn-danger col-6 mb-3" (click)="drop('DROPPED', 'Gibberish')">Drop</button>
+    <button class="btn btn-success col-6 mb-3" (click)="drop('RECOMMENDED', 'Valid application')">Recommend</button>
+  </div>
+</div> -->
+</section>
+
+<section *ngIf="selected_lang == 'fr'" id="print-fr">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Examen de la soumission</strong>
+        <button class="btn btn-small btn-warning float-right mb-2 hide" styleSheetFile="assets/css/custom_table.css" printSectionId="print-fr" ngxPrint *ngIf="records?.length != 0">Export/Print</button>
+      </div>
+      <div class="card-body">
+        <table class="wikitable"  width="100%">
+          <thead>
+             <tr>
+                <th *ngxPermissionsExcept="['EVALUATOR','JURY']">Nom de l'entrepreneur</th>
+                <th>Nom de l'entreprise / de l'organisation</th>
+                <th *ngxPermissionsExcept="['EVALUATOR','JURY']">Pays</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Le genre</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Tranche d'âge</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Statut</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Organiser</th>
+             </tr>
+          </thead>
+          <tbody *ngIf="records?.length != 0">
+             <tr>
+                <td *ngxPermissionsExcept="['EVALUATOR','JURY']">{{records?.innovator?.innovator_name}}</td>
+                <td >
+                   {{records?.innovator?.organization_name}}
+                </td>
+                <td *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                   {{records?.innovator?.country}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                  {{records?.innovator?.user_details?.gender}}
+                </td >
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                  {{records?.innovator?.user_details?.age_group}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">                                       
+                   <span class="badge badge-success" *ngIf="records?.innovator?.status == 'SUBMITTED'">
+                      {{records?.innovator?.status}}
+                   </span>
+                   <span class="badge badge-primary" *ngIf="records?.innovator?.status !== 'SUBMITTED'">
+                      {{records?.innovator?.status}}
+                   </span>
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                   {{records?.innovator?.stage}}
+                </td>
+             </tr>                          
+          </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Admissibilité</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="80%">Question</th>
+            <th width="20%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>Dans quelle langue remplirez-vous ce formulaire ?</td>
+            <td>{{records?.eligibility?.language}}</td>
+          </tr>
+          <tr>
+            <td>
+              Votre innovation en est-elle à un stade nouveau/précoce ? (nous entendons par là que votre innovation est encore en phase de développement et n'a pas été mise sur le marché pour les clients)
+            </td>
+            <td>{{records?.eligibility?.innovation_early_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Votre innovation est-elle en phase de mise à l'échelle ? (nous entendons par là que votre innovation a été développée et mise sur le marché pour les clients)
+            </td>
+            <td>{{records?.eligibility?.innovation_scaleup_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Votre entreprise/venture est-elle centrée sur l'Afrique ?
+            </td>
+            <td>{{records?.eligibility?.location}}</td>
+          </tr>
+          <tr>
+            <td>
+              Opérez-vous en Afrique en tant qu'entreprise enregistrée ou en tant qu'individu basé en Afrique ?
+            </td>
+            <td>{{records?.eligibility?.operation_type}}</td>
+          </tr>
+          <tr>
+            <td>
+              Pour les demandes de partenariat, le candidat principal désigné opère-t-il en Afrique ?
+            </td>
+            <td>{{records?.eligibility?.lead_applicant_location}}</td>
+          </tr>
+          <tr>
+            <td>
+              Possédez-vous ou êtes-vous autorisé à utiliser la propriété intellectuelle pertinente incluse dans votre candidature ?
+              Si votre candidature propose une nouvelle innovation/idée, le programme AAAP YouthADAPT s'attend à ce que vous possédiez toute la propriété intellectuelle résultante qui pourrait être enregistrée sur une base locale si vous devenez un participant réussi au défi. Le programme AAAP YouthADAPT ne serait pas en mesure de vous donner des conseils juridiques spécifiques sur la protection ou l'exploitation de la propriété intellectuelle.
+            </td>
+            <td>{{records?.eligibility?.licensed}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Partie 1 : Détails du candidat </strong>
+    </div>
+    <div class="card-body">
+      Nous utiliserons ces informations pour les statistiques de la compétition et pour vous contacter au sujet de votre inscription. Votre inscription ne sera pas évaluée sur ces réponses.
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Sous quelle entité juridique relevez-vous le défi ?
+            </td>
+            <td>{{records?.details?.entity}}</td>
+          </tr>
+          <tr *ngxPermissionsExcept="['EVALUATOR','JURY']">
+            <td>
+              Dans quel pays votre équipe solution est-elle principalement basée ?
+            </td>
+            <td>{{records?.details?.country_based}}</td>
+          </tr>
+          <tr>
+            <td>
+              Nom de l'organisme
+            </td>
+            <td>{{records?.details?.organization_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Votre organisation est-elle dirigée ou détenue par des jeunes (dirigée/appartenant à des jeunes âgés de 18 à 35 ans) ?
+            </td>
+            <td>{{records?.details?.youth_led}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quand votre organisation a-t-elle été fondée et par qui ?
+            </td>
+            <td>{{records?.details?.founded}}</td>
+          </tr>
+          <tr *ngxPermissionsExcept="['EVALUATOR','JURY']">
+            <td>
+              Dans quel pays votre organisation est-elle enregistrée ? 
+            </td>
+            <td>{{records?.details?.country_registered}}</td>
+          </tr>
+          <tr>
+            <td>
+              Si vous êtes une organisation enregistrée, veuillez fournir une preuve de votre enregistrement.
+            </td>
+            <td>
+                <span *ngIf="records?.details?.registration_files?.length != 0">
+                  <ol>
+                    <li *ngFor="let file of records?.details?.registration_files">
+                      <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a>
+                    </li>
+                  </ol>
+                </span>
+                <span *ngIf="records?.details?.registration_files?.length == 0">
+                  <i>Aucun fichier téléchargé</i>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Votre entreprise appartient-elle majoritairement (c'est-à-dire plus de 50 %) à des personnes qui s'identifient comme 
+            </td>
+            <td>{{records?.details?.business_majority}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quelle est la taille de votre organisation (équipe/personnel) ?
+            </td>
+            <td>{{records?.details?.staff_size}}</td>
+          </tr>
+          <tr>
+            <td>
+              Veuillez fournir un site Web/une page Web pour votre organisation/proposition
+            </td>
+            <td>{{records?.details?.website}}</td>
+          </tr>
+          <tr>
+            <td>
+              Nom du contact principal
+            </td>
+            <td>{{records?.details?.contact_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Adresse e-mail du contact principal            
+            </td>
+            <td>{{records?.details?.contact_email}}</td>
+          </tr>
+          <tr>
+            <td>
+              Numéro de téléphone du contact principal            
+            </td>
+            <td>{{records?.details?.contact_phone}}</td>
+          </tr>
+          <tr>
+            <td>
+              Adresse postale de l'organisation / adresse postale individuelle            
+            </td>
+            <td>{{records?.details?.organization_address}}</td>
+          </tr>
+          <tr>
+            <td>
+              Nom d'un autre contact             
+            </td>
+            <td>{{records?.details?.alternative_contact_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Intitulé du poste du contact alternatif             
+            </td>
+            <td>{{records?.details?.alternative_contact_title}}</td>
+          </tr>
+          <tr>
+            <td>
+              Adresse e-mail du contact alternatif            
+            </td>
+            <td>{{records?.details?.alternative_contact_email}}</td>
+          </tr>
+          <tr>
+            <td>
+              Numéro de téléphone de contenu alternatif            
+            </td>
+            <td>{{records?.details?.alternative_contact_phone}}</td>
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Partie 2 : Votre proposition</strong>
+    </div>
+    <div class="card-body">
+      Nous utiliserons ces informations pour évaluer votre candidature par rapport aux critères d'éligibilité et de jugement. 
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Summary</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Veuillez indiquer le nom de votre innovation.
+            </td>
+            <td>{{records?.proposal?.innovation_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Expliquez votre innovation en une phrase.            
+            </td>
+            <td>{{records?.proposal?.innovation_explanation}}</td>
+          </tr>
+          <tr>
+            <td>
+              Veuillez fournir une description plus détaillée de votre innovation et de la manière dont elle répond à l'énoncé du défi.
+            </td>
+            <td>{{records?.proposal?.innovation_description}}</td>
+          </tr>
+          <tr>
+            <td>
+              Qui sont vos utilisateurs cibles ?
+            </td>
+            <td>{{records?.proposal?.target_users}}</td>
+          </tr>
+          <tr>
+            <td>
+              Veuillez identifier votre zone/ville/pays/région cible.            
+            </td>
+            <td>{{records?.proposal?.target_area}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quel problème ou problème votre innovation tente-t-elle de résoudre ou de résoudre, et pourquoi un changement de comportement est-il nécessaire pour résoudre le problème ?
+            </td>
+            <td>{{records?.proposal?.problem_solved}}</td>
+          </tr>
+          <tr>
+            <td>
+              Décrivez le changement de comportement que vous ciblez et comment vous prévoyez de générer un changement ?
+            </td>
+            <td>
+              {{records?.proposal?.targeted_behaviour_change}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              En quoi votre approche est-elle nouvelle ou adaptative, et/ou en quoi diffère-t-elle de ce qui existe déjà ? 
+            </td>
+            <td>{{records?.proposal?.approach}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Innovation:
+        La Solution offre-t-elle une approche innovante pour changer le comportement des individus et des communautés autour de l'adaptation au changement climatique en Afrique ? 
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quel problème ou problème votre innovation tente-t-elle de résoudre ou de résoudre, et pourquoi un changement de comportement est-il nécessaire pour résoudre le problème ?
+            </td>
+            <td>{{records?.proposal?.problem_solved}}</td>
+          </tr>
+          <tr>
+            <td>
+              Décrivez le changement de comportement que vous ciblez et comment vous prévoyez de générer un changement ?
+            </td>
+            <td>
+              {{records?.proposal?.targeted_behaviour_change}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              En quoi votre approche est-elle nouvelle ou adaptative, et/ou en quoi diffère-t-elle de ce qui existe déjà ?
+            </td>
+            <td>{{records?.proposal?.approach}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Efficacité:
+        L'innovation démontre-t-elle le potentiel de générer un changement significatif dans le comportement des individus et des communautés face au changement climatique et à l'adaptation en Afrique ?  
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quels sont les impacts attendus de votre solution ?
+            </td>
+            <td>{{records?.proposal?.impacts}}</td>
+          </tr>
+          <tr>
+            <td>
+              Comment saurez-vous que votre innovation a atteint l'impact souhaité ?
+            </td>
+            <td>
+              {{records?.proposal?.impact_indicator}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Votre innovation a-t-elle le potentiel d'être reproduite dans d'autres contextes à travers l'Afrique ?
+            </td>
+            <td>{{records?.proposal?.replication_capability}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quels sont les plans pour tester et itérer l'innovation, ainsi que pour rassembler des preuves de son impact et de son efficacité ?
+            </td>
+            <td>{{records?.proposal?.testing_and_iteration}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quels sont les plans pour impliquer les publics cibles, les parties prenantes et les utilisateurs finaux potentiels tout au long du processus de test, de développement et de mise à l'échelle ?
+            </td>
+            <td>{{records?.proposal?.target_engagement}}</td>
+          </tr>
+          <tr>
+            <td>
+              La solution a-t-elle pris en compte les impacts négatifs potentiels qu'elle pourrait avoir, ce qu'ils pourraient être et comment ils pourraient être traités ?
+            </td>
+            <td>{{records?.proposal?.negative_impacts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Aptitude: 
+        La solution a une équipe derrière elle avec les antécédents, les compétences, l'expérience et les ressources (y compris les partenariats) nécessaires pour réussir.</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quelles sont les compétences et l'expérience pertinentes de l'équipe travaillant sur la solution           
+            </td>
+            <td>{{records?.proposal?.team_skills}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quelles lacunes de compétences existent et comment allez-vous les combler ? Veuillez fournir des informations sur les membres de votre équipe.           
+            </td>
+            <td>
+              {{records?.proposal?.skills_gap}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Avez-vous envisagé des partenariats pour aider à soutenir la croissance et la mise à l'échelle de votre innovation ? et si oui :
+              Avec quels types d'organisations aimeriez-vous vous associer, comment contribueraient-elles au développement de votre innovation et quels sont vos projets pour développer ces partenariats pendant le programme d'accélération ?          
+            </td>
+            <td>{{records?.proposal?.partnerships}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Évolutivité</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quelle est la traction obtenue jusqu'à présent ?             
+            </td>
+            <td>{{records?.proposal?.traction_achieved}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Partie 3 : Pièces jointes</strong>
+    </div>
+    <div class="card-body">
+      Nous utiliserons ces documents pour évaluer votre candidature par rapport aux critères d'éligibilité et de jugement. 
+    </div>
+  </div>
+  </div> 
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Preuve des détails enregistrés des administrateurs de votre organisation.
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let file of records?.files">
+                  <li class="m-0 p-0" *ngIf="file?.title == 'Details Of Directors'">
+                    <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                  </li>
+                </ng-container >                          
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Preuve de deux procès-verbaux de réunions du conseil d'administration.
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let file of records?.files">
+                  <li class="m-0 p-0" *ngIf="file?.title == 'Board Meetings Minutes'">
+                    <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                  </li>
+                </ng-container>                          
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Preuve de vos états financiers vérifiés pour les 2 dernières années.
+            </td>
+            <td>
+              <ng-container *ngFor="let file of records?.files">
+                <li class="m-0 p-0" *ngIf="file?.title == 'Financial Statements'">
+                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                </li>
+              </ng-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Preuve de votre certificat d'immatriculation fiscale.
+            </td>
+            <td>
+              <ng-container *ngFor="let file of records?.files">
+                <li class="m-0 p-0" *ngIf="file?.title === 'Tax Registration Certificate'">
+                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                </li>
+              </ng-container>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Partie 3 : Informations supplémentaires</strong>
+    </div>
+    <div class="card-body">
+      En savoir plus sur vous pour mieux comprendre votre innovation ainsi que votre intérêt pour le challenge. Votre inscription ne sera pas évaluée sur ces réponses.
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Votre intérêt pour le défi</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Comment avez-vous découvert le Défi ? 
+            </td>
+            <td>{{records?.additional_info?.found_out}}</td>
+          </tr>
+          <tr>
+            <td>
+              Qu'est-ce qui a motivé votre équipe à postuler au Challenge ?
+            </td>
+            <td>
+                <ol>
+                  <li *ngFor="let motivation of records?.additional_info?.motivation">
+                    {{motivation}}
+                  </li>
+                </ol>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Qu'espérez-vous apprendre en participant au Challenge ?
+            </td>
+            <td>{{records?.additional_info?.hope_to_learn}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quels domaines/formations de développement des capacités non financières trouveriez-vous les plus utiles ?
+            </td>
+            <td>{{records?.additional_info?.none_financial_training}}</td>
+          </tr>
+          <tr>
+            <td>
+              Au cours des trois dernières années, vous ou votre équipe avez-vous reçu un financement via l'un des outils financiers suivants pour soutenir les efforts d'innovation que vous avez entrepris ?
+            </td>
+            <td>{{records?.additional_info?.funding_received}}</td>
+          </tr>
+          <tr>
+            <td>
+              Dans quelle mesure les préoccupations liées au genre et l'autonomisation des femmes et des filles influencent-elles votre travail quotidien ?
+            </td>
+            <td>{{records?.additional_info?.gender_concerns}}</td>
+          </tr>
+          <tr>
+            <td>
+              Dans quelle mesure le genre est-il pertinent pour le mandat de votre organisation ?
+            </td>
+            <td>{{records?.additional_info?.gender_relevance}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Pour les compétences et processus suivants, veuillez indiquer votre niveau de connaissances et de compétence en sélectionnant le cas échéant.</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Question</th>
+            <th width="70%">Soumission</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Comprendre comment les problèmes, les risques et les améliorations peuvent affecter différemment les femmes et les hommes (et les groupes marginalisés ?)
+            </td>
+            <td>{{records?.additional_info?.direct_effect}}</td>
+          </tr>
+          <tr>
+            <td>
+              Identifier la capacité et les ressources nécessaires pour aborder les questions de genre et intégrer une perspective de genre dans la conception et la mise en œuvre des solutions
+            </td>
+            <td>{{records?.additional_info?.capacity_and_resources}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Faciliter l'implication des femmes et des hommes (et des groupes marginalisés ?) dans les activités d'innovation et la mise en œuvre de solutions innovantes
+            </td>
+            <td>{{records?.additional_info?.involvement_facilitation}}</td>
+          </tr>
+          <tr>
+            <td>
+              Élaborer des indicateurs, des cibles et des bases de référence spécifiques pour mesurer les progrès en matière d'égalité des sexes et d'autonomisation des femmes et pour évaluer l'impact différencié sur les femmes et les hommes, et les groupes marginalisés
+            </td>
+            <td>{{records?.additional_info?.indicators}}</td>
+          </tr>
+          <tr>
+            <td>
+              Veuillez sélectionner le stade de développement actuel de votre innovation            
+            </td>
+            <td>{{records?.additional_info?.innovation_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Dans quelle mesure les préoccupations liées au genre et l'autonomisation des femmes et des filles influencent-elles votre travail quotidien ?
+            </td>
+            <td>{{records?.additional_info?.gender_concerns}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quand vous et/ou votre équipe avez-vous commencé à travailler sur votre solution ?
+            </td>
+            <td>{{records?.additional_info?.solution_start_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  <!-- <div class="animated fadeIn text-center " *ngxPermissionsOnly="['EVALUATOR']">
+    <div class="card-body table-responsive">
+      <button class="btn btn-success col-6 mb-3" (click)="start_evaluating()">Évaluer</button>
+    </div>
+  </div>
+  <div class="animated fadeIn text-center " *ngxPermissionsOnly="['JURY','SUPER_ADMIN']">
+    <div class="card-body table-responsive">
+      <button class="btn btn-success col-6 mb-3" (click)="jury_evaluating()">Évaluer</button>
+    </div>
+  </div> -->
+<!-- <div class="animated fadeIn text-center " *ngxPermissionsOnly="['SCREENER','SUPER_ADMIN']">
+  <div class="card-body table-responsive row">
+    <button class="btn btn-danger col-6 mb-3" (click)="drop('DROPPED', 'Gibberish')">Goutte</button>
+    <button class="btn btn-success col-6 mb-3" (click)="drop('RECOMMENDED', 'Valid application')">Recommander</button>
+  </div>
+</div> -->
+</section>
+
+<section *ngIf="selected_lang == 'pt'" id="print-pt">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Revisão de envio</strong>
+        <button class="btn btn-small btn-warning float-right mb-2 hide" styleSheetFile="assets/css/custom_table.css" printSectionId="print-pt" ngxPrint *ngIf="records?.length != 0">Export/Print</button>
+      </div>
+      <div class="card-body">
+        <table class="wikitable"  width="100%">
+          <thead>
+             <tr>
+                <th *ngxPermissionsExcept="['EVALUATOR','JURY']">Nome do Empreendedor</th>
+                <th>Nome da empresa/organização</th>
+                <th *ngxPermissionsExcept="['EVALUATOR','JURY']">País</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Gênero</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Grupo de idade</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Status</th>
+                <th class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">Palco</th>
+             </tr>
+          </thead>
+          <tbody *ngIf="records?.length != 0">
+             <tr>
+                <td *ngxPermissionsExcept="['EVALUATOR','JURY']">{{records?.innovator?.innovator_name}}</td>
+                <td >
+                   {{records?.innovator?.organization_name}}
+                </td>
+                <td *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                   {{records?.innovator?.country}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                  {{records?.innovator?.user_details?.gender}}
+                </td >
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                  {{records?.innovator?.user_details?.age_group}}
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">                                       
+                   <span class="badge badge-success" *ngIf="records?.innovator?.status == 'SUBMITTED'">
+                      {{records?.innovator?.status}}
+                   </span>
+                   <span class="badge badge-primary" *ngIf="records?.innovator?.status !== 'SUBMITTED'">
+                      {{records?.innovator?.status}}
+                   </span>
+                </td>
+                <td class="text-center" *ngxPermissionsExcept="['EVALUATOR','JURY']">
+                   {{records?.innovator?.stage}}
+                </td>
+             </tr>                          
+          </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Elegibilidade</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="80%">Pergunta</th>
+            <th width="20%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>Em que idioma você preencherá este formulário?</td>
+            <td>{{records?.eligibility?.language}}</td>
+          </tr>
+          <tr>
+            <td>
+              Sua inovação está em um estágio novo/inicial? (com isso queremos dizer que sua inovação ainda está em fase de desenvolvimento e não foi lançada no mercado para os clientes)
+            </td>
+            <td>{{records?.eligibility?.innovation_early_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Sua inovação está em um estágio de expansão? (com isso queremos dizer que sua inovação foi desenvolvida e lançada no mercado para os clientes)
+            </td>
+            <td>{{records?.eligibility?.innovation_scaleup_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              A sua empresa/empreendimento está focada em África?
+            </td>
+            <td>{{records?.eligibility?.location}}</td>
+          </tr>
+          <tr>
+            <td>
+              Você está operando na África como uma empresa registrada ou indivíduos com sede na África?
+            </td>
+            <td>{{records?.eligibility?.operation_type}}</td>
+          </tr>
+          <tr>
+            <td>
+              Para candidaturas a parcerias, o candidato principal nomeado está a operar em África?
+            </td>
+            <td>{{records?.eligibility?.lead_applicant_location}}</td>
+          </tr>
+          <tr>
+            <td>
+              Você possui ou está licenciado para usar propriedade intelectual relevante incluída em seu aplicativo?
+              Se a sua inscrição estiver propondo uma inovação/ideia, o Programa AAAP YouthADAPT espera que você detenha toda a propriedade intelectual resultante que pode ser registrada localmente se você se tornar um participante bem-sucedido do Desafio. O Programa AAAP YouthADAPT não poderá fornecer aconselhamento jurídico específico sobre a proteção ou exploração de propriedade intelectual.
+            </td>
+            <td>{{records?.eligibility?.licensed}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Part 1: Applicant Details </strong>
+    </div>
+    <div class="card-body">
+      Usaremos essas informações para estatísticas da competição e para entrar em contato com você sobre sua inscrição. Sua entrada não será avaliada nessas respostas.
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Com qual pessoa jurídica você está entrando no desafio?
+            </td>
+            <td>{{records?.details?.entity}}</td>
+          </tr>
+          <tr *ngxPermissionsExcept="['EVALUATOR','JURY']">
+            <td>
+              Em que país sua equipe de soluções está sediada principalmente?
+            </td>
+            <td>{{records?.details?.country_based}}</td>
+          </tr>
+          <tr>
+            <td>
+              Nome da organização
+            </td>
+            <td>{{records?.details?.organization_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Sua organização é liderada por jovens ou de propriedade de jovens (liderada/de propriedade de jovens tem idade entre 18 e 35 anos)?
+            </td>
+            <td>{{records?.details?.youth_led}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quando sua organização foi fundada e por quem?
+            </td>
+            <td>{{records?.details?.founded}}</td>
+          </tr>
+          <tr *ngxPermissionsExcept="['EVALUATOR','JURY']">
+            <td>
+              Em qual país sua organização está registrada? 
+            </td>
+            <td>{{records?.details?.country_registered}}</td>
+          </tr>
+          <tr>
+            <td>
+              Se você é uma organização registrada, forneça evidências de seu registro.
+            </td>
+            <td>
+                <span *ngIf="records?.details?.registration_files?.length != 0">
+                  <ol>
+                    <li *ngFor="let file of records?.details?.registration_files">
+                      <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a>
+                    </li>
+                  </ol>
+                </span>
+                <span *ngIf="records?.details?.registration_files?.length == 0">
+                  <i>Nenhum arquivo enviado</i>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              A maioria da sua empresa (ou seja, mais de 50%) é de propriedade de indivíduos que se identificam como
+            </td>
+            <td>{{records?.details?.business_majority}}</td>
+          </tr>
+          <tr>
+            <td>
+              Qual é o tamanho da sua Organização (equipe/staff)?
+            </td>
+            <td>{{records?.details?.staff_size}}</td>
+          </tr>
+          <tr>
+            <td>
+              Forneça um site/página da Web para sua organização/proposta 
+            </td>
+            <td>{{records?.details?.website}}</td>
+          </tr>
+          <tr>
+            <td>
+              Nome do contato principal 
+            </td>
+            <td>{{records?.details?.contact_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Endereço de e-mail de contato principal            
+            </td>
+            <td>{{records?.details?.contact_email}}</td>
+          </tr>
+          <tr>
+            <td>
+              Telefone de contato principal           
+            </td>
+            <td>{{records?.details?.contact_phone}}</td>
+          </tr>
+          <tr>
+            <td>
+              Endereço postal da organização/endereço postal individual          
+            </td>
+            <td>{{records?.details?.organization_address}}</td>
+          </tr>
+          <tr>
+            <td>
+              Nome de um contato alternativo            
+            </td>
+            <td>{{records?.details?.alternative_contact_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Cargo do contato alternativo           
+            </td>
+            <td>{{records?.details?.alternative_contact_title}}</td>
+          </tr>
+          <tr>
+            <td>
+              Endereço de e-mail do contato alternativo            
+            </td>
+            <td>{{records?.details?.alternative_contact_email}}</td>
+          </tr>
+          <tr>
+            <td>
+              Número de telefone de conteúdo alternativo           
+            </td>
+            <td>{{records?.details?.alternative_contact_phone}}</td>
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Parte 2: Sua proposta</strong>
+    </div>
+    <div class="card-body">
+      Usaremos essas informações para avaliar sua inscrição em relação aos Critérios de Elegibilidade e Julgamento. 
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Summary</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Forneça o nome da sua inovação.
+            </td>
+            <td>{{records?.proposal?.innovation_name}}</td>
+          </tr>
+          <tr>
+            <td>
+              Explique sua inovação em uma frase.            
+            </td>
+            <td>{{records?.proposal?.innovation_explanation}}</td>
+          </tr>
+          <tr>
+            <td>
+              Forneça uma descrição mais detalhada de sua inovação e como ela aborda a declaração do Desafio.
+            </td>
+            <td>{{records?.proposal?.innovation_description}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quem é seu usuário-alvo?
+            </td>
+            <td>{{records?.proposal?.target_users}}</td>
+          </tr>
+          <tr>
+            <td>
+              Identifique sua área/cidade/país/região de destino.           
+            </td>
+            <td>{{records?.proposal?.target_area}}</td>
+          </tr>
+          <tr>
+            <td>
+              Que questão ou problema sua inovação está tentando resolver ou abordar e por que a mudança de comportamento é necessária para resolver o problema?
+            </td>
+            <td>{{records?.proposal?.problem_solved}}</td>
+          </tr>
+          <tr>
+            <td>
+              Descreva a mudança de comportamento que você está almejando e como você planeja gerar a mudança?
+            </td>
+            <td>
+              {{records?.proposal?.targeted_behaviour_change}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Como sua abordagem é nova ou adaptativa e/ou como ela difere do que já existe?
+            </td>
+            <td>{{records?.proposal?.approach}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Inovação:
+        A Solução oferece uma abordagem inovadora para mudar o comportamento de indivíduos e comunidades em torno da adaptação às mudanças climáticas na África? 
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Que questão ou problema sua inovação está tentando resolver ou abordar e por que a mudança de comportamento é necessária para resolver o problema?
+            </td>
+            <td>{{records?.proposal?.problem_solved}}</td>
+          </tr>
+          <tr>
+            <td>
+              Descreva a mudança de comportamento que você está almejando e como você planeja gerar a mudança?
+            </td>
+            <td>
+              {{records?.proposal?.targeted_behaviour_change}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Como sua abordagem é nova ou adaptativa e/ou como ela difere do que já existe?
+            </td>
+            <td>{{records?.proposal?.approach}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Eficácia:
+        A inovação demonstra o potencial de gerar uma mudança significativa no comportamento de indivíduos e comunidades em torno das mudanças climáticas e adaptação na África?  
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quais são os impactos esperados de sua solução?
+            </td>
+            <td>{{records?.proposal?.impacts}}</td>
+          </tr>
+          <tr>
+            <td>
+              Como você saberá que sua inovação alcançou o impacto desejado? 
+            </td>
+            <td>
+              {{records?.proposal?.impact_indicator}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              A sua inovação tem potencial para ser replicada para outros contextos em África?
+            </td>
+            <td>{{records?.proposal?.replication_capability}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quais são os planos para testar e iterar a inovação, bem como construir evidências sobre seu impacto e eficácia? 
+            </td>
+            <td>{{records?.proposal?.testing_and_iteration}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quais são os planos para envolver o público-alvo, as partes interessadas e os usuários finais em potencial durante todo o processo de teste, desenvolvimento e expansão?
+            </td>
+            <td>{{records?.proposal?.target_engagement}}</td>
+          </tr>
+          <tr>
+            <td>
+              A solução considerou quaisquer impactos negativos potenciais que poderia ter, quais poderiam ser e como poderiam ser abordados?
+            </td>
+            <td>{{records?.proposal?.negative_impacts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Capacidade:
+        A solução tem uma equipe por trás dela com histórico relevante, habilidades, experiência e recursos (incluindo parcerias) para alcançar o sucesso.</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quais são as habilidades e experiências relevantes da equipe que trabalha na solução           
+            </td>
+            <td>{{records?.proposal?.team_skills}}</td>
+          </tr>
+          <tr>
+            <td>
+              What skill gaps exist and how will you fill them? Please provide information about your team members.            
+            </td>
+            <td>
+              {{records?.proposal?.skills_gap}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Você já considerou alguma parceria para ajudar a apoiar o crescimento e a expansão de sua inovação? e se:
+              Com que tipos de organizações você gostaria de fazer parceria, como elas contribuiriam para o desenvolvimento de sua inovação e quais são seus planos para desenvolver essas parcerias durante o programa de aceleração?          
+            </td>
+            <td>{{records?.proposal?.partnerships}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Escalabilidade</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Quais são as tração alcançadas até agora?            
+            </td>
+            <td>{{records?.proposal?.traction_achieved}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Parte 3: Anexos</strong>
+    </div>
+    <div class="card-body">
+      Usaremos esses documentos para avaliar sua inscrição em relação aos Critérios de Elegibilidade e Julgamento.
+    </div>
+  </div>
+  </div> 
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Evidência de Detalhes de Diretores registrados em sua organização.
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let file of records?.files">
+                  <li class="m-0 p-0" *ngIf="file?.title == 'Details Of Directors'">
+                    <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                  </li>
+                </ng-container >                          
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Evidência de duas Atas de Reunião do Conselho. 
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let file of records?.files">
+                  <li class="m-0 p-0" *ngIf="file?.title == 'Board Meetings Minutes'">
+                    <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                  </li>
+                </ng-container>                          
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Evidência de suas Demonstrações Financeiras auditadas nos últimos 2 anos.
+            </td>
+            <td>
+              <ng-container *ngFor="let file of records?.files">
+                <li class="m-0 p-0" *ngIf="file?.title == 'Financial Statements'">
+                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                </li>
+              </ng-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Comprovativo da sua Certidão de Registo Fiscal.
+            </td>
+            <td>
+              <ng-container *ngFor="let file of records?.files">
+                <li class="m-0 p-0" *ngIf="file?.title === 'Tax Registration Certificate'">
+                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> 
+                </li>
+              </ng-container>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Parte 3: Informações Adicionais</strong>
+    </div>
+    <div class="card-body">
+      Mais sobre você para entender melhor sua inovação, bem como seu interesse no desafio. Sua entrada não será avaliada nessas respostas.
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Seu interesse no desafio</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Como ficou sabendo do Desafio?
+            </td>
+            <td>{{records?.additional_info?.found_out}}</td>
+          </tr>
+          <tr>
+            <td>
+              O que motivou sua equipe a se inscrever no Desafio?
+            </td>
+            <td>
+                <ol>
+                  <li *ngFor="let motivation of records?.additional_info?.motivation">
+                    {{motivation}}
+                  </li>
+                </ol>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              O que você espera aprender ao participar do Desafio? 
+            </td>
+            <td>{{records?.additional_info?.hope_to_learn}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quais áreas/treinamento de desenvolvimento de capacidade não financeira você acharia mais útil?
+            </td>
+            <td>{{records?.additional_info?.none_financial_training}}</td>
+          </tr>
+          <tr>
+            <td>
+              Você ou sua equipe receberam financiamento por meio de alguma das seguintes ferramentas financeiras nos últimos três anos para apoiar quaisquer esforços de inovação que você realizou? 
+            </td>
+            <td>{{records?.additional_info?.funding_received}}</td>
+          </tr>
+          <tr>
+            <td>
+              Até que ponto as preocupações de gênero e o empoderamento de mulheres e meninas influenciam seu trabalho diário?
+            </td>
+            <td>{{records?.additional_info?.gender_concerns}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quão relevante é o gênero para o mandato de sua organização?
+            </td>
+            <td>{{records?.additional_info?.gender_relevance}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
+  <div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Para as seguintes habilidades e processos, indique seu nível de conhecimento e proficiência selecionando o apropriado.</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <thead>
+          <tr>
+            <th width="30%">Pergunta</th>
+            <th width="70%">Submissão</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="records?.length != 0">
+          <tr>
+            <td>
+              Compreender como problemas, riscos e melhorias podem afetar mulheres e homens (e grupos marginalizados?) de forma diferente
+            </td>
+            <td>{{records?.additional_info?.direct_effect}}</td>
+          </tr>
+          <tr>
+            <td>
+              Identificar a capacidade e os recursos necessários para abordar questões de gênero e integrar uma perspectiva de gênero na concepção e implementação de soluções
+            </td>
+            <td>{{records?.additional_info?.capacity_and_resources}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Facilitar o envolvimento de mulheres e homens (e grupos marginalizados?) em atividades de inovação e na implementação de soluções inovadoras
+            </td>
+            <td>{{records?.additional_info?.involvement_facilitation}}</td>
+          </tr>
+          <tr>
+            <td>
+              Desenvolver indicadores, metas e linhas de base específicos para medir o progresso na igualdade de gênero e empoderamento das mulheres e avaliar o impacto diferenciado em mulheres e homens e grupos marginalizados
+            </td>
+            <td>{{records?.additional_info?.indicators}}</td>
+          </tr>
+          <tr>
+            <td>
+              Selecione o estágio atual de desenvolvimento da sua inovação
+            </td>
+            <td>{{records?.additional_info?.innovation_stage}}</td>
+          </tr>
+          <tr>
+            <td>
+              Até que ponto as preocupações de gênero e o empoderamento de mulheres e meninas influenciam seu trabalho diário?
+            </td>
+            <td>{{records?.additional_info?.gender_concerns}}</td>
+          </tr>
+          <tr>
+            <td>
+              Quando você e/ou sua equipe começaram a trabalhar em sua solução?
+            </td>
+            <td>{{records?.additional_info?.solution_start_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  <!-- <div class="animated fadeIn text-center " *ngxPermissionsOnly="['EVALUATOR']">
+    <div class="card-body table-responsive">
+      <button class="btn btn-success col-6 mb-3" (click)="start_evaluating()">Avalie</button>
+    </div>
+  </div>
+  <div class="animated fadeIn text-center " *ngxPermissionsOnly="['JURY','SUPER_ADMIN']">
+    <div class="card-body table-responsive">
+      <button class="btn btn-success col-6 mb-3" (click)="jury_evaluating()">Avalie</button>
+    </div>
+  </div> -->
+<!-- <div class="animated fadeIn text-center " *ngxPermissionsOnly="['SCREENER','SUPER_ADMIN']">
+  <div class="card-body table-responsive row">
+    <button class="btn btn-danger col-6 mb-3" (click)="drop('DROPPED', 'Gibberish')">Derrubar</button>
+    <button class="btn btn-success col-6 mb-3" (click)="drop('RECOMMENDED', 'Valid application')">Recomendar</button>
+  </div>
+</div> -->
+</section>
+
+<section *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+  <h3 class="text-center mt-3 text-info">
+    JURY EVALUATION COMMENTS
+  </h3>
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Description of innovation and impact</strong>
+      </div>
+      <div class="card-body table-responsive">              
+              <table class="wikitable" width="100%">
+                <tr>
+                  <th></th>
+                  <th>Jury</th>
+                  <th>Comment</th>
+                </tr>
+                <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>
+                    {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                  </td>
+                  <td>
+                    {{record?.data?.description_of_innovation_comment}}
+                  </td>
+                </tr>
+              </table>    
+      </div>
+    </div>
+</div>  
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Innovation</strong>
+    </div>
+    <div class="card-body table-responsive">                    
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.innovation_comment}}
+                </td>
+              </tr>
+            </table>
+    </div>
+  </div>
+</div>  
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Marketing</strong>
+    </div>
+    <div class="card-body table-responsive">                  
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.marketing_comment}}
+                </td>
+              </tr>
+            </table> 
+    </div>
+  </div>
+</div>  
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Climate adaptation impact</strong>
+    </div>
+    <div class="card-body table-responsive">
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.climate_adaptation_impact_comment}}
+                </td>
+              </tr>
+            </table>      
+    </div>
+  </div>
+</div>  
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Business Operations</strong>
+    </div>
+    <div class="card-body table-responsive">                  
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.business_operations_comment}}
+                </td>
+              </tr>
+            </table>        
+    </div>
+  </div>
+</div> 
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Team composition and Management capacity</strong>
+    </div>
+    <div class="card-body table-responsive">
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.team_composition_comment}}
+                </td>
+              </tr>
+            </table>  
+    </div>
+  </div>
+</div> 
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Scalability of Venture</strong>
+    </div>
+    <div class="card-body table-responsive">
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.scalability_of_venture_comment}}
+                </td>
+              </tr>
+            </table>      
+    </div>
+  </div>
+</div> 
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Financial Management / Budgeting</strong>
+    </div>
+    <div class="card-body table-responsive">     
+            <table class="wikitable" width="100%">
+              <tr>
+                <th></th>
+                <th>Jury</th>
+                <th>Comment</th>
+              </tr>
+              <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+                <td>{{i+1}}</td>
+                <td>
+                  {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+                </td>
+                <td>
+                  {{record?.data?.financial_management_comment}}
+                </td>
+              </tr>
+            </table>  
+    </div>
+  </div>
+</div>  
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Capstone</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <section *ngFor="let record of records?.jury_evaluation; let i = index">   
+        <h2 class="text-info p-3">Jury: {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}</h2>                
+            <div class="form-group mb-4">
+              <label class="control-label" for="jury_persona_score">
+                Please score the candidate based on your personal assessment of candidates likelihood of success in this business - include factors such as passion / commitment, experience, promise and depth of knowledge among others. Score ranges from 0 to 10 points.
+              </label>
+              <input type="number" min="0" max="10" id="jury_persona_score" class="form-control" value={{record?.data?.jury_persona_score}} disabled> 
+            </div>     
+            <div class="form-group mb-4">
+              <label class="control-label" for="jury_persona_score_comment">
+                Comment
+              </label>
+              <textarea id="jury_persona_score_comment" class="form-control" value={{record?.data?.jury_persona_score_comment}} rows="6" disabled> </textarea>
+            </div>   
+            <div class="form-group mb-4">
+              <label class="control-label" for="enterprise_sector">
+                What sector is the enterprise? e.g Agriculture, Health 
+              </label>
+              <input type="text" id="enterprise_sector" class="form-control" value={{record?.data?.enterprise_sector}} disabled> 
+            </div>      
+            <div class="form-group mb-4">
+              <label class="control-label" for="renterprise_sector_comment">
+                Comment
+              </label>
+              <textarea id="renterprise_sector_comment" class="form-control" value={{record?.data?.enterprise_sector_comment}} rows="6" disabled> </textarea>
+            </div>  
+            <div class="form-group mb-4">
+              <label class="control-label" for="recommended_disbursement_schedule">
+                On the basis of YOUR assessment of ALL the information provided on the applicants application, the above and obvious needs of the enterprise, please recommend a disbursement ratio of the 100,00usd for the applicant. (E.g 40,000 : 30,000 : 30,000). Note that all awards are to be disbursed in 3 tranches.
+              </label>
+              <input type="text" id="recommended_disbursement_schedule" class="form-control" value={{record?.data?.recommended_disbursement_schedule}} disabled> 
+            </div> 
+            <div class="form-group mb-4">
+              <label class="control-label" for="recommended_disbursement_schedule">
+                Comment
+              </label>
+              <textarea id="recommended_disbursement_schedule_comment" class="form-control" value=recommended_disbursement_schedule_comment rows="6" disabled> </textarea>
+            </div>     
+      </section>
+    </div>
+  </div>
+</div>  
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>General Comments (Please provide any comments that would be useful for the secretariat in making decisions regarding this applicant)</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="wikitable" width="100%">
+        <tr>
+          <th></th>
+          <th>Jury</th>
+          <th>Comment</th>
+        </tr>
+        <tr *ngFor="let record of records?.jury_evaluation; let i = index">
+          <td>{{i+1}}</td>
+          <td>
+            {{record?.evaluator?.first_name}} {{record?.evaluator?.last_name}}
+          </td>
+          <td>
+            {{record?.data?.general_comment}}
+          </td>
+        </tr>
+      </table> 
+    </div>
+  </div>
+</div>
+</section>
+
+
+

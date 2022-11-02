@@ -1,0 +1,24 @@
+server {
+    listen 80;
+    server_name 192.168.1.41;
+    #listen 443 ssl;
+    root /home/gedms/projects/ien_front_build/;
+    access_log off;
+    charset utf-8;
+    client_max_body_size 4G;
+    error_log /home/gedms/logs/nginx-error.log;
+location /{
+        index  index.html index.htm;
+        include proxy_params;
+        proxy_set_header Connection "";
+        add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
+        proxy_http_version 1.1;
+#        proxy_pass http://192.168.1.41;
+        autoindex on;
+    }
+
+
+}
+
+
+ng build --prod --aot --build-optimizer  --output-path /Users/africancoder/Documents/edms_front_build --watch --output-hashing none

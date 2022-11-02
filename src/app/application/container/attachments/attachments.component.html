@@ -1,0 +1,329 @@
+<section *ngIf="selected_lang == 'en'">
+    <div class="animated fadeIn">
+      <div class="card">
+        <div class="card-header">
+          <strong>Part 3: Attachments</strong>
+        </div>
+        <div class="card-body">
+          We will use this documents to assess your application against the Eligibility and Judging Criteria. 
+        </div>
+      </div>
+    </div>
+    <div class="animated fadeIn">
+        <div class="card">
+          <!-- <div class="card-header">
+            <strong>Application Details</strong>
+          </div> -->
+          <div class="card-body table-responsive">
+            <form [formGroup]="applicationForm">
+                    <div class="form-group mb-4">
+                        <label for="details_of_director" class="control-label">
+                          Please upload evidence of registered Details of Directors in your organisation.
+                            <span class="mark-required text-danger ml-1">*</span>
+                          <br>
+                          <mark>(Max: 3 Files)</mark>
+                        </label>
+                        <div class="">
+                          <input id="details_of_director"  type="file" formControlName='details_of_director' multiple class="form-control" (change)="handleFileupload($event,'Details Of Directors')"/>                                 
+                        </div>
+                        <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                            <ul>
+                              <ng-container *ngFor="let file of saved_files">
+                                <li *ngIf="file?.title == 'Details Of Directors'">
+                                  <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="text-danger btn-link fa fa-trash ml-5"></span>
+                                </li>
+                              </ng-container >                          
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="board_meeting_minutes" class="control-label">
+                        Please upload evidence of two Board Meetings Minutes. 
+                          <span class="mark-required text-danger ml-1">*</span>
+                          <br>
+                          <mark>(Not earlier than 2021. Max: 3 Files)</mark>
+                      </label>
+                      <div class="">
+                        <input id="board_meeting_minutes"  type="file" formControlName='board_meeting_minutes' multiple class="form-control" (change)="handleFileupload($event,'Board Meetings Minutes')"/>                                 
+                      </div>
+                      <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                        <ul>
+                          <ng-container *ngFor="let file of saved_files">
+                            <li *ngIf="file?.title == 'Board Meetings Minutes'">
+                              <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                            </li>
+                          </ng-container>                          
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="financial_statements" class="control-label">
+                        Please upload evidence of your audited Financial Statements for the last 2 years.
+                          <span class="mark-required text-danger ml-1">*</span>
+                          <br>
+                          <mark>(Max: 3 Files)</mark>
+                      </label>
+                      <div class="">
+                        <input id="financial_statements"  type="file" formControlName='financial_statements' multiple class="form-control" (change)="handleFileupload($event,'Financial Statements')"/>                                 
+                      </div>
+                      <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                        <ul>
+                          <ng-container *ngFor="let file of saved_files">
+                            <li *ngIf="file?.title == 'Financial Statements'">
+                              <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                            </li>
+                          </ng-container>                          
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="tax_registration_certificate" class="control-label">
+                        Please upload evidence of your Tax Registration Certificate.
+                          <span class="mark-required text-danger ml-1">*</span>
+                          <br>
+                          <mark>(Max: 3 Files)</mark>
+                      </label>
+                      <div class="">
+                        <input id="tax_registration_certificate"  type="file" formControlName='tax_registration_certificate' multiple class="form-control" (change)="handleFileupload($event,'Tax Registration Certificate')"/>                                 
+                      </div>
+                      <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                        <ul>
+                          <ng-container *ngFor="let file of saved_files">
+                            <li *ngIf="file?.title === 'Tax Registration Certificate'">
+                              <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                            </li>
+                          </ng-container>                          
+                        </ul>
+                      </div>
+                    </div>
+
+                <div class="col-sm-12 ">
+                  <button type="submit" class="btn btn-success   float-left" (click)="back()"><i class="fa fa-backward"></i> Back</button>
+                  <button type="submit" class="btn btn-success   float-right" (click)="finish()">Next <i class="fa fa-forward"></i></button>
+                </div>
+          </form>
+          </div>
+        </div>
+    </div>
+</section>
+
+  
+
+<section *ngIf="selected_lang == 'fr'">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Partie 3 : Pièces jointes </strong>
+      </div>
+      <div class="card-body">
+        Nous utiliserons ces documents pour évaluer votre candidature en fonction des critères d'Éligibilité et de Jugement.  
+      </div>
+    </div>
+  </div>
+  <div class="animated fadeIn">
+      <div class="card">
+        <!-- <div class="card-header">
+          <strong>Application Details</strong>
+        </div> -->
+        <div class="card-body table-responsive">
+          <form [formGroup]="applicationForm">
+                  <div class="form-group mb-4">
+                      <label for="details_of_director" class="control-label">
+                        Veuillez télécharger la preuve de l'enregistrement des Détails des Directeurs de votre organisation 
+                          <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Max: 3 fichiers)</mark>
+                      </label>
+                      <div class="">
+                        <input id="details_of_director"  type="file" formControlName='details_of_director' multiple class="form-control" (change)="handleFileupload($event,'Details Of Directors')"/>                                 
+                      </div>
+                      <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                          <ul>
+                            <ng-container *ngFor="let file of saved_files">
+                              <li *ngIf="file?.title == 'Details Of Directors'">
+                                <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="text-danger btn-link fa fa-trash ml-5"></span>
+                              </li>
+                            </ng-container >                          
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="board_meeting_minutes" class="control-label">
+                      Veuillez télécharger la preuve de l'enregistrement des Détails des Directeurs de votre organisation
+                        <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Pas avant 2021. Max: 3 fichiers)</mark>
+                    </label>
+                    <div class="">
+                      <input id="board_meeting_minutes"  type="file" formControlName='board_meeting_minutes' multiple class="form-control" (change)="handleFileupload($event,'Board Meetings Minutes')"/>                                 
+                    </div>
+                    <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                      <ul>
+                        <ng-container *ngFor="let file of saved_files">
+                          <li *ngIf="file?.title == 'Board Meetings Minutes'">
+                            <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                          </li>
+                        </ng-container>                          
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="financial_statements" class="control-label">
+                      Veuillez télécharger la preuve de vos états financiers vérifiés pour les deux dernières années.
+                        <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Max: 3 fichiers)</mark>
+                    </label>
+                    <div class="">
+                      <input id="financial_statements"  type="file" formControlName='financial_statements' multiple class="form-control" (change)="handleFileupload($event,'Financial Statements')"/>                                 
+                    </div>
+                    <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                      <ul>
+                        <ng-container *ngFor="let file of saved_files">
+                          <li *ngIf="file?.title == 'Financial Statements'">
+                            <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                          </li>
+                        </ng-container>                          
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="tax_registration_certificate" class="control-label">
+                      Veuillez télécharger la preuve de votre Certificat d'Enregistrement Fiscal
+                        <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Max: 3 fichiers)</mark>
+                    </label>
+                    <div class="">
+                      <input id="tax_registration_certificate"  type="file" formControlName='tax_registration_certificate' multiple class="form-control" (change)="handleFileupload($event,'Tax Registration Certificate')"/>                                 
+                    </div>
+                    <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                      <ul>
+                        <ng-container *ngFor="let file of saved_files">
+                          <li *ngIf="file?.title === 'Tax Registration Certificate'">
+                            <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                          </li>
+                        </ng-container>                          
+                      </ul>
+                    </div>
+                  </div>
+
+              <div class="col-sm-12 ">
+                <button type="submit" class="btn btn-success   float-left" (click)="back()"><i class="fa fa-backward"></i> retour</button>
+                <button type="submit" class="btn btn-success   float-right" (click)="finish()">suivante <i class="fa fa-forward"></i></button>
+              </div>
+        </form>
+        </div>
+      </div>
+  </div>
+</section>
+
+
+<section *ngIf="selected_lang == 'pt'">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Parte 3: Arquivos adjuntos</strong>
+      </div>
+      <div class="card-body">
+        Usaremos estes documentos para avaliar sua solicitação de acordo com os critérios de elegibilidade e avaliação. 
+      </div>
+    </div>
+  </div>
+  <div class="animated fadeIn">
+      <div class="card">
+        <!-- <div class="card-header">
+          <strong>Application Details</strong>
+        </div> -->
+        <div class="card-body table-responsive">
+          <form [formGroup]="applicationForm">
+                  <div class="form-group mb-4">
+                      <label for="details_of_director" class="control-label">
+                        Cargue evidência de detalhes registrados de diretores em sua organização.
+                          <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Máximo: 3 arquivos)</mark>
+                      </label>
+                      <div class="">
+                        <input id="details_of_director"  type="file" formControlName='details_of_director' multiple class="form-control" (change)="handleFileupload($event,'Details Of Directors')"/>                                 
+                      </div>
+                      <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                          <ul>
+                            <ng-container *ngFor="let file of saved_files">
+                              <li *ngIf="file?.title == 'Details Of Directors'">
+                                <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="text-danger btn-link fa fa-trash ml-5"></span>
+                              </li>
+                            </ng-container >                          
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="board_meeting_minutes" class="control-label">
+                      Cargue evidencia de dos Actas de reuniones de la Junta
+                        <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Não antes de 2021. Máximo: 3 arquivos)</mark>
+                    </label>
+                    <div class="">
+                      <input id="board_meeting_minutes"  type="file" formControlName='board_meeting_minutes' multiple class="form-control" (change)="handleFileupload($event,'Board Meetings Minutes')"/>                                 
+                    </div>
+                    <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                      <ul>
+                        <ng-container *ngFor="let file of saved_files">
+                          <li *ngIf="file?.title == 'Board Meetings Minutes'">
+                            <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                          </li>
+                        </ng-container>                          
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="financial_statements" class="control-label">
+                      Cargue evidência de seus estados financeiros auditados de los últimos 2 anos.
+                        <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Máximo: 3 arquivos)</mark>
+                    </label>
+                    <div class="">
+                      <input id="financial_statements"  type="file" formControlName='financial_statements' multiple class="form-control" (change)="handleFileupload($event,'Financial Statements')"/>                                 
+                    </div>
+                    <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                      <ul>
+                        <ng-container *ngFor="let file of saved_files">
+                          <li *ngIf="file?.title == 'Financial Statements'">
+                            <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                          </li>
+                        </ng-container>                          
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="tax_registration_certificate" class="control-label">
+                      Por favor cargue evidência de seu Certificado de Registro Tributário.
+                        <span class="mark-required text-danger ml-1">*</span>
+                        <br>
+                        <mark>(Máximo: 3 arquivos)</mark>
+                    </label>
+                    <div class="">
+                      <input id="tax_registration_certificate"  type="file" formControlName='tax_registration_certificate' multiple class="form-control" (change)="handleFileupload($event,'Tax Registration Certificate')"/>                                 
+                    </div>
+                    <div class="mt-2" *ngIf="saved_files?.length !== 0">
+                      <ul>
+                        <ng-container *ngFor="let file of saved_files">
+                          <li *ngIf="file?.title === 'Tax Registration Certificate'">
+                            <a href={{serverurl}}{{file?.url}} target="_blank">{{file?.name}}</a> <span (click)="delete_file(file?.id)" class="ml-5 text-danger btn-link fa fa-trash"></span>
+                          </li>
+                        </ng-container>                          
+                      </ul>
+                    </div>
+                  </div>
+
+              <div class="col-sm-12 ">
+                <button type="submit" class="btn btn-success   float-left" (click)="back()"><i class="fa fa-backward"></i>De volta</button>
+                <button type="submit" class="btn btn-success   float-right" (click)="finish()">Prosseguir <i class="fa fa-forward"></i></button>
+              </div>
+        </form>
+        </div>
+      </div>
+  </div>
+</section>

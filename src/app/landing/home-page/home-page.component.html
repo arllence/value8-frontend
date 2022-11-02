@@ -1,0 +1,1339 @@
+<style>
+  .squarebox i{
+    font-size: 50px !important;
+  }
+  .square_box .number {
+    font-size: 30px !important;
+    text-align: left;
+    font-weight: 700;
+}
+.bg_green  {
+   background-color: #198754;
+
+}
+</style>
+<div class="animated fadeIn">
+  <div class="card">
+ 
+     <div class="card-header bg_purple">
+      <h5>
+         <span *ngIf="selected_lang == 'en'">African Youth Adaptation Solutions Challenge Portal</span>
+         <span *ngIf="selected_lang == 'fr'">Portail du Défi des Solutions d'Adaptation pour la Jeunesse Africaine</span>
+         <span *ngIf="selected_lang == 'pt'">Portal do Desafio das Soluções de Adaptação da Juventude Africana
+         </span>
+      </h5>
+      <!-- <img src='assets/YouthADAPTChallenge.png' width="35%" /> -->
+       
+     </div>
+     <div class="card-body">
+
+      <div class="animated fadeIn" *ngxPermissionsOnly="['MANAGER','SCREENER']">
+         <div class="card" >
+           <div class="card-header">
+             <strong>General Submissions Analytics</strong>&nbsp;&nbsp;
+           </div>
+           <div class="card-body" >
+             <section class="content indexpage evaluator mb-5">
+               <div class="row">
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="palebluecolorbg bg-success text-white no-radius">
+                        <div class="card-body squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>Complete</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement4">
+                                          {{general_analytics?.submitted}}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer" (click)="assigned()" disabled>
+                      <!-- Trans label pie charts strats here-->
+                      <div class="palebluecolorbg bg-primary text-white no-radius">
+                         <div class="card-body squarebox square_boxs cardpaddng">
+                            <div class="row">
+                               <div class="col-12 float-left nopadmar">
+                                  <div class="row">
+                                     <div class="square_box col-8 float-left">
+                                        <span>Recommended</span>
+                                        
+                                     </div>
+                                     <div class="col-4">
+                                        <div class="number" id="myTargetElement4">
+                                           {{general_analytics?.approved}}
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer" (click)="assigned()" disabled>
+                     <!-- Trans label pie charts strats here-->
+                     <div class="palebluecolorbg bg-warning text-dark no-radius">
+                        <div class="card-body squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>Pending Screening</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement4">
+                                          {{general_analytics?.unscreened}}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                 </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                   <!-- Trans label pie charts strats here-->
+                   <div class="redbg no-radius">
+                      <div class="card-body bg-danger text-white squarebox square_boxs cardpaddng">
+                         <div class="row">
+                            <div class="col-12 float-left nopadmar">
+                               <div class="row">
+                                  <div class="square_box col-8 float-left">
+                                     <span>Dropped</span>
+                                     
+                                  </div>
+                                  <div class="col-4">
+                                     <div class="number" id="myTargetElement2">
+                                       {{general_analytics?.dropped}}
+                                     </div>
+                                   </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>Total Assigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_assigned}}
+                                       </div>
+                                     </div>
+                                     <div class="square_box col-8 float-left">
+                                       <span>Total Unassigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_unassigned}}
+                                       </div>
+                                     </div>
+                                     <div class="square_box col-8 float-left">
+                                       <span>Total Evaluated</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.screened}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>English Total</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_eng_applications}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Assigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_eng_assingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Unassigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_eng_unassingned}}
+                                       </div>
+                                    </div>
+                                     <div class="square_box col-8 float-left">
+                                       <span>Evaluated</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.eng_completed}}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>French Total</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_fr_applications}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Assigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_fr_assingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Unassigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_fr_unassingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Evaluated</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.fr_completed}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>Portuguese Total</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_pt_applications}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Assigned</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_pt_assingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Unassigned</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.total_pt_unassingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Evaluated</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.pt_completed}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+
+
+               </div>
+              </section>
+       
+           </div>
+         </div>
+      </div>
+
+      <div class="animated fadeIn" *ngxPermissionsOnly="['MANAGER','SCREENER']">
+         <div class="card" >
+           <div class="card-header">
+             <strong>Jury Analytics</strong>&nbsp;&nbsp;
+           </div>
+           <div class="card-body" >
+             <section class="content indexpage evaluator mb-5">
+               <div class="row">
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>Total Assigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_assigned}}
+                                       </div>
+                                     </div>
+                                     <div class="square_box col-8 float-left">
+                                       <span>Total Unassigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_unassigned}}
+                                       </div>
+                                     </div>
+                                     <div class="square_box col-8 float-left">
+                                       <span>Total Evaluated</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_screened}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>English Total</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_eng_applications}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Assigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_eng_assingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Unassigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_eng_unassingned}}
+                                       </div>
+                                    </div>
+                                     <div class="square_box col-8 float-left">
+                                       <span>Evaluated</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_eng_completed}}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>French Total</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_fr_applications}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Assigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_fr_assingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Unassigned</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_fr_unassingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Evaluated</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_fr_completed}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg_purple text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span>Portuguese Total</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_pt_applications}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Assigned</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_pt_assingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Unassigned</span>                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_total_pt_unassingned}}
+                                       </div>
+                                    </div>
+                                    <div class="square_box col-8 float-left">
+                                       <span>Evaluated</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_pt_completed}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+
+
+               </div>
+              </section>
+       
+           </div>
+         </div>
+      </div>
+
+      <div class="animated fadeIn" *ngxPermissionsOnly="['EVALUATOR']">
+         <div class="card" >
+           <div class="card-header">
+             <strong *ngIf="selected_lang == 'en'">General Submissions Analytics</strong>
+             <strong *ngIf="selected_lang == 'fr'">Analyse générale des soumissions</strong>
+             <strong *ngIf="selected_lang == 'pt'">Análise geral de envios</strong>
+           </div>
+           <div class="card-body" >
+             <section class="content indexpage evaluator mb-5">
+               <div class="row">
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="palebluecolorbg bg-info text-white no-radius">
+                        <div class="card-body squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span *ngIf="selected_lang == 'en'">Assigned</span>
+                                       <span *ngIf="selected_lang == 'fr'">Attribué</span>
+                                       <span *ngIf="selected_lang == 'pt'">Atribuído</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement4">
+                                          {{general_analytics?.evaluator_assigned}}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer" (click)="assigned()" disabled>
+                      <!-- Trans label pie charts strats here-->
+                      <div class="palebluecolorbg bg-success text-white no-radius">
+                         <div class="card-body squarebox square_boxs cardpaddng">
+                            <div class="row">
+                               <div class="col-12 float-left nopadmar">
+                                  <div class="row">
+                                     <div class="square_box col-8 float-left">
+                                        <span *ngIf="selected_lang == 'en'">Completed</span>
+                                        <span *ngIf="selected_lang == 'fr'">Complété</span>
+                                        <span *ngIf="selected_lang == 'pt'">Concluído</span>
+                                        
+                                     </div>
+                                     <div class="col-4">
+                                        <div class="number" id="myTargetElement4">
+                                           {{general_analytics?.evaluator_completed}}
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg-info text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span *ngIf="selected_lang == 'en'">Pending</span>
+                                       <span *ngIf="selected_lang == 'fr'">En attente</span>
+                                       <span *ngIf="selected_lang == 'pt'">Pendente</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.evaluator_pending}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+
+               </div>
+              </section>
+       
+           </div>
+         </div>
+      </div>
+
+      <div class="animated fadeIn" *ngxPermissionsOnly="['JURY']">
+         <div class="card" >
+           <div class="card-header">
+             <strong *ngIf="selected_lang == 'en'">General Submissions Analytics</strong>
+             <strong *ngIf="selected_lang == 'fr'">Analyse générale des soumissions</strong>
+             <strong *ngIf="selected_lang == 'pt'">Análise geral de envios</strong>
+           </div>
+           <div class="card-body" >
+             <section class="content indexpage evaluator mb-5">
+               <div class="row">
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="palebluecolorbg bg-info text-white no-radius">
+                        <div class="card-body squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span *ngIf="selected_lang == 'en'">Assigned</span>
+                                       <span *ngIf="selected_lang == 'fr'">Attribué</span>
+                                       <span *ngIf="selected_lang == 'pt'">Atribuído</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement4">
+                                          {{general_analytics?.jury_assigned}}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInRightBig pointer" (click)="assigned()" disabled>
+                      <!-- Trans label pie charts strats here-->
+                      <div class="palebluecolorbg bg-success text-white no-radius">
+                         <div class="card-body squarebox square_boxs cardpaddng">
+                            <div class="row">
+                               <div class="col-12 float-left nopadmar">
+                                  <div class="row">
+                                     <div class="square_box col-8 float-left">
+                                        <span *ngIf="selected_lang == 'en'">Completed</span>
+                                        <span *ngIf="selected_lang == 'fr'">Complété</span>
+                                        <span *ngIf="selected_lang == 'pt'">Concluído</span>
+                                        
+                                     </div>
+                                     <div class="col-4">
+                                        <div class="number" id="myTargetElement4">
+                                           {{general_analytics?.jury_completed}}
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                  <div class="mb-3 col-lg-6 col-xl-3 col-md-6 col-sm-6 margin_10 animated fadeInUpBig">
+                     <!-- Trans label pie charts strats here-->
+                     <div class="redbg no-radius">
+                        <div class="card-body bg-info text-white squarebox square_boxs cardpaddng">
+                           <div class="row">
+                              <div class="col-12 float-left nopadmar">
+                                 <div class="row">
+                                    <div class="square_box col-8 float-left">
+                                       <span *ngIf="selected_lang == 'en'">Pending</span>
+                                       <span *ngIf="selected_lang == 'fr'">En attente</span>
+                                       <span *ngIf="selected_lang == 'pt'">Pendente</span>
+                                       
+                                    </div>
+                                    <div class="col-4">
+                                       <div class="number" id="myTargetElement2">
+                                         {{general_analytics?.jury_pending}}
+                                       </div>
+                                     </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+
+               </div>
+              </section>
+       
+           </div>
+         </div>
+      </div>
+       
+      <section class="row" *ngxPermissionsOnly="['INNOVATOR']">
+            <div class="col-lg-12 col-md-12 col-sm-12 my-3" *ngIf="selected_lang == 'en'">
+               <div class="card card-border">
+                     
+                     <div class="card-header bg-success text-white">
+                        <h5 class="card-title">
+                           <i class="fa fa-files-o"></i>&nbsp; <span class="mt-5">Application</span>
+                           <span class="float-right" *ngIf="my_innovations?.length == 0"><button class="btn btn-sm btn-warning p-1" (click)="make_applcation()"><span class="px-4">Apply</span></button></span>
+                        </h5>
+                     </div>
+                  
+                  <div class="card-body">
+                     <div class="table-responsive-lg table-responsive-md table-responsive-sm table-responsive">
+                        <table class="wikitable" width="100%">
+
+                           <thead>
+                              <tr class="filters">
+                                 <th>Entrepreneur Name</th>
+                                 <th>Enterprise / Organization Name</th>
+                                 <th>Country</th>
+                                 <!-- <th class="text-center">Status</th> -->
+                                 <th class="text-center">Stage</th>
+                                 <th>Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody *ngIf="my_innovations?.length != 0">
+                              <tr class="filters">
+                                 <td >{{my_innovations?.innovator_name}}</td>
+                                 <td >
+                                    {{my_innovations?.organization_name}}
+                                 </td>
+                                 <td >
+                                    {{my_innovations?.country}}
+                                 </td>
+                                 <!-- <td class="text-center">                                       
+                                    <span class="badge badge-success" *ngIf="my_innovations?.status == 'SUBMITTED'">
+                                       {{my_innovations?.status}}
+                                    </span>
+                                    <span class="badge badge-primary" *ngIf="my_innovations?.status !== 'SUBMITTED'">
+                                       {{my_innovations?.status}}
+                                    </span>
+                                 </td> -->
+                                 <td class="text-center">
+                                    {{my_innovations?.stage}}
+                                 </td>
+                                 <td >
+                                    <span class="" *ngIf="my_innovations?.status == 'ONGOING' && passed_deadline === false">
+                                       <button class="btn btn-warning btn-sm" (click)="make_applcation()">Finish</button>
+                                    </span>
+                                    <span class="" *ngIf="my_innovations?.status == 'SUBMITTED' && passed_deadline === false ">
+                                       <button class="btn btn-success mr-1 btn-sm" (click)="make_applcation()">Edit</button>
+                                    </span>
+                                    <span *ngIf="my_innovations?.status !== 'ONGOING'">
+                                       <button class="btn btn-primary btn-sm"   (click)="review();">View</button>
+                                    </span>
+                                 </td>
+                              </tr>                          
+                           </tbody>
+                        </table>
+                        <div class="text-center text-warning" *ngIf="my_innovations?.length == 0">
+                        <h6><i class="fa fa-exclamation-circle" aria-hidden="true"></i> No Submission Added Yet</h6>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 my-3" *ngIf="selected_lang == 'fr'">
+               <div class="card card-border">
+                     
+                     <div class="card-header bg-success text-white">
+                        <h5 class="card-title">
+                           <i class="fa fa-files-o"></i>&nbsp; <span class="mt-5">Candidature</span>
+                           <span class="float-right" *ngIf="my_innovations?.length == 0"><button class="btn btn-sm btn-warning p-1" (click)="make_applcation()"><span class="px-4">Appliquez</span></button></span>
+                        </h5>
+                     </div>
+                  
+                  <div class="card-body">
+                     <div class="table-responsive-lg table-responsive-md table-responsive-sm table-responsive">
+                        <table class="wikitable" width="100%">
+
+                           <thead>
+                              <tr class="filters">
+                                 <th>Nom de l'Entrepreneur</th>
+                                 <th>Nom de l'Entreprise / Organisation</th>
+                                 <th>Pays</th>
+                                 <!-- <th class="text-center">Statut</th> -->
+                                 <th class="text-center">Scène</th>
+                                 <th>Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody *ngIf="my_innovations?.length != 0">
+                              <tr class="filters">
+                                 <td >{{my_innovations?.innovator_name}}</td>
+                                 <td >
+                                    {{my_innovations?.organization_name}}
+                                 </td>
+                                 <td >
+                                    {{my_innovations?.country}}
+                                 </td>
+                                 <!-- <td class="text-center">                                       
+                                    <span class="badge badge-success" *ngIf="my_innovations?.status == 'SUBMITTED'">
+                                       {{my_innovations?.status}}
+                                    </span>
+                                    <span class="badge badge-primary" *ngIf="my_innovations?.status !== 'SUBMITTED'">
+                                       {{my_innovations?.status}}
+                                    </span>
+                                 </td> -->
+                                 <td class="text-center">
+                                    {{my_innovations?.stage}}
+                                 </td>
+                                 <td >
+                                    <span class="" *ngIf="my_innovations?.status == 'ONGOING' && passed_deadline === false">
+                                       <button class="btn btn-warning btn-sm" (click)="make_applcation()">Finir</button>
+                                    </span>
+                                    <span class="" *ngIf="my_innovations?.status == 'SUBMITTED' && passed_deadline === false ">
+                                       <button class="btn btn-success mr-1 btn-sm" (click)="make_applcation()">Éditer</button>
+                                    </span>
+                                    <span *ngIf="my_innovations?.status !== 'ONGOING'">
+                                       <button class="btn btn-primary btn-sm"   (click)="review();">Voir</button>
+                                    </span>
+                                 </td>
+                              </tr>                          
+                           </tbody>
+                        </table>
+                        <div class="text-center text-warning" *ngIf="my_innovations?.length == 0">
+                        <h6><i class="fa fa-exclamation-circle" aria-hidden="true"></i>  Pas de soumission ajouté pour le moment</h6>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 my-3" *ngIf="selected_lang == 'pt'">
+               <div class="card card-border">
+                     
+                     <div class="card-header bg-success text-white">
+                        <h5 class="card-title">
+                           <i class="fa fa-files-o"></i>&nbsp; <span class="mt-5">Aplicação</span>
+                           <span class="float-right" *ngIf="my_innovations?.length == 0"><button class="btn btn-sm btn-warning p-1" (click)="make_applcation()"><span class="px-4">Candidate-se</span></button></span>
+                        </h5>
+                     </div>
+                  
+                  <div class="card-body">
+                     <div class="table-responsive-lg table-responsive-md table-responsive-sm table-responsive">
+                        <table class="wikitable" width="100%">
+
+                           <thead>
+                              <tr class="filters">
+                                 <th>Nome do Empreendedor</th>
+                                 <th>Nome da Empresa / Organização</th>
+                                 <th>País</th>
+                                 <!-- <th class="text-center">Estatuto</th> -->
+                                 <th class="text-center">Palco</th>
+                                 <th>Acções</th>
+                              </tr>
+                           </thead>
+                           <tbody *ngIf="my_innovations?.length != 0">
+                              <tr class="filters">
+                                 <td >{{my_innovations?.innovator_name}}</td>
+                                 <td >
+                                    {{my_innovations?.organization_name}}
+                                 </td>
+                                 <td >
+                                    {{my_innovations?.country}}
+                                 </td>
+                                 <!-- <td class="text-center">                                       
+                                    <span class="badge badge-success" *ngIf="my_innovations?.status == 'SUBMITTED'">
+                                       {{my_innovations?.status}}
+                                    </span>
+                                    <span class="badge badge-primary" *ngIf="my_innovations?.status !== 'SUBMITTED'">
+                                       {{my_innovations?.status}}
+                                    </span>
+                                 </td> -->
+                                 <td class="text-center">
+                                    {{my_innovations?.stage}}
+                                 </td>
+                                 <td >
+                                    <span class="" *ngIf="my_innovations?.status  == 'ONGOING' && passed_deadline === false">
+                                       <button class="btn btn-warning btn-sm" (click)="make_applcation()">Terminar</button>
+                                    </span>
+                                    <span class="" *ngIf="my_innovations?.status == 'SUBMITTED' && passed_deadline === false ">
+                                       <button class="btn btn-success mr-1 btn-sm" (click)="make_applcation()">Editar</button>
+                                    </span>
+                                    <span *ngIf="my_innovations?.status !== 'ONGOING'">
+                                       <button class="btn btn-primary btn-sm"   (click)="review();">Visão</button>
+                                    </span>
+                                 </td>
+                              </tr>                          
+                           </tbody>
+                        </table>
+                        <div class="text-center text-warning" *ngIf="my_innovations?.length == 0">
+                        <h6><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Nenhuma Submissão Adicionada Ainda</h6>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+      </section>
+
+      <section class="ro" *ngxPermissionsOnly="['EVALUATOR','SUPER_ADMIN','JURY']">
+         <div class=" hide">
+            <div class="col-sm-4 col-md-4 col-lg-2">
+               <!-- <button type="button" class="btn btn-block btn-success " (click)="approveGraduand('all','all',department_id)"><i
+                  class="fa fa-plus"></i> Approve List</button> -->
+            </div>
+            
+         </div>
+         <br>
+         <div class="col-lg-12 col-md-12 col-sm-12 my-3" *ngIf="selected_lang == 'en'">
+            <div class="card card-border">
+               <div class="card-header bg-success text-white">
+                  <strong>Assigned Applications</strong>
+               </div>
+               <div class="card-body">
+                  <div class="table-responsive-lg table-responsive-md table-responsive-sm table-responsive">
+                     <div class="col-sm-4 col-md-4 col-lg-4 float-right hide mb-2">
+                        <div class="input-group">
+                           <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
+                           <input class="form-control " placeholder="Search Here" type="text" [(ngModel)]="searchString">
+                        </div>
+                     </div>
+                     <table class="wikitable" [mfData]="records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+                        <thead>
+                        <tr>        
+                           
+                              <th>#</th>
+                              <th *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="creator.first_name">Entrepreneur</mfDefaultSorter>
+                              </th>
+                              <th>
+                              <mfDefaultSorter by="organization_name">Enterprise</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="country">Country</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="stage">Stage</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','EVALUATOR']">
+                                 <mfDefaultSorter by="total_score">Evaluation Score</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','JURY']">
+                                 <mfDefaultSorter by="total_score">Jury Score</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['MANAGER','EVALUATOR','SUPER_ADMIN','JURY']">
+                                 Action
+                              </th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="records?.length != 0">
+                        <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                           <td>{{i + 1}}</td>
+                           <td *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.creator.first_name }} {{ recordinstance.creator.last_name }}</td>
+                           <td>{{ recordinstance.organization_name }}</td>
+                           <td *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.country }}</td>
+                           <td class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <span class="badge badge-success" *ngIf="recordinstance.status == 'SUBMITTED'">
+                                 {{recordinstance.status}}
+                              </span>
+                              <span class="badge badge-primary" *ngIf="recordinstance.status !== 'SUBMITTED'">
+                                 {{recordinstance.status}}
+                              </span>
+                           </td>
+                           <td class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.stage }}</td>
+                           <td class="text-center" *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','EVALUATOR']">{{ recordinstance.total_score }}</td>
+                           <td class="text-center" *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','JURY']">{{ recordinstance.jury_total_score }}</td>
+                           <td *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','JURY']">
+                              <!-- <span *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','EVALUATOR']">
+                                 <button class="btn btn-success btn-small" (click)="application_review(recordinstance.creator.id)" *ngIf="recordinstance.is_evaluator_evaluated">Re-Evaluate</button>
+                                 <button class="btn btn-info btn-small text-white" (click)="application_review(recordinstance.creator.id)" *ngIf="!recordinstance.is_evaluator_evaluated">Evaluate</button>
+                              </span> -->
+                              
+                              <button class="btn btn-info btn-small text-white" (click)="application_review(recordinstance.creator.id)" *ngIf="!recordinstance.is_jury_evaluated">Evaluate</button>
+                              <button class="btn btn-success btn-small text-white" disabled *ngIf="recordinstance.is_jury_evaluated"><i class="fa fa-check"></i>
+                              </button>
+                              <button class="btn btn-info btn-small text-white" (click)="application_review(recordinstance.creator.id)" *ngIf="recordinstance.is_jury_evaluated"><i class="fa fa-repeat"></i></button>
+                           </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="hide">
+                           <td colspan="12">
+                              Select Records in a page : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,100,1000,5000]"></mfBootstrapPaginator>
+                           </td>
+                        </tr>
+                        </tfoot>
+                        <tbody *ngIf="records?.length == 0">
+                        <tr>
+                           <td colspan="9" class="no-data-available">No data available</td>
+                        </tr>
+                        <tbody>
+                        </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-12 col-md-12 col-sm-12 my-3" *ngIf="selected_lang == 'fr'">
+            <div class="card card-border">
+               <div class="card-header bg-success text-white">
+                  <strong>Demandes assignées</strong>
+               </div>
+               <div class="card-body">
+                  <div class="table-responsive-lg table-responsive-md table-responsive-sm table-responsive">
+                     <div class="col-sm-4 col-md-4 col-lg-4 float-right hide mb-2">
+                        <div class="input-group">
+                           <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
+                           <input class="form-control " placeholder="Search Here" type="text" [(ngModel)]="searchString">
+                        </div>
+                     </div>
+                     <table class="wikitable" [mfData]="records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+                        <thead>
+                        <tr>        
+                           
+                              <th>#</th>
+                              <th *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="creator.first_name">Chef d'entreprise</mfDefaultSorter>
+                              </th>
+                              <th>
+                              <mfDefaultSorter by="organization_name">Entreprise</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="country">Pays</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="status">Statut</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="stage">Organiser</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['MANAGER','EVALUATOR','SUPER_ADMIN']">
+                                 Action
+                              </th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="records?.length != 0">
+                        <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                           <td>{{i + 1}}</td>
+                           <td *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.creator.first_name }} {{ recordinstance.creator.last_name }}</td>
+                           <td>{{ recordinstance.organization_name }}</td>
+                           <td *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.country }}</td>
+                           <td class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <span class="badge badge-success" *ngIf="recordinstance.status == 'SUBMITTED'">
+                                 {{recordinstance.status}}
+                              </span>
+                              <span class="badge badge-primary" *ngIf="recordinstance.status !== 'SUBMITTED'">
+                                 {{recordinstance.status}}
+                              </span>
+                           </td>
+                           <td class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.stage }}</td>
+                           <td *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','EVALUATOR']">
+                              <button class="btn btn-success btn-small" (click)="application_review(recordinstance.creator.id)" *ngIf="recordinstance.is_evaluator_evaluated">Réévaluer</button>
+                              <button class="btn btn-info btn-small text-white" (click)="application_review(recordinstance.creator.id)" *ngIf="!recordinstance.is_evaluator_evaluated">Évaluer</button>
+                           </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="hide">
+                           <td colspan="12">
+                              Pages : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,100,1000,5000]"></mfBootstrapPaginator>
+                           </td>
+                        </tr>
+                        </tfoot>
+                        <tbody *ngIf="records?.length == 0">
+                        <tr>
+                           <td colspan="9" class="no-data-available">Pas de données disponibles</td>
+                        </tr>
+                        <tbody>
+                        </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-12 col-md-12 col-sm-12 my-3" *ngIf="selected_lang == 'pt'">
+            <div class="card card-border">
+               <div class="card-header bg-success text-white">
+                  <strong>Aplicativos Atribuídos</strong>
+               </div>
+               <div class="card-body">
+                  <div class="table-responsive-lg table-responsive-md table-responsive-sm table-responsive">
+                     <div class="col-sm-4 col-md-4 col-lg-4 float-right hide mb-2">
+                        <div class="input-group">
+                           <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
+                           <input class="form-control " placeholder="Search Here" type="text" [(ngModel)]="searchString">
+                        </div>
+                     </div>
+                     <table class="wikitable" [mfData]="records" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+                        <thead>
+                        <tr>        
+                           
+                              <th>#</th>
+                              <th *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="creator.first_name">Empreendedor</mfDefaultSorter>
+                              </th>
+                              <th>
+                              <mfDefaultSorter by="organization_name">Enterprise</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="country">País</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                              </th>
+                              <th class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <mfDefaultSorter by="stage">Palco</mfDefaultSorter>
+                              </th>
+                              <th *ngxPermissionsOnly="['MANAGER','EVALUATOR','SUPER_ADMIN']">
+                                 Ação
+                              </th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="records?.length != 0">
+                        <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                           <td>{{i + 1}}</td>
+                           <td *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.creator.first_name }} {{ recordinstance.creator.last_name }}</td>
+                           <td>{{ recordinstance.organization_name }}</td>
+                           <td *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.country }}</td>
+                           <td class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">
+                              <span class="badge badge-success" *ngIf="recordinstance.status == 'SUBMITTED'">
+                                 {{recordinstance.status}}
+                              </span>
+                              <span class="badge badge-primary" *ngIf="recordinstance.status !== 'SUBMITTED'">
+                                 {{recordinstance.status}}
+                              </span>
+                           </td>
+                           <td class="text-center" *ngxPermissionsOnly="['MANAGER','SUPER_ADMIN']">{{ recordinstance.stage }}</td>
+                           <td *ngxPermissionsOnly="['SUPER_ADMIN','MANAGER','EVALUATOR']">
+                              <button class="btn btn-success btn-small" (click)="application_review(recordinstance.creator.id)" *ngIf="recordinstance.is_evaluator_evaluated">Reavaliar</button>
+                              <button class="btn btn-info btn-small text-white" (click)="application_review(recordinstance.creator.id)" *ngIf="!recordinstance.is_evaluator_evaluated">Avalie</button>
+                           </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="hide">
+                           <td colspan="12">
+                              Páginas : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,100,1000,5000]"></mfBootstrapPaginator>
+                           </td>
+                        </tr>
+                        </tfoot>
+                        <tbody *ngIf="records?.length == 0">
+                        <tr>
+                           <td colspan="9" class="no-data-available">Nenhum dado disponível</td>
+                        </tr>
+                        <tbody>
+                        </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+
+
+     </div>
+  </div>
+</div>
+
+
+
+<div bsModal #businessDetailsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-primary modal-lg" role="document">
+       <div class="modal-content">
+           <div class="modal-header bg-primary">
+               <h5 class="modal-title">
+                   Enterprise Information           
+               </h5>
+               <button type="button" class="close" (click)="businessDetailsModal.hide();" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
+           <div class="modal-body container">
+
+            <table class="wikitable" width="100%">
+               <thead>
+                  <tr>
+                     <th >
+                        Question
+                     </th>
+                     <th>
+                        Reply
+                     </th>
+                  </tr>
+               </thead>
+               <tbody >
+                  <tr>
+                     <td>Full name of business</td>
+                     <td>
+                        {{my_innovations?.business_name}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Details about your business</td>
+                     <td>
+                        {{my_innovations?.business_details}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>When did you start this business?</td>
+                     <td>
+                        {{my_innovations?.business_start_date}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>s your business formally registered?</td>
+                     <td>
+                        {{my_innovations?.business_registered}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Physical location of business (country)</td>
+                     <td>
+                        {{my_innovations?.business_country}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Physical location of business (city)</td>
+                     <td>
+                        {{my_innovations?.business_city}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Explain how your business or solution contributes towards climate adaptation</td>
+                     <td>
+                        {{my_innovations?.business_climate_adaptation}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>What problem or need does your business or solution solve for your target
+                        customers/users?</td>
+                     <td>
+                        {{my_innovations?.business_solution}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Who are the target customers/users for your product or service? </td>
+                     <td>
+                        {{my_innovations?.business_target_customer}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Please provide the technical specifications of your product/service</td>
+                     <td>
+                        {{my_innovations?.business_technical_specifications}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>What were your annual revenues for the last two years in US dollars?</td>
+                     <td>
+                        {{my_innovations?.business_revenue}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>How many customers did you have in the last 12 months?</td>
+                     <td>
+                        {{my_innovations?.business_customers}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Have you secured any funding for this business from external sources?</td>
+                     <td>
+                        {{my_innovations?.business_funded}}
+                     </td>
+                  </tr>
+                  <tr *ngIf="my_innovations?.business_funded == 'Other'">
+                     <td>If answer is other, kindly explain</td>
+                     <td>
+                        {{my_innovations?.business_funding_type_other}}
+                     </td>
+                  </tr>
+                  <ng-container *ngIf="my_innovations?.business_funded == 'Yes'">
+                  <tr >
+                     <td>What kind of funding did you receive?</td>
+                     <td>
+                        {{my_innovations?.business_funding_type}}
+                     </td>
+                  </tr>
+                  <tr> 
+                     <td>From which source did you receive your funding?</td>
+                     <td>
+                        {{my_innovations?.business_funding_source}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>When did you receive the funding?</td>
+                     <td>
+                        {{my_innovations?.business_funding_date}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Kindly provide the name(s) of the source(s) of funding</td>
+                     <td>
+                        {{my_innovations?.business_funding_source_details}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>How much did you secure in USD?</td>
+                     <td>
+                        {{my_innovations?.business_funding_secured}}
+                     </td>
+                  </tr>
+                  </ng-container>
+                  <tr>
+                     <td>Kindly list in order of priority, the current challenges that your business is facing?</td>
+                     <td>
+                        {{my_innovations?.business_challenges}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>What specific support are you seeking from the African youth adaptation solutions challenge?</td>
+                     <td>
+                        {{my_innovations?.business_support}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Is there any additional information you would like to share about your business?</td>
+                     <td>
+                        {{my_innovations?.business_additional_info}}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>How did you learn about the African youth adaptation solutions challenge?</td>
+                     <td>
+                        {{my_innovations?.challenge_knowledge}}
+                     </td>
+                  </tr>
+                 
+               </tbody>
+            </table>
+
+           </div>      
+           <div class="modal-footer">
+               <button  type="submit"  (click)="businessDetailsModal.hide()" aria-label="Close" class="btn btn-secondary col-md-6">Close</button>
+           </div><!-- /.modal-content -->
+       </div><!-- /.modal-dialog -->
+   </div>
+</div>
+<!-- /.modal -->

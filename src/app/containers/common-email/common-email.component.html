@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12" *ngIf="action_required_menu">
+        <ngb-alert type="info" [dismissible]="false"> <strong>
+                <h4>Action Required</h4> Enter verification code sent to your email
+            </strong> </ngb-alert>
+    </div>
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Verify Email</strong>
+            </div>
+            <div class="card-body">
+               
+                <form [formGroup]="VerifyEmailForm" (ngSubmit)="verifyemail()">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>OTP code</label>
+                            <div class="input-group ">
+
+                                <input type="text" class="form-control"
+                                    formControlName="otp" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text" >
+                                        <i class="icon-lock"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="row">
+                        
+                        <div class="form-group col-sm-6">
+                            <label for="lastname">&nbsp;</label>
+                            <button type="submit" class="btn btn-success col-sm-12" >
+                                Verify</button>
+                        </div>
+
+                    </div>
+
+                    
+                </form>
+                <div class="row">
+                        
+                    <div class="form-group col-sm-6">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn btn-info col-sm-12" (click)="resend_otp()" >
+                            Resend OTP</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

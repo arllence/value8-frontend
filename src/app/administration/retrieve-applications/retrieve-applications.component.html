@@ -1,0 +1,118 @@
+<section>
+
+
+  <div class="animated fadeIn"> 
+    <div class="card">
+      <div class="card-header">
+        <strong>Download Data in CSV</strong>
+      </div>
+      <div class="card-body table-responsive">
+        <form [formGroup]="emailForm">
+          <div class="row">           
+            <div class="form-group col-sm-2">
+              <label for="searchby"><strong>Group</strong></label>
+              <select class="form-control" id="searchby" formControlName="group" required (change)="select_group($event.target.value)">
+                <option value="" selected>--Select Scope Group--</option>
+                <option value="APPLICATION">Applications</option>
+                <!-- <option value="USER">Applicants</option>
+                <option value="ADMIN">Management</option> -->
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="stage"><strong>Target</strong></label>
+              <select class="form-control" id="stage" formControlName="target" required>
+                <option value="ALL" selected>ALL</option>
+                <option [value]="action?.value" *ngFor="let action of target">
+                  {{action?.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="stage"><strong>Country</strong></label>
+              <ng-select id="location" class="required" formControlName="country" >
+                <ng-option selected value="ALL">ALL</ng-option>
+                  <ng-option [value]="country.name" *ngFor="let country of countries">{{country.name}}</ng-option>
+                </ng-select>  
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="stage"><strong>Gender</strong></label>
+              <select class="form-control" id="stage" formControlName="gender" required>
+                <option value="ALL" selected>All</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="stage"><strong>Language</strong></label>
+              <select class="form-control" id="language" formControlName="language" required>
+                <option value="ALL" selected>All</option>
+                <option value="English,Anglais">English</option>
+                <option value="French,Français,Français/">French</option>
+                <option value="Portuguese,Portugais">Portuguese</option>
+              </select>
+            </div>
+            <div class="col-sm-2 form-group">
+              <label for="age_group" class="control-label"> <strong>Age Group</strong> <span class="mark-required text-danger ml-1">*</span></label>
+              <select required formControlName="age" id="age_group" class="form-control" required>
+                 <option value="ALL" selected>All</option>
+                 <option  value="" disabled>----New Age Group-----</option>
+                 <option  value="18-25">18 - 25 Years</option>
+                 <option  value="26-35">26 - 35 Years</option>
+                 <option  value="36-45">36 - 45 Years</option>
+                 <option  value="46-55">46 - 55 Years</option>
+                 <option  value="Above 56">Above 56 Years</option>
+                 <option  value="" disabled>----Old Age Group-----</option>
+                 <option  value="18-24">18 - 24 Years</option>
+                 <option  value="25-34">25 - 34 Years</option>
+                 <option  value="35-44">35 - 44 Years</option>
+                 <option  value="45-54">44 - 54 Years</option>
+                 <option  value="Above 55">Above 55 Years</option>
+
+              </select>
+              <span class="help-block"></span>
+           </div>
+         
+          </div>
+
+              <div class="form-group mt-4 mb-4" *ngIf="can_download == false">
+                <div class="text-center">
+                  <button type="submit" (click)="send()" class="btn btn-success col-6">
+                    Generate
+                  </button>                              
+                </div>
+              </div>
+              <div class="form-group mt-4 mb-4" *ngIf="can_download == true">
+                <div class="text-center">
+                  <a type="submit" href={{download_url}} class="btn btn-info col-6" (click)="downloaded()"> 
+                    Download
+                  </a>                              
+                </div>
+              </div>
+           
+      </form>
+      </div>
+    </div>
+  </div> 
+
+
+  <!-- <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Download All Applications</strong>
+      </div>
+      <div class="card-body table-responsive">
+        <form [formGroup]="emailForm">
+           <div class="form-group mt-4 mb-4">
+                <div class="text-center">
+                  <button type="submit" (click)="fetch_applications()" class="btn btn-success col-6">
+                    Download
+                  </button>                              
+                </div>
+            </div>
+           
+      </form>
+      </div>
+    </div>
+  </div> -->
+
+</section>

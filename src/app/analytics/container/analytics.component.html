@@ -1,0 +1,645 @@
+<style>
+    /* .squarebox i{
+    font-size: 50px !important;
+  }
+  .square_box .number {
+    font-size: 30px !important;
+    text-align: left;
+    font-weight: 700;
+} */
+</style>
+<div class="card">
+ 
+   <div class="card-header">
+      <h6 class="card-title">
+         <!-- <i class="fa fa-check-circle-o" aria-hidden="true"> </i>  -->
+         Progress Analytics
+         <!--<button class="btn btn-secondary btn-block">DD Score: {{agent_due_diligence?.Total}}</button>-->
+         <!-- <a class="btn btn-warning float-right pl-2 " href="https://vimeo.com/642829173" target="_blank"><strong>Watch COP26 - Youth Adapt Challenge Award Ceremony</strong></a> -->
+     </h6>
+      <!-- <h4>Youth Adapt Challenge
+      </h4> <a class="btn btn-warning float-right " href="https://vimeo.com/642829173" target="_blank"><strong>Watch: COP26 - Youth Adapt Challenge Award Ceremony</strong></a>
+      
+    <img src='assets/YouthADAPTChallenge.png' width="35%" /> -->
+     
+   </div>
+   <div class="card-body">
+<div class="">
+<section class="row ">
+   <!-- <canvas id="myChart" width="1320" height="400"></canvas> -->
+
+   <!-- <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+      <div class="card">
+         <div class="card-header bg_purple">
+            Winners (Enterprises) 
+         </div>
+         <div class="card-body">
+               <div>
+                  <div style="display: block">
+                     <canvas id="winnersChart" ></canvas>
+                  </div>
+               </div>
+         </div>
+      </div>
+   </div> -->
+
+   <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+      <div class="card">
+         <div class="card-header bg_purple">
+            Applications by Country 
+            <span class="float-right">
+               (
+                  <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                     View Chart
+                  </span>
+                  <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                     View Tabular
+                  </span>
+               )
+            </span>
+         </div>
+         <div class="card-body" *ngIf="country_display_type == 'chart'">
+               <div>
+                  <div style="display: block">
+                     <canvas id="countryChart" ></canvas>
+                  </div>
+               </div>
+         </div>
+         <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+            <table class="wikitable" [mfData]="all_countries_data" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+               <thead>
+               <tr>        
+                  
+                     <th class="text-center">#</th>
+                     <th>
+                     <mfDefaultSorter by="label">Country</mfDefaultSorter>
+                     </th>                     
+                     <th class="text-center">
+                        <mfDefaultSorter by="data">Complete</mfDefaultSorter>
+                     </th>
+                     <th class="text-center">
+                        <mfDefaultSorter by="data">Incomplete</mfDefaultSorter>
+                     </th>
+                     <th class="text-center">
+                        <mfDefaultSorter by="data">Total</mfDefaultSorter>
+                     </th>
+
+               </tr>
+               </thead>
+               <tbody *ngIf="all_countries_data?.length != 0">
+               <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                  <td class="text-center">{{i + 1}}</td>
+                  <td>{{ recordinstance.label }}</td>
+                  <td class="text-center">{{ recordinstance.count }}</td>
+                  <td class="text-center">{{ recordinstance.incomplete }}</td>
+                  <td class="text-center">{{ recordinstance.total }}</td>
+               </tr>
+               </tbody>
+               <tfoot>
+               <tr class="hide">
+                  <td colspan="12">
+                     Select Records in a page : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,100]"></mfBootstrapPaginator>
+                  </td>
+               </tr>
+               </tfoot>
+               <tbody *ngIf="records?.length == 0">
+               <tr>
+                  <td colspan="9" class="no-data-available">No data available</td>
+               </tr>
+               <tbody>
+               </table>
+         </div>
+      </div>
+   </div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg_purple">
+          Registered Users
+          <span class="float-right">
+            (
+               <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                  View Chart
+               </span>
+               <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                  View Tabular
+               </span>
+            )
+         </span>
+        </div>
+        <div class="card-body" *ngIf="country_display_type == 'chart'">
+            <div>
+              <div style="display: block">
+                <canvas id="usersChart">
+                </canvas>
+              </div>
+            </div>
+        </div>
+        <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="registered_user_data" #mf="mfDataTable"  [mfRowsOnPage]="12" width="100%">
+            <thead>
+            <tr>        
+               
+               <th class="text-center">#</th>
+               <th class="text-center">
+               <mfDefaultSorter by="month">Month</mfDefaultSorter>
+               </th>
+               <th class="text-center">
+               <mfDefaultSorter by="total">Total Sign Ups</mfDefaultSorter>
+               </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="all_countries_data?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td class="text-center">{{ recordinstance.month }}</td>
+               <td class="text-center">{{ recordinstance.total }}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr class="hide">
+               <td colspan="12">
+                  Select Records in a page : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+               </td>
+            </tr>
+            </tfoot>
+            <tbody *ngIf="records?.length == 0">
+            <tr>
+               <td colspan="9" class="no-data-available">No data available</td>
+            </tr>
+            <tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+   <div class="card">
+      <div class="card-header bg_purple">
+         Complete Applications by Age Group 
+         <span class="float-right">
+            (
+               <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                  View Chart
+               </span>
+               <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                  View Tabular
+               </span>
+            )
+         </span>
+      </div>
+      <div class="card-body" *ngIf="country_display_type == 'chart'">
+            <div>
+               <div style="display: block">
+                  <canvas id="completeByAgeChart" ></canvas>
+               </div>
+            </div>
+      </div>
+      <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="complete_by_age" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+            <thead>
+            <tr>        
+               
+                  <th class="text-center">#</th>
+                  <th>
+                  <mfDefaultSorter by="label">Age Group</mfDefaultSorter>
+                  </th>
+                  <th class="text-center">
+                  <mfDefaultSorter by="data">Total Applications</mfDefaultSorter>
+                  </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="complete_by_age?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td>{{ recordinstance.label }}</td>
+               <td class="text-center">{{ recordinstance.data[0] }}</td>
+            </tr>
+            </tbody>
+            
+         </table>
+      </div>
+   </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+   <div class="card">
+      <div class="card-header bg_purple">
+         Incomplete Applications by Age Group 
+         <span class="float-right">
+            (
+               <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                  View Chart
+               </span>
+               <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                  View Tabular
+               </span>
+            )
+         </span>
+      </div>
+      <div class="card-body" *ngIf="country_display_type == 'chart'">
+            <div>
+               <div style="display: block">
+                  <canvas id="incompleteByAgeChart" ></canvas>
+               </div>
+            </div>
+      </div>
+      <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="incomplete_by_age" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+            <thead>
+            <tr>        
+               
+                  <th class="text-center">#</th>
+                  <th>
+                  <mfDefaultSorter by="label">Age Group</mfDefaultSorter>
+                  </th>
+                  <th class="text-center">
+                  <mfDefaultSorter by="data">Total Applications</mfDefaultSorter>
+                  </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="incomplete_by_age?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td>{{ recordinstance.label }}</td>
+               <td class="text-center">{{ recordinstance.data[0] }}</td>
+            </tr>
+            </tbody>
+            
+         </table>
+      </div>
+   </div>
+  </div>
+
+  <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+   <div class="card">
+      <div class="card-header bg_purple">
+         Complete Applications by Gender 
+         <span class="float-right">
+            (
+               <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                  View Chart
+               </span>
+               <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                  View Tabular
+               </span>
+            )
+         </span>
+      </div>
+      <div class="card-body" *ngIf="country_display_type == 'chart'">
+            <div>
+               <div style="display: block">
+                  <canvas id="completeByGender" ></canvas>
+               </div>
+            </div>
+      </div>
+      <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="complete_by_gender" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+            <thead>
+            <tr>        
+               
+                  <th class="text-center">#</th>
+                  <th>
+                  <mfDefaultSorter by="label">Gender</mfDefaultSorter>
+                  </th>
+                  <th class="text-center">
+                  <mfDefaultSorter by="data">Total Applications</mfDefaultSorter>
+                  </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="complete_by_age?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td>{{ recordinstance.label }}</td>
+               <td class="text-center">{{ recordinstance.data[0] }}</td>
+            </tr>
+            </tbody>
+            
+         </table>
+      </div>
+   </div>
+  </div>
+  <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+   <div class="card">
+      <div class="card-header bg_purple">
+         Incomplete Applications by gender 
+         <span class="float-right">
+            (
+               <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                  View Chart
+               </span>
+               <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                  View Tabular
+               </span>
+            )
+         </span>
+      </div>
+      <div class="card-body" *ngIf="country_display_type == 'chart'">
+            <div>
+               <div style="display: block">
+                  <canvas id="incompleteByGender" ></canvas>
+               </div>
+            </div>
+      </div>
+      <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="incomplete_by_gender" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+            <thead>
+            <tr>        
+               
+                  <th class="text-center">#</th>
+                  <th>
+                  <mfDefaultSorter by="label">Gender</mfDefaultSorter>
+                  </th>
+                  <th class="text-center">
+                  <mfDefaultSorter by="data">Total Applications</mfDefaultSorter>
+                  </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="incomplete_by_gender?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td>{{ recordinstance.label }}</td>
+               <td class="text-center">{{ recordinstance.data[0] }}</td>
+            </tr>
+            </tbody>
+            
+         </table>
+      </div>
+   </div>
+  </div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg_purple">
+           Complete Applications by Language 
+           <span class="float-right">
+              (
+                 <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                    View Chart
+                 </span>
+                 <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                    View Tabular
+                 </span>
+              )
+           </span>
+           <span *ngIf="country_display_type == 'chart'">
+            <br>(Eng: {{languageChartData[0]}} | Fre: {{languageChartData[1]}} | Por: {{languageChartData[2]}})
+           </span>
+           
+        </div>
+           <div class="card-body text-center" *ngIf="country_display_type == 'chart'">
+              <div style="display: block">
+                 <canvas id="languageChart" ></canvas>
+              </div>
+           </div>
+           <div class="card-body" *ngIf="country_display_type == 'table'">
+              <table class="wikitable" width="100%">
+                 <thead>
+                 <tr>                         
+                       <th class="text-center">#</th>
+                       <th>
+                          Language   
+                       </th>
+                       <th class="text-center">
+                          Total Applications   
+                       </th>
+                 </tr>
+                 </thead>
+                 <tbody *ngIf="languageChartData?.length != 0">
+                    <tr>            
+                       <td class="text-center">1</td>
+                       <td>
+                          English
+                       </td>
+                       <td class="text-center">{{ languageChartData[0] }}</td>
+                    </tr>
+                    <tr>            
+                       <td class="text-center">2</td>
+                       <td>
+                          French
+                       </td>
+                       <td class="text-center">{{ languageChartData[1] }}</td>
+                    </tr>
+                    <tr>            
+                     <td class="text-center">3</td>
+                     <td>
+                        Portuguese
+                     </td>
+                     <td class="text-center">{{ languageChartData[2] }}</td>
+                  </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+   </div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg_purple">
+           Incomplete Applications by Language 
+           <span class="float-right">
+              (
+                 <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                    View Chart
+                 </span>
+                 <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                    View Tabular
+                 </span>
+              )
+           </span>
+           <span *ngIf="country_display_type == 'chart'">
+               <br>(Eng: {{incompleteLangChart[0]}} | Fre: {{incompleteLangChart[1]}} | Por: {{incompleteLangChart[2]}})
+            </span>
+        </div>
+           <div class="card-body text-center" *ngIf="country_display_type == 'chart'">
+              <div style="display: block">
+                 <canvas id="incompleteLangChart" ></canvas>
+              </div>
+           </div>
+           <div class="card-body" *ngIf="country_display_type == 'table'">
+              <table class="wikitable" width="100%">
+                 <thead>
+                 <tr>                         
+                       <th class="text-center">#</th>
+                       <th>
+                          Language   
+                       </th>
+                       <th class="text-center">
+                          Total Applications   
+                       </th>
+                 </tr>
+                 </thead>
+                 <tbody *ngIf="incompleteLangChart?.length != 0">
+                    <tr>            
+                       <td class="text-center">1</td>
+                       <td>
+                          English
+                       </td>
+                       <td class="text-center">{{ incompleteLangChart[0] }}</td>
+                    </tr>
+                    <tr>            
+                       <td class="text-center">2</td>
+                       <td>
+                          French
+                       </td>
+                       <td class="text-center">{{ incompleteLangChart[1] }}</td>
+                    </tr>
+                    <tr>            
+                     <td class="text-center">3</td>
+                     <td>
+                        Portuguese
+                     </td>
+                     <td class="text-center">{{ incompleteLangChart[2] }}</td>
+                  </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+   </div>
+   
+  <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+    <div class="card">
+      <div class="card-header bg_purple">
+         All Applications by Gender 
+         <span class="float-right">
+            (
+               <span class="btn-link" *ngIf="country_display_type == 'table'" (click)="set_country_display_type()">
+                  View Chart
+               </span>
+               <span class="btn-link" *ngIf="country_display_type == 'chart'" (click)="set_country_display_type()">
+                  View Tabular
+               </span>
+            )
+         </span>
+         <span *ngIf="country_display_type == 'chart'">
+            <br>(Male: {{doughnutChartData[0]}} | Female: {{doughnutChartData[1]}})
+         </span>
+         
+      </div>
+         <div class="card-body text-center" *ngIf="country_display_type == 'chart'">
+            <div style="display: block">
+               <canvas id="genderChart" ></canvas>
+            </div>
+         </div>
+         <div class="card-body" *ngIf="country_display_type == 'table'">
+            <table class="wikitable" width="100%">
+               <thead>
+               <tr>                         
+                     <th class="text-center">#</th>
+                     <th class="text-center">
+                        Gender   
+                     </th>
+                     <th class="text-center">
+                        Total Applications   
+                     </th>
+               </tr>
+               </thead>
+               <tbody *ngIf="doughnutChartData?.length != 0">
+                  <tr>            
+                     <td class="text-center">1</td>
+                     <td class="text-center">
+                        Male
+                     </td>
+                     <td class="text-center">{{ doughnutChartData[0] }}</td>
+                  </tr>
+                  <tr>            
+                     <td class="text-center">2</td>
+                     <td class="text-center">
+                        Female
+                     </td>
+                     <td class="text-center">{{ doughnutChartData[1] }}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+
+  
+
+   <!-- <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+      <div class="card">
+         <div class="card-header bg-primary">
+            Winners Results
+         </div>
+         <div class="card-body">
+               <div>
+                  <div style="display: block">
+                     <canvas baseChart
+                              [datasets]="results"
+                              [labels]="userResults"
+                              [options]="barChartOptions"
+                              [legend]="barChartLegend"
+                              [chartType]="barChartType">
+                     </canvas>
+                  </div>
+               </div>
+         </div>
+      </div>
+   </div> -->
+
+   <!-- <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+      <div class="card">
+         <div class="card-header bg-primary">
+            Dropped by Country
+         </div>
+         <div class="card-body">
+               <div>
+                  <div style="display: block">
+                     <canvas id="droppedCountryChart" ></canvas>
+                  </div>
+               </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg-primary">
+           Dropped by Gender
+        </div>
+           <div class="card-body text-center">
+              <div style="display: block">
+                 <canvas id="droppedGenderChart" ></canvas>
+              </div>
+           </div>
+        </div>
+   </div> -->
+
+   <!-- <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg-primary">
+           Shortlisted Detailed Evaluation Report Scores
+        </div>
+           <div class="card-body text-center">
+              <div style="display: block">
+                 <canvas id="detailedReportChart" ></canvas>
+              </div>
+           </div>
+        </div>
+   </div> -->
+
+   <!-- <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg_purple">
+           Shortlisted Enterprises by Country
+        </div>
+           <div class="card-body text-center">
+              <div style="display: block">
+                 <canvas id="countriesReportChart" ></canvas>
+              </div>
+           </div>
+        </div>
+   </div> -->
+
+   
+
+</section>
+</div>
+</div>
+</div>

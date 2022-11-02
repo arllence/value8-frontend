@@ -1,0 +1,255 @@
+<style>
+   
+</style>
+<div class="card panel-primary" *ngIf="!is_review">
+   <div class="card-header bg-primary text-white clearfix">
+      <h4 class="card-title">
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+         Submiting Application
+      </h4>
+   </div>
+   <div class="card-body">
+
+      <form [formGroup]="applicationForm">
+         <div class="card-body">
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_name" class="col-sm-5 control-label">Please enter Full name of business <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <input id="business_name"  type="text" class="form-control"  formControlName="business_name"/>                                 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_details" class="col-sm-5 control-label">
+                     Kindly provide us with details about your business. <mark>(this can include but should
+                     not be limited to what your business does and your product / service offering.
+                     useful details such as service delivery channels, your role and the milestones your
+                     business has achieved will be a plus.)</mark> <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_details"  type="text" class="form-control"  formControlName="business_details"></textarea>                                 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_start_date" class="col-sm-5 control-label">
+                     When did you start this business? <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="col-sm-7">
+                     <input id="business_start_date"  type="date" class="form-control"  formControlName="business_start_date"/>                                 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_registered" class="col-sm-5 control-label">Is your business formally registered?  <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <ng-select id="business_registered" class="required" formControlName="business_registered" >
+                        <ng-option selected disabled value="">--Select Below--</ng-option>
+                        <ng-option value="Yes">Yes</ng-option>
+                        <ng-option value="No">No</ng-option>
+                     </ng-select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_country" class="col-sm-5 control-label">Physical location of business (country)  <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <ng-select formControlName="business_country" (change)="get_states($event)">
+                        <ng-option selected value='' disabled>Select Your Country</ng-option>
+                        <ng-option *ngFor="let country of all_countries" [value]="country?.isoCode" >{{country?.name}}</ng-option>
+                     </ng-select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_city" class="col-sm-5 control-label">Physical location of business (city) <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <input id="business_city"  type="text" class="form-control"  formControlName="business_city"/>                                 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_climate_adaptation" class="col-sm-5 control-label">Explain how your business or solution contributes towards climate adaptation
+                     and resilience <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_climate_adaptation"  type="text" class="form-control"  formControlName="business_climate_adaptation"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_solution" class="col-sm-5 control-label">What problem or need does your business or solution solve for your target
+                     customers/users? <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_solution"  type="text" class="form-control"  formControlName="business_solution"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_target_customer" class="col-sm-5 control-label">Who are the target customers/users for your product or service? <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_target_customer"  type="text" class="form-control"  formControlName="business_target_customer"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_technical_specifications" class="col-sm-5 control-label">Please provide the technical specifications of your product/service <mark>(if applicable)</mark> <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_technical_specifications"  type="text" class="form-control"  formControlName="business_technical_specifications"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_revenue" class="col-sm-5 control-label">What were your annual revenues for the last two years in US dollars? <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <input id="business_revenue"  type="number" class="form-control"  formControlName="business_revenue"/>                                 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_customers" class="col-sm-5 control-label">
+                     How many customers did you have in the last 12 months? 
+                     <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <input id="business_customers"  type="number" class="form-control"  formControlName="business_customers"/>                                 
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_funded" class="col-sm-5 control-label">Have you secured any funding for this business from external sources? <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <ng-select formControlName="business_funded" (change)="business_funded_fn($event)">
+                        <ng-option selected value='' disabled>---Select below---</ng-option>
+                        <ng-option selected value='Yes'>Yes</ng-option>
+                        <ng-option selected value='No'>No</ng-option>
+                        <ng-option selected value='Other'>Other</ng-option>
+                     </ng-select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group" *ngIf="business_is_funded == 'Other'">
+               <div class="row">
+                  <label for="business_funding_type_other" class="col-sm-5 control-label">If answer is other, kindly explain <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_funding_type_other"  type="text" class="form-control"  formControlName="business_funding_type_other"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="business_is_funded == 'Yes'">
+               <div class="form-group ">
+                  <div class="row">
+                     <label for="business_funding_type" class="col-sm-5 control-label">What kind of funding did you receive? <span class="mark-required text-danger ml-1">*</span></label>
+                     <div class="col-sm-7">
+                        <textarea rows="6" id="business_funding_type"  type="text" class="form-control"  formControlName="business_funding_type"> </textarea>                                
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group ">
+                  <div class="row">
+                     <label for="business_funding_source" class="col-sm-5 control-label">
+                        From which source did you receive your funding?
+                        <span class="mark-required text-danger ml-1">*</span></label>
+                     <div class="col-sm-7">
+                        <textarea rows="6" id="business_funding_source"  type="text" class="form-control"  formControlName="business_funding_source"> </textarea>                                
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group ">
+                  <div class="row">
+                     <label for="business_funding_date" class="col-sm-5 control-label">
+                        When did you receive the funding?
+                        <span class="mark-required text-danger ml-1">*</span>
+                     </label>
+                     <div class="col-sm-7">
+                        <input id="business_funding_date"  type="date" class="form-control"  formControlName="business_funding_date"/>                                 
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group ">
+                  <div class="row">
+                     <label for="business_funding_source_details" class="col-sm-5 control-label">
+                        Kindly provide the name(s) of the source(s) of funding
+                        <span class="mark-required text-danger ml-1">*</span></label>
+                     <div class="col-sm-7">
+                        <textarea rows="6" id="business_funding_source_details"  type="text" class="form-control"  formControlName="business_funding_source_details"> </textarea>                                
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group ">
+                  <div class="row">
+                     <label for="business_funding_secured" class="col-sm-5 control-label">
+                        How much did you secure in USD?
+                        <span class="mark-required text-danger ml-1">*</span>
+                     </label>
+                     <div class="col-sm-7">
+                        <input id="business_funding_secured"  type="number" class="form-control"  formControlName="business_funding_secured"/>                                 
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_challenges" class="col-sm-5 control-label">
+                     Kindly list in order of priority, the current challenges that your business is facing?
+                     <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_challenges"  type="text" class="form-control"  formControlName="business_challenges"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_support" class="col-sm-5 control-label">
+                     What specific support are you seeking from the African youth adaptation solutions challenge?
+                     <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_support"  type="text" class="form-control"  formControlName="business_support"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="business_additional_info" class="col-sm-5 control-label">
+                     Is there any additional information you would like to share about your business?
+                     <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="business_additional_info"  type="text" class="form-control"  formControlName="business_additional_info"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <div class="form-group ">
+               <div class="row">
+                  <label for="challenge_knowledge" class="col-sm-5 control-label">
+                     How did you learn about the African youth adaptation solutions challenge?
+                     <span class="mark-required text-danger ml-1">*</span></label>
+                  <div class="col-sm-7">
+                     <textarea rows="6" id="challenge_knowledge"  type="text" class="form-control"  formControlName="challenge_knowledge"> </textarea>                                
+                  </div>
+               </div>
+            </div>
+            <br>
+            <div class="col-sm-12 text-center">
+               <button type="submit" class="btn btn-dribbble col-6" (click)="submit_application()">Submit</button>
+            </div>
+         </div>
+      </form>
+
+
+   </div>
+</div>
+
+
+

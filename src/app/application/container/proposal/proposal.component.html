@@ -1,0 +1,905 @@
+<section *ngIf="selected_lang == 'en'">
+    <div class="animated fadeIn">
+      <div class="card">
+        <div class="card-header">
+          <strong>Part 2: Your proposal</strong>
+        </div>
+        <div class="card-body">
+          We will use this information to assess your application against the Eligibility and Judging Criteria. 
+        </div>
+      </div>
+  </div>
+
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Summary</strong>
+      </div>
+      <div class="card-body table-responsive">
+        <form [formGroup]="applicationForm">
+                <div class="form-group mb-4">
+                    <label for="innovation_name" class="control-label">
+                      Please provide the name of your innovation.
+                      <span class="mark-required text-danger ml-1">*</span>
+                    </label>
+                    <div class="">
+                      <input id="innovation_name"  type="text" class="form-control"  formControlName="innovation_name"/>                                 
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="innovation_explanation" class="control-label">
+                    Explain your innovation in one sentence. 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                  <mark>(Limit: 20 words)</mark> 
+                  </label>
+                  <div class="">
+                    <textarea id="innovation_explanation"  type="type" class="form-control"  formControlName="innovation_explanation" rows="6" (input)="CheckLen($event,20,'innovation_explanation')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('innovation_explanation').errors?.max_length">Word Limit Exceeded</small>                             
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="innovation_description" class="control-label">
+                        Please provide a more detailed description of your innovation and how it addresses the Challenge statement.  
+                        <br>
+                        <mark>(Please do not include information about your team as we'll ask you about that below.  Limite: 150 palavras)</mark> 
+                      <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                    </label>
+                    <div class="">
+                      <textarea id="innovation_description"  type="type" class="form-control"  formControlName="innovation_description" rows="6" (input)="CheckLen($event,150,'innovation_description')"></textarea> 
+                      <small class="text-danger" *ngIf="applicationForm.get('innovation_description').errors?.max_length">Word Limit Exceeded</small>                                 
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="target_users" class="control-label">
+                      Who are your target user? Please provide a short description of them. 
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>(Limit: 50 words)</mark>
+                    </label>
+                    <div class="">
+                      <textarea id="target_users" class="form-control"  formControlName="target_users" rows="6" (input)="CheckLen($event,50,'target_users')"></textarea>          
+                      <small class="text-danger" *ngIf="applicationForm.get('target_users').errors?.max_length">Word Limit Exceeded</small>                         
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="target_area" class="control-label">
+                      Please identify your target area/city/country/region. The area/region your innovation is focused on. 
+                      <span class="mark-required text-danger ml-1">*</span>
+                    </label>
+                    <div class="">
+                      <textarea id="target_area"  type="type" class="form-control"  formControlName="target_area" rows="6"></textarea>                                 
+                    </div>
+                  </div>             
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong> Innovation: 
+        <span>Does the Solution offer an innovative approach to changing the behaviour of individuals and communities around climate change adaptation in Africa? </span>
+        </strong>
+      </div>
+      <div class="card-body table-responsive">
+        <form [formGroup]="applicationForm">
+                <div class="form-group mb-4">
+                    <label for="problem_solved" class="control-label">
+                      What issue or problem is your innovation trying to solve or address, and why is behaviour change required to solve the issue?
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                      <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                    </label>
+                    <div class="">
+                      <textarea id="problem_solved"  type="type" class="form-control"  formControlName="problem_solved" rows="6" (input)="CheckLen($event,100,'problem_solved')"></textarea>   
+                      <small class="text-danger" *ngIf="applicationForm.get('problem_solved').errors?.max_length">Word Limit Exceeded</small>                               
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="targeted_behaviour_change" class="control-label">
+                      Describe the behaviour change you are targeting, and how you plan to generate change? 
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                      <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                    </label>
+                    <div class="">
+                      <textarea id="targeted_behaviour_change"  type="type" class="form-control"  formControlName="targeted_behaviour_change" rows="6" (input)="CheckLen($event,100,'targeted_behaviour_change')"></textarea>   
+                      <small class="text-danger" *ngIf="applicationForm.get('targeted_behaviour_change').errors?.max_length">Word Limit Exceeded</small>                                
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="approach" class="control-label">
+                      How is your approach new or adaptive, and/or how does it differ from what already exists? 
+                      <br>
+                      <mark>(your innovation could be completely new or adapted from one context to a different one) Limit: 100 words</mark>
+                      <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                    </label>
+                    <div class="">
+                      <textarea id="approach"  type="type" class="form-control"  formControlName="approach" rows="6" (input)="CheckLen($event,100,'approach')"></textarea>   
+                      <small class="text-danger" *ngIf="applicationForm.get('approach').errors?.max_length">Word Limit Exceeded</small>                               
+                    </div>
+                  </div>             
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong> Effectiveness: 
+        <span>Does the innovation demonstrate the potential to generate a significant change in the behaviour of individuals and communities around climate change and adaptation in Africa?  </span>
+      </strong>
+      </div>
+      <div class="card-body table-responsive">
+        <form [formGroup]="applicationForm">
+                <div class="form-group mb-4">
+                    <label for="impacts" class="control-label">
+                      What are the expected impacts of your solution? 
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                      <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                    </label>
+                    <div class="">
+                      <textarea id="impacts"  type="type" class="form-control"  formControlName="impacts" rows="6" (input)="CheckLen($event,100,'impacts')"></textarea>  
+                      <small class="text-danger" *ngIf="applicationForm.get('impacts').errors?.max_length">Word Limit Exceeded</small>                                 
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="impact_indicator" class="control-label">
+                      How will you know your innovation has achieved the desired impact? 
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                      <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                    </label>
+                    <div class="">
+                      <textarea id="impact_indicator"  type="type" class="form-control"  formControlName="impact_indicator" rows="6" (input)="CheckLen($event,100,'impact_indicator')"></textarea> 
+                      <small class="text-danger" *ngIf="applicationForm.get('impact_indicator').errors?.max_length">Word Limit Exceeded</small>                                  
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="replication_capability" class="control-label">
+                      Does your innovation have the potential to be replicated to other contexts across Africa?
+                      <span class="mark-required text-danger ml-1">*</span>
+                    </label>
+                    <div class="">
+                      <ng-select id="replication_capability" class="required" formControlName="replication_capability" >
+                        <ng-option selected disabled value="">--Select Below--</ng-option>
+                        <ng-option value="Yes">Yes</ng-option>
+                        <ng-option value="No">No</ng-option>
+                      </ng-select>                                
+                    </div>
+                  </div>     
+                  <div class="form-group mb-4">
+                    <label for="testing_and_iteration" class="control-label">
+                      What are the plans to test and iterate the innovation, as well as build evidence around its impact and effectiveness?  
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>Limit: 100 words</mark>
+                    </label>
+                    <div class="">
+                      <textarea id="testing_and_iteration"  type="type" class="form-control"  formControlName="testing_and_iteration" rows="6" (input)="CheckLen($event,100,'testing_and_iteration')"></textarea> 
+                      <small class="text-danger" *ngIf="applicationForm.get('testing_and_iteration').errors?.max_length">Word Limit Exceeded</small>                                
+                    </div>
+                  </div>  
+                  <div class="form-group mb-4">
+                    <label for="target_engagement" class="control-label">
+                      What are the plans to engage target audiences, stakeholders, and potential end-users throughout the testing, development, and scale-up process? 
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                    </label>
+                    <div class="">
+                      <textarea id="target_engagement"  type="type" class="form-control"  formControlName="target_engagement" rows="6" (input)="CheckLen($event,100,'target_engagement')"></textarea>   
+                      <small class="text-danger" *ngIf="applicationForm.get('target_engagement').errors?.max_length">Word Limit Exceeded</small>                                
+                    </div>
+                  </div>  
+                  <div class="form-group mb-4">
+                    <label for="negative_impacts" class="control-label">
+                      Has the solution considered any potential negative impacts that it could have, what they could be, and how they could be addressed? 
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                    </label>
+                    <div class="">
+                      <textarea id="negative_impacts"  type="type" class="form-control"  formControlName="negative_impacts" rows="6" (input)="CheckLen($event,100,'negative_impacts')"></textarea>    
+                      <small class="text-danger" *ngIf="applicationForm.get('negative_impacts').errors?.max_length">Word Limit Exceeded</small>                              
+                    </div>
+                  </div>          
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Capability:  
+        <span>The solution has a team behind it with the relevant track record, skills, experience and resources (including partnerships) to achieve success.</span>
+      </strong>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="applicationForm">
+                <div class="form-group mb-4">
+                    <label for="team_skills" class="control-label">
+                      What are the relevant skills and experience of the team working on the solution. 
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>(Limit: 100 words)</mark>
+                    </label>
+                    <div class="">
+                      <textarea id="team_skills"  type="type" class="form-control"  formControlName="team_skills" rows="6" (input)="CheckLen($event,100,'team_skills')"></textarea>    
+                      <small class="text-danger" *ngIf="applicationForm.get('team_skills').errors?.max_length">Word Limit Exceeded</small>                               
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="skills_gap" class="control-label">
+                      What skill gaps exist and how will you fill them? Please provide information about your team members.  
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>(Limit: 50 words)</mark>              
+                    </label>
+                    <div class="">
+                      <textarea id="skills_gap"  type="type" class="form-control"  formControlName="skills_gap" rows="6" (input)="CheckLen($event,50,'skills_gap')"></textarea>    
+                      <small class="text-danger" *ngIf="applicationForm.get('skills_gap').errors?.max_length">Word Limit Exceeded</small>                              
+                    </div>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="partnerships" class="control-label">
+                      Have you considered any partnerships to help support the growth and scale-up of your innovation? and if so:
+                      What kinds of organisations would you like to partner with, how would they contribute to the development of your innovation, and what are your plans to develop these partnerships during the accelerator program? 
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br>
+                      <mark>(Limit: 100 words)</mark>  
+                      <span class="mark-required text-danger ml-1">*</span>
+                    </label>
+                    <div class="">
+                      <textarea id="partnerships"  type="type" class="form-control"  formControlName="partnerships" rows="6" (input)="CheckLen($event,100,'partnerships')"></textarea> 
+                      <small class="text-danger" *ngIf="applicationForm.get('partnerships').errors?.max_length">Word Limit Exceeded</small>                                  
+                    </div>
+                  </div>     
+                          
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Scalability</strong>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="applicationForm">
+                <div class="form-group mb-4">
+                    <label for="traction_achieved" class="control-label">
+                      What are the traction achieved so far?
+                      <span class="mark-required text-danger ml-1">*</span>
+                      <br> 
+                      <mark>(Limit: 70 words)</mark>  
+                      <span class="mark-required text-danger ml-1">*</span>
+                    </label>
+                    <div class="">
+                      <textarea id="traction_achieved"  type="type" class="form-control"  formControlName="traction_achieved" rows="6" (input)="CheckLen($event,70,'traction_achieved')"></textarea>   
+                      <small class="text-danger" *ngIf="applicationForm.get('traction_achieved').errors?.max_length">Word Limit Exceeded</small>                                
+                    </div>
+                  </div>    
+                          
+      </form>
+
+      <div class="col-sm-12 mt-5">
+        <button type="submit" class="btn btn-success   float-left" (click)="back()"><i class="fa fa-backward"></i> Back</button>
+        <button type="submit" class="btn btn-success   float-right" (click)="save_data()">Next <i class="fa fa-forward"></i></button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section *ngIf="selected_lang == 'fr'">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Partie 2 : Votre proposition</strong>
+      </div>
+      <div class="card-body">
+        Nous utiliserons ces informations pour évaluer votre candidature en fonction des critères de sélection et d'Éligibilité. 
+      </div>
+    </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Résumé</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="innovation_name" class="control-label">
+                    Veuillez indiquer le nom de votre innovation.
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <input id="innovation_name"  type="text" class="form-control"  formControlName="innovation_name"/>                                 
+                  </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="innovation_explanation" class="control-label">
+                  Expliquez votre innovation en une phrase.
+                  <span class="mark-required text-danger ml-1">*</span>
+                  <br>
+                <mark>(Limite : 20 mots)</mark> 
+                </label>
+                <div class="">
+                  <textarea id="innovation_explanation"  type="type" class="form-control"  formControlName="innovation_explanation" rows="6" (input)="CheckLen($event,20,'innovation_explanation')"></textarea>    
+                  <small class="text-danger" *ngIf="applicationForm.get('innovation_explanation').errors?.max_length">Limite de mots dépassée</small>                             
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                  <label for="innovation_description" class="control-label">
+                    Veuillez fournir une description plus détaillée de votre innovation et de la manière dont elle répond à l'énoncé du défi.   
+                      <br>
+                      <mark>(Veuillez ne pas inclure d'informations sur votre équipe, car nous vous poserons des questions à ce sujet ci-dessous.  Limite: 150 mots)</mark> 
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="innovation_description"  type="type" class="form-control"  formControlName="innovation_description" rows="6" (input)="CheckLen($event,150,'innovation_description')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('innovation_description').errors?.max_length">Limite de mots dépassée</small>                                 
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="target_users" class="control-label">
+                    Qui est votre utilisateur cible ? Veuillez en donner une brève description. 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limite: 50 mots)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="target_users" class="form-control"  formControlName="target_users" rows="6" (input)="CheckLen($event,50,'target_users')"></textarea>          
+                    <small class="text-danger" *ngIf="applicationForm.get('target_users').errors?.max_length">Limite de mots dépassée</small>                         
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="target_area" class="control-label">
+                    Veuillez identifier votre zone/ville/pays/région cible. La zone/région sur laquelle porte votre innovation.  
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <textarea id="target_area"  type="type" class="form-control"  formControlName="target_area" rows="6"></textarea>                                 
+                  </div>
+                </div>             
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Critère: Innovation: 
+      <span>La Solution offre-t-elle une approche innovante pour changer le comportement des individus et des communautés autour de l'adaptation au changement climatique en Afrique ? </span>
+      </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="problem_solved" class="control-label">
+                    Quelle question ou quel problème votre innovation tente-t-elle de résoudre ou d'aborder?
+                    <br>
+                    <mark>(Limite: 100 mots)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="problem_solved"  type="type" class="form-control"  formControlName="problem_solved" rows="6" (input)="CheckLen($event,100,'problem_solved')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('problem_solved').errors?.max_length">Limite de mots dépassée</small>                               
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="targeted_behaviour_change" class="control-label">
+                    Décrivez le changement de comportement que vous visez, et comment vous comptez générer ce changement ?
+                    <br>
+                    <mark>(Limite: 100 mots)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="targeted_behaviour_change"  type="type" class="form-control"  formControlName="targeted_behaviour_change" rows="6" (input)="CheckLen($event,100,'targeted_behaviour_change')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('targeted_behaviour_change').errors?.max_length">Limite de mots dépassée</small>                                
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="approach" class="control-label">
+                    En quoi votre approche est-elle nouvelle ou adaptative, et/ou en quoi diffère-t-elle de ce qui existe déjà ? 
+                    <br>
+                    <mark>(votre innovation peut être totalement nouvelle ou adaptée d'un contexte à un autre) Limite: 100 mots</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="approach"  type="type" class="form-control"  formControlName="approach" rows="6" (input)="CheckLen($event,100,'approach')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('approach').errors?.max_length">Limite de mots dépassée</small>                               
+                  </div>
+                </div>             
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> L'efficacité: 
+      <span> Est-ce que l'innovation démontre le potentiel de générer un changement significatif dans le comportement des individus et des communautés autour du changement climatique et de l'adaptation en Afrique ?  </span>
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="impacts" class="control-label">
+                    Quel sera l'impact de votre changement de comportement ciblé ?
+                    <br>
+                    <mark>(Limite: 100 mots)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="impacts"  type="type" class="form-control"  formControlName="impacts" rows="6" (input)="CheckLen($event,100,'impacts')"></textarea>  
+                    <small class="text-danger" *ngIf="applicationForm.get('impacts').errors?.max_length">Limite de mots dépassée</small>                                 
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="impact_indicator" class="control-label">
+                    Comment saurez-vous que votre innovation a eu l'impact souhaité ?  
+                    <br>
+                    <mark>(Limit: 100 mots)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="impact_indicator"  type="type" class="form-control"  formControlName="impact_indicator" rows="6" (input)="CheckLen($event,100,'impact_indicator')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('impact_indicator').errors?.max_length">Limite de mots dépassée</small>                                  
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="replication_capability" class="control-label">
+                    Est-ce que votre innovation a le potentiel d'être répliquée dans d'autres contextes en Afrique ?
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <ng-select id="replication_capability" class="required" formControlName="replication_capability" >
+                      <ng-option selected disabled value="">--sélectionnez ci-dessous--</ng-option>
+                      <ng-option value="Oui">Oui</ng-option>
+                      <ng-option value="Non">Non</ng-option>
+                    </ng-select>                                
+                  </div>
+                </div>     
+                <div class="form-group mb-4">
+                  <label for="testing_and_iteration" class="control-label">
+                    Quels sont les plans pour tester et itérer l'innovation, ainsi que pour établir des preuves de son impact et de son efficacité ?    
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>Limit: 100 mots</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="testing_and_iteration"  type="type" class="form-control"  formControlName="testing_and_iteration" rows="6" (input)="CheckLen($event,100,'testing_and_iteration')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('testing_and_iteration').errors?.max_length">Limite de mots dépassée</small>                                
+                  </div>
+                </div>  
+                <div class="form-group mb-4">
+                  <label for="target_engagement" class="control-label">
+                    Quels sont les plans pour engager les publics cibles, les parties prenantes et les utilisateurs finaux potentiels tout au long du processus de test, de développement et de mise à l'échelle ? 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limit: 100 mots)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="target_engagement"  type="type" class="form-control"  formControlName="target_engagement" rows="6" (input)="CheckLen($event,100,'target_engagement')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('target_engagement').errors?.max_length">Limite de mots dépassée</small>                                
+                  </div>
+                </div>  
+                <div class="form-group mb-4">
+                  <label for="negative_impacts" class="control-label">
+                    Est-ce que la solution a pris en compte les impacts négatifs potentiels qu'elle pourrait avoir, ce qu'ils pourraient être et comment ils pourraient être traités ? 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limit: 100 mots)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="negative_impacts"  type="type" class="form-control"  formControlName="negative_impacts" rows="6" (input)="CheckLen($event,100,'negative_impacts')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('negative_impacts').errors?.max_length">Limite de mots dépassée</small>                              
+                  </div>
+                </div>          
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Capacité:  
+      <span>
+        L'équipe qui soutient la solution possède les antécédents, les compétences, l'expérience et les ressources (y compris les partenariats) nécessaires pour réussir.</span>
+    </strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="team_skills" class="control-label">
+                    Quelles sont les compétences et l'expérience pertinentes de l'équipe travaillant sur la solution, quelles sont les lacunes en matière de compétences et comment allez-vous les combler ? Veuillez fournir des informations sur les membres de votre équipe.       
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limit: 100 mots)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="team_skills"  type="type" class="form-control"  formControlName="team_skills" rows="6" (input)="CheckLen($event,100,'team_skills')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('team_skills').errors?.max_length">Limite de mots dépassée</small>                               
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="skills_gap" class="control-label">
+                    Quels seront, selon vous, les principaux risques ou défis liés au développement, à l'essai ou au pilotage de votre solution, et comment comptez-vous les surmonter ?  
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limit: 50 words)</mark>              
+                  </label>
+                  <div class="">
+                    <textarea id="skills_gap"  type="type" class="form-control"  formControlName="skills_gap" rows="6" (input)="CheckLen($event,50,'skills_gap')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('skills_gap').errors?.max_length">Limite de mots dépassée</small>                              
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="partnerships" class="control-label">
+                    Avez-vous envisagé des partenariats pour aider à soutenir la croissance et la mise à l'échelle de votre innovation ? et si oui : Avec quels types d'organisations souhaiteriez-vous établir un partenariat, comment contribueraient-elles au développement de votre innovation, et quels sont vos plans pour développer ces partenariats pendant le Défi ?  
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limit: 100 mots)</mark>  
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <textarea id="partnerships"  type="type" class="form-control"  formControlName="partnerships" rows="6" (input)="CheckLen($event,100,'partnerships')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('partnerships').errors?.max_length">Limite de mots dépassée</small>                                  
+                  </div>
+                </div>     
+                        
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Évolutivité</strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="traction_achieved" class="control-label">
+                    Quelle est la traction obtenue jusqu'à présent ?
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br> 
+                    <mark>(Limite: 70 mots)</mark>  
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <textarea id="traction_achieved"  type="type" class="form-control"  formControlName="traction_achieved" rows="6" (input)="CheckLen($event,70,'traction_achieved')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('traction_achieved').errors?.max_length">Limite de mots dépassée</small>                                
+                  </div>
+                </div>    
+                        
+    </form>
+
+    <div class="col-sm-12 mt-5">
+      <button type="submit" class="btn btn-success   float-left" (click)="back()"><i class="fa fa-backward"></i> retour</button>
+      <button type="submit" class="btn btn-success   float-right" (click)="save_data()">suivante <i class="fa fa-forward"></i></button>
+    </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<section *ngIf="selected_lang == 'pt'">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <strong>Parte 2: Tu propuesta</strong>
+      </div>
+      <div class="card-body">
+        Usaremos esta informação para avaliar sua solicitação de acordo com os critérios de elegibilidade e avaliação. 
+      </div>
+    </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Resumo</strong>
+    </div>
+    <div class="card-body table-responsive">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="innovation_name" class="control-label">
+                    Proporcione o nome de sua inovação.
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <input id="innovation_name"  type="text" class="form-control"  formControlName="innovation_name"/>                                 
+                  </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="innovation_explanation" class="control-label">
+                  Explique sua inovação em uma frase. 
+                  <span class="mark-required text-danger ml-1">*</span>
+                  <br>
+                <mark>(Limite: 20 palavras)</mark> 
+                </label>
+                <div class="">
+                  <textarea id="innovation_explanation"  type="type" class="form-control"  formControlName="innovation_explanation" rows="6" (input)="CheckLen($event,20,'innovation_explanation')"></textarea>    
+                  <small class="text-danger" *ngIf="applicationForm.get('innovation_explanation').errors?.max_length">`   Limite de pedidos excedido</small>                             
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                  <label for="innovation_description" class="control-label">
+                    Propor uma descrição mais detalhada de sua inovação e como aborda a declaração do desafio.  
+                      <br>
+                      <mark>(Não inclui informações sobre seu equipamento, você vai precisar sobre uma continuação.  Limite: 150 palavras)</mark> 
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="innovation_description"  type="type" class="form-control"  formControlName="innovation_description" rows="6" (input)="CheckLen($event,150,'innovation_description')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('innovation_description').errors?.max_length">Limite de pedidos excedido</small>                                 
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="target_users" class="control-label">
+                    ¿Quién es tu usuario objetivo? Proporcione una breve descrição de ellos. 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limite: 50 palavras)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="target_users" class="form-control"  formControlName="target_users" rows="6" (input)="CheckLen($event,50,'target_users')"></textarea>          
+                    <small class="text-danger" *ngIf="applicationForm.get('target_users').errors?.max_length">Limite de pedidos excedido</small>                         
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="target_area" class="control-label">
+                    Por favor identificar seu objetivozona/cidade/ país/região. A área/região está no centro de sua inovação. 
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <textarea id="target_area"  type="type" class="form-control"  formControlName="target_area" rows="6"></textarea>                                 
+                  </div>
+                </div>             
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Inovação: 
+      <span> ¿Oferece a inovação um enfoque inovador para mudar o comportamento das pessoas e das comunidades em torno da mudança climática e da adaptação na África?</span>
+      </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="problem_solved" class="control-label">
+                    ¿Qué tema o problema está tratando de resolver ou abordar sua inovação, y por que se requer uma mudança de comportamento para resolver o problema?
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="problem_solved"  type="type" class="form-control"  formControlName="problem_solved" rows="6" (input)="CheckLen($event,100,'problem_solved')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('problem_solved').errors?.max_length">Limite de pedidos excedido</small>                               
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="targeted_behaviour_change" class="control-label">
+                    Descreva a mudança de comportamento ao que se dirige e como plano gera a mudança.
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="targeted_behaviour_change"  type="type" class="form-control"  formControlName="targeted_behaviour_change" rows="6" (input)="CheckLen($event,100,'targeted_behaviour_change')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('targeted_behaviour_change').errors?.max_length">Limite de pedidos excedido</small>                                
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="approach" class="control-label">
+                    ¿En qué medida su enfoque é novo ou adaptativo y/o en qué se diferencia de lo que ya existe? 
+                    <br>
+                    <mark>(su innovación podría ser completamente nova o adaptado de um contexto a outro diferente)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="approach"  type="type" class="form-control"  formControlName="approach" rows="6" (input)="CheckLen($event,100,'approach')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('approach').errors?.max_length">Limite de pedidos excedido</small>                               
+                  </div>
+                </div>             
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong> Eficácia: 
+      <span>¿A inovação demonstra o potencial para gerar uma mudança significativa no comportamento das comunidades e nas pessoas em torno da mudança climática e da adaptação na África?</span>
+    </strong>
+    </div>
+    <div class="card-body table-responsive">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="impacts" class="control-label">
+                    Qual será o impacto de sua mudança de comportamento objetivo?
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="impacts"  type="type" class="form-control"  formControlName="impacts" rows="6" (input)="CheckLen($event,100,'impacts')"></textarea>  
+                    <small class="text-danger" *ngIf="applicationForm.get('impacts').errors?.max_length">Limite de pedidos excedido</small>                                 
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="impact_indicator" class="control-label">
+                    ¿Como sabrá que sua inovação registrou o impacto projetado?
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                    <!-- <span class="mark-required text-danger ml-1">*</span> -->
+                  </label>
+                  <div class="">
+                    <textarea id="impact_indicator"  type="type" class="form-control"  formControlName="impact_indicator" rows="6" (input)="CheckLen($event,100,'impact_indicator')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('impact_indicator').errors?.max_length">Limite de pedidos excedido</small>                                  
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="replication_capability" class="control-label">
+                    ¿Tem a inovação do potencial de replicação em outros contextos na África?
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <ng-select id="replication_capability" class="required" formControlName="replication_capability" >
+                      <ng-option selected disabled value="">--Selecione abaixo--</ng-option>
+                      <ng-option value="Sim">Sim</ng-option>
+                      <ng-option value="Não">Não</ng-option>
+                    </ng-select>                                
+                  </div>
+                </div>     
+                <div class="form-group mb-4">
+                  <label for="testing_and_iteration" class="control-label">
+                    ¿Cuáles son los planes para probar e iterar la innovación, como para gerar evidência sobre seu impacto e eficácia? 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>Limite: 100 palavras</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="testing_and_iteration"  type="type" class="form-control"  formControlName="testing_and_iteration" rows="6" (input)="CheckLen($event,100,'testing_and_iteration')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('testing_and_iteration').errors?.max_length">Limite de pedidos excedido</small>                                
+                  </div>
+                </div>  
+                <div class="form-group mb-4">
+                  <label for="target_engagement" class="control-label">
+                    ¿Quais são os planos para envolver o objetivo de audiência, as partes interessadas e os possíveis usuários finais ao longo do processo de teste, desarrollo e ampliaç
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="target_engagement"  type="type" class="form-control"  formControlName="target_engagement" rows="6" (input)="CheckLen($event,100,'target_engagement')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('target_engagement').errors?.max_length">Limite de pedidos excedido</small>                                
+                  </div>
+                </div>  
+                <div class="form-group mb-4">
+                  <label for="negative_impacts" class="control-label">
+                    ¿A solução considerou os impactos negativos que podría tener, cuáles podrían ser y cómo podrían abordarse?
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="negative_impacts"  type="type" class="form-control"  formControlName="negative_impacts" rows="6" (input)="CheckLen($event,100,'negative_impacts')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('negative_impacts').errors?.max_length">Limite de pedidos excedido</small>                              
+                  </div>
+                </div>          
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Capacidade:  
+      <span>A solução conta com um equipamento detrás da história, as habilidades, a experiência e os recursos relevantes (incluídos as associações) para registrar o éxito.</span>
+    </strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="team_skills" class="control-label">
+                    Quais são as habilidades relevantes e a experiência da equipe que trabalha na solução.
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>
+                  </label>
+                  <div class="">
+                    <textarea id="team_skills"  type="type" class="form-control"  formControlName="team_skills" rows="6" (input)="CheckLen($event,100,'team_skills')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('team_skills').errors?.max_length">Limite de pedidos excedido</small>                               
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="skills_gap" class="control-label">
+                    Que lacunas de habilidades existem e como você irá preenchê-las? Forneça informações sobre os membros de sua equipe. 
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limit: 50 words)</mark>              
+                  </label>
+                  <div class="">
+                    <textarea id="skills_gap"  type="type" class="form-control"  formControlName="skills_gap" rows="6" (input)="CheckLen($event,50,'skills_gap')"></textarea>    
+                    <small class="text-danger" *ngIf="applicationForm.get('skills_gap').errors?.max_length">Limite de pedidos excedido</small>                              
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="partnerships" class="control-label">
+                    ¿Há considerado uma associação ampliada para ajudar a expandir o crescimento e a lação de sua inovação? y si es así: ¿Con qué tipo de organizaciones le gustaría asociarse, cómo contribuirían al desarrollo de su innovación y cuáles son sus planes para desarrollar estas associações durante el Desafío?
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br>
+                    <mark>(Limite: 100 palavras)</mark>  
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <textarea id="partnerships"  type="type" class="form-control"  formControlName="partnerships" rows="6" (input)="CheckLen($event,100,'partnerships')"></textarea> 
+                    <small class="text-danger" *ngIf="applicationForm.get('partnerships').errors?.max_length">Limite de pedidos excedido</small>                                  
+                  </div>
+                </div>     
+                        
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <strong>Escalabilidade</strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="applicationForm">
+              <div class="form-group mb-4">
+                  <label for="traction_achieved" class="control-label">
+                    Quais são as tração alcançadas até agora?
+                    <span class="mark-required text-danger ml-1">*</span>
+                    <br> 
+                    <mark>(Limit: 70 words)</mark>  
+                    <span class="mark-required text-danger ml-1">*</span>
+                  </label>
+                  <div class="">
+                    <textarea id="traction_achieved"  type="type" class="form-control"  formControlName="traction_achieved" rows="6" (input)="CheckLen($event,70,'traction_achieved')"></textarea>   
+                    <small class="text-danger" *ngIf="applicationForm.get('traction_achieved').errors?.max_length">Limite de pedidos excedido</small>                                
+                  </div>
+                </div>    
+                        
+    </form>
+
+    <div class="col-sm-12 mt-5">
+      <button type="submit" class="btn btn-success   float-left" (click)="back()"><i class="fa fa-backward"></i>De volta</button>
+      <button type="submit" class="btn btn-success   float-right" (click)="save_data()">Prosseguir <i class="fa fa-forward"></i></button>
+    </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+
+
+

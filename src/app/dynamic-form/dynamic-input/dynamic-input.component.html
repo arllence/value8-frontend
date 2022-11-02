@@ -1,0 +1,9 @@
+<form [formGroup]="group">
+<div class="form-group col-md-{{field.width}}" >
+    
+    <label>{{field.label | titlecase}} </label>
+    <!-- [placeholder]="field.label" -->
+    <input  [type]="field.input_type" class="form-control" [formControlName]="field.name">
+    
+</div>
+</form>

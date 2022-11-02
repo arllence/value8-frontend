@@ -1,0 +1,29 @@
+version: "2"
+services:
+    nginx:
+      image: nginx:latest
+      env_file:
+        - .env
+      container_name: nginxedmsfrontend
+      restart: always
+      ports:
+        - "8100:8100"
+      volumes:
+        - .:/src
+        - asset-volume:/home
+        - ./config:/etc/nginx/conf.d
+      depends_on:
+        - web
+    web:
+      env_file:
+        - .env
+      build: .
+      container_name: ngedmsfrontend
+      restart: always
+      volumes:
+        - asset-volume:/home
+        - .:/src
+      expose:
+        - "8100"
+volumes:
+  asset-volume:

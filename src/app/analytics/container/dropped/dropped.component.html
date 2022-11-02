@@ -1,0 +1,216 @@
+<style>
+    /* .squarebox i{
+    font-size: 50px !important;
+  }
+  .square_box .number {
+    font-size: 30px !important;
+    text-align: left;
+    font-weight: 700;
+} */
+</style>
+<div class="card">
+ 
+   <div class="card-header">
+      <h6 class="card-title">
+         Progress Analytics
+     </h6>
+
+   </div>
+   <div class="card-body">
+<div class="">
+<section class="row ">
+
+   <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+      <div class="card">
+         <div class="card-header bg_purple">
+            Dropped by Country 
+         </div>
+         <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+            <table class="wikitable" [mfData]="all_countries_data" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+               <thead>
+               <tr>        
+                  
+                     <th class="text-center">#</th>
+                     <th>
+                     <mfDefaultSorter by="country">Country</mfDefaultSorter>
+                     </th>                     
+                     <th class="text-center">
+                        <mfDefaultSorter by="count">Total</mfDefaultSorter>
+                     </th>
+
+               </tr>
+               </thead>
+               <tbody *ngIf="all_countries_data?.length != 0">
+               <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+                  <td class="text-center">{{i + 1}}</td>
+                  <td>
+                     <span *ngIf="recordinstance.country == null">
+                        <i class="text-info">
+                           (No country updated)
+                        </i>
+                     </span>
+                     <span *ngIf="recordinstance.country !== null">
+                        <i>
+                           {{ recordinstance.country }}
+                        </i>
+                     </span>
+                     
+                  </td>
+                  <td class="text-center">{{ recordinstance.count }}</td>
+               </tr>
+               </tbody>
+               <tfoot>
+               <tr class="hide">
+                  <td colspan="12">
+                     Select Records in a page : <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,100]"></mfBootstrapPaginator>
+                  </td>
+               </tr>
+               </tfoot>
+               <tbody *ngIf="records?.length == 0">
+               <tr>
+                  <td colspan="9" class="no-data-available">No data available</td>
+               </tr>
+               <tbody>
+               </table>
+         </div>
+      </div>
+   </div>
+
+
+  <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+   <div class="card">
+      <div class="card-header bg_purple">
+         Dropped by Age Group 
+      </div>
+      <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="by_age" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+            <thead>
+            <tr>        
+               
+                  <th class="text-center">#</th>
+                  <th>
+                  <mfDefaultSorter by="label">Age Group</mfDefaultSorter>
+                  </th>
+                  <th class="text-center">
+                  <mfDefaultSorter by="data">Total Dropped</mfDefaultSorter>
+                  </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="by_age?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td>{{ recordinstance.label }}</td>
+               <td class="text-center">{{ recordinstance.count }}</td>
+            </tr>
+            </tbody>
+            
+         </table>
+      </div>
+   </div>
+  </div>
+
+
+  <div class="col-lg-6 col-md-12 col-sm-12 margin_10 animated fadeInLeftBig">
+   <div class="card">
+      <div class="card-header bg_purple">
+         Dropped by Gender 
+      </div>
+      <div class="card-body table-responsive" *ngIf="country_display_type == 'table'">
+         <table class="wikitable" [mfData]="by_gender" #mf="mfDataTable"  [mfRowsOnPage]="10" width="100%">
+            <thead>
+            <tr>        
+               
+                  <th class="text-center">#</th>
+                  <th>
+                  <mfDefaultSorter by="label">Gender</mfDefaultSorter>
+                  </th>
+                  <th class="text-center">
+                  <mfDefaultSorter by="data">Total Dropped</mfDefaultSorter>
+                  </th>
+
+            </tr>
+            </thead>
+            <tbody *ngIf="by_age?.length != 0">
+            <tr *ngFor="let recordinstance of mf.data | filter : searchString; let i = index">            
+               <td class="text-center">{{i + 1}}</td>
+               <td>{{ recordinstance.label }}</td>
+               <td class="text-center">{{ recordinstance.count }}</td>
+            </tr>
+            </tbody>
+            
+         </table>
+      </div>
+   </div>
+  </div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg_purple">
+           Dropped by Language            
+        </div>
+           <div class="card-body" *ngIf="country_display_type == 'table'">
+              <table class="wikitable" width="100%">
+                 <thead>
+                 <tr>                         
+                       <th class="text-center">#</th>
+                       <th>
+                          Language   
+                       </th>
+                       <th class="text-center">
+                          Total Dropped   
+                       </th>
+                 </tr>
+                 </thead>
+                 <tbody *ngIf="by_language?.length != 0">
+                    <tr *ngFor="let data of by_language; let i = index">            
+                       <td class="text-center">{{i + 1}}</td>
+                       <td>
+                          {{data?.label}}
+                       </td>
+                       <td class="text-center">{{data?.data}}</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+   </div>
+
+   <div class="col-lg-6 col-md-12 col-sm-12 animated fadeInLeftBig">
+      <div class="card">
+        <div class="card-header bg_purple">
+           Dropped by Reason            
+        </div>
+           <div class="card-body" *ngIf="country_display_type == 'table'">
+              <table class="wikitable" width="100%">
+                 <thead>
+                 <tr>                         
+                       <th class="text-center">#</th>
+                       <th>
+                          Reason   
+                       </th>
+                       <th class="text-center">
+                          Total Dropped   
+                       </th>
+                 </tr>
+                 </thead>
+                 <tbody *ngIf="by_status?.length != 0">
+                    <tr *ngFor="let data of by_status; let i = index">            
+                       <td class="text-center">{{i + 1}}</td>
+                       <td>
+                          {{data?.reason}}
+                       </td>
+                       <td class="text-center">{{data?.count}}</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+   </div>
+
+
+
+</section>
+</div>
+</div>
+</div>
