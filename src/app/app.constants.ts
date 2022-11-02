@@ -1,4 +1,5 @@
-export let serverurl = 'http://127.0.0.1:8000';
+// export let serverurl = 'http://127.0.0.1:8000';
+export let serverurl = 'http://20.102.106.83:5702';
 
 export let API_VERSION = '/api/v1/';
 export let loginurl = serverurl + API_VERSION + 'authentication/login';
