@@ -14,17 +14,14 @@
      <div class="card">
        <div class="card-header">
          <strong>
-            <span *ngIf="pending_report">
-                Pending Reports
-            </span>
-            <span *ngIf="!pending_report">
+            <span >
              Products List
             </span>
             
           </strong>
        </div>
        <div class="card-body" >
-         <form [formGroup]="searchForm" (ngSubmit)="fetch_products()" *ngIf="!hide_filter_form" class="hide">
+         <form [formGroup]="searchForm" (ngSubmit)="fetch_products()" class="hide">
            <div class="row ">           
              <div class="form-group col-sm-6">
                <label for="searchby"><strong>Select Status</strong></label>
