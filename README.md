@@ -1,7 +1,10 @@
 
-## IEN-UI
+## Main-UI
 
-IEN is built ontop of Angular9 and bootstrap4 framework.
+UI is built ontop of Angular9 and bootstrap4 framework.
+
+## Hosted:
+http://20.102.106.83/
 
 
 
